@@ -31,3 +31,6 @@ pnpm-debug.log*
 
 # Cloudflare
 .wrangler/
+
+# OMC runtime state (local harness only)
+.omc/
