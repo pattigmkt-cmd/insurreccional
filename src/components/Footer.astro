@@ -1,0 +1,83 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="relative border-t border-line bg-ink px-4 pb-10 pt-20 sm:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-12 md:gap-10">
+    <div class="md:col-span-6">
+      <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
+        [ Plataforma editorial ]
+      </p>
+      <h3 class="font-serif text-3xl font-bold italic leading-tight text-bone md:text-4xl">
+        Criterio antes que crecimiento.<br />
+        <span class="text-neon">Comunidad</span> antes que audiencia.
+      </h3>
+      <p class="mt-6 max-w-md text-sm leading-relaxed text-mute">
+        Escrito por Dominique Alexia. Publicado cuando hay algo que decir — no
+        cuando el calendario pide.
+      </p>
+    </div>
+
+    <div class="md:col-span-3">
+      <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
+        Seguir leyendo
+      </p>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="/blog" class="text-bone/80 transition-colors hover:text-bone">
+            Archivo completo
+          </a>
+        </li>
+        <li>
+          <a href="/manifiesto" class="text-bone/80 transition-colors hover:text-bone">
+            Manifiesto
+          </a>
+        </li>
+        <li>
+          <span class="text-mute">
+            Podcast <span class="ml-1 text-[10px] uppercase tracking-widest text-neon">próximo</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-3">
+      <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
+        Contacto
+      </p>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-bone/80 transition-colors hover:text-bone"
+          >
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-bone/80 transition-colors hover:text-bone"
+          >
+            Instagram
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="mx-auto mt-16 flex max-w-6xl flex-col gap-4 border-t border-line pt-8 text-[11px] text-mute md:flex-row md:items-center md:justify-between"
+  >
+    <p class="font-mono uppercase tracking-[0.18em]">
+      © {year} · Insurreccional · Dominique Alexia
+    </p>
+    <p class="font-mono uppercase tracking-[0.18em]">
+      Escrito en Buenos Aires y Madrid.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,60 @@
+---
+title: "Tu logo no es tu marca. Basta."
+description: "Once años escuchando 'necesito un logo' cuando lo que falta es decidir qué carajo vendés. Un reset necesario."
+pubDate: 2026-04-20
+category: "Criterio"
+kicker: "Sobre la confusión más cara del rubro."
+readingMinutes: 8
+featured: true
+---
+
+Hace once años que trabajo en esto y la frase más cara que existe sigue siendo la misma:
+
+> "Necesito un logo."
+
+No. No necesitás un logo. Necesitás decidir qué vendés, a quién, y por qué alguien en su sano juicio elegiría pagarte a vos en lugar de al otro. Esa decisión se toma **antes** de abrir Figma. Cualquier estudio que arranca por el logo está diseñando el wallpaper de una casa que todavía no tiene paredes.
+
+## Lo que te vendió Instagram
+
+Que la marca se resuelve visualmente. Que si tu identidad "tira" el cliente llega. Que con un buen tipografía y dos colores estás hecho.
+
+Es mentira. O peor: es una mentira útil para la industria del diseño, que cobra más rápido cuando el entregable es un PDF de 40 slides con mockups de remeras.
+
+La marca es el conjunto de asociaciones que una persona armó sobre vos en su cabeza. El logo es apenas un disparador mnemotécnico. Pero el disparador no construye la asociación — la refuerza. Y si la asociación no existe porque vos todavía no sabés qué querés provocar, el logo no tiene nada que refrescar.
+
+## La pregunta que no te hacen
+
+Los estudios no te preguntan:
+
+- ¿Cuál es la decisión más difícil que tomaste en el último año sobre tu producto?
+- ¿Qué tipo de cliente querés perder?
+- ¿En qué momento un cliente tuyo debería dejar de ser tuyo?
+- ¿Qué afirmación hacés que ningún competidor tuyo haría sin sentir vergüenza?
+
+No te las hacen porque son incómodas y porque muchos estudios no saben contestarlas para ellos mismos. Es más cómodo mandar una brand board con tres paletas.
+
+## Qué es realmente una marca
+
+Una marca es **una promesa específica hecha a una persona específica, sostenida en el tiempo**. Cada palabra importa.
+
+**Específica.** Si tu promesa es "calidad" o "innovación" no tenés promesa. Tenés un sustantivo. Específica significa: "te devolvemos la plata si no duplicás tus ventas en 90 días" o "no trabajamos con clientes que facturan menos de X" o "nunca vas a ver un emoji en nuestras comunicaciones". Filtra, compromete, incomoda.
+
+**Persona específica.** "Profesionales del marketing" no es una persona. "Community managers con 3+ años de experiencia, laburando en agencia, a los que su jefa les está pidiendo hacer también de diseño y editar reels" sí lo es. Si no podés describir lo suficiente para odiar a tu cliente ideal un poquito, no lo conocés.
+
+**Sostenida en el tiempo.** La coherencia es más importante que la creatividad. Una marca aburrida y consistente le gana a una marca brillante que pivotea cada seis meses.
+
+## Qué hacer antes del logo
+
+1. Escribí en una hoja tu promesa en una oración. Si no entra, reducila.
+2. Nombrá tres cosas que *no* vas a ofrecer nunca.
+3. Escribí el mail que mandás cuando rechazás a un cliente que no te conviene. Si todavía no existe ese mail, estás aceptando a cualquiera.
+4. Tres fuentes de fricción reales con tus clientes actuales. La identidad tiene que hablarle a esas fricciones.
+5. Recién ahora, si querés, abrí Figma.
+
+Esto no es un método. Es higiene. Hacer branding saltándose esto es construir la fachada antes que los cimientos — y después llamarnos "para refrescar la imagen" en dos años cuando la promesa nunca estuvo clara.
+
+## Si sos el diseñador
+
+Aprende a decir: *"antes del logo necesito entender X"*. Y si el cliente se va porque esperaba un brief de cuatro líneas, no lo perdiste — te protegiste. El laburo donde el cliente te trata como herramienta de diagramación es el que te quema la carrera. Cambialo por uno donde te traten como interlocutor estratégico. Ese cambio empieza por vos haciendo preguntas que los otros no hacen.
+
+El logo viene al final. Y cuando viene al final, es trivial — porque la decisión que importa ya se tomó.

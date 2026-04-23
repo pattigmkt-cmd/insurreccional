@@ -1,0 +1,28 @@
+{
+  "name": "insurreccional",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Plataforma editorial de Dominique Alexia. Criterio real sobre branding — no logos, no seguidores.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@fontsource/dm-sans": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "@fontsource/playfair-display": "^5.2.5",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.8",
+    "tailwindcss": "^4.2.2"
+  },
+  "overrides": {
+    "vite": "^7"
+  }
+}

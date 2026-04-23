@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="404 · Insurreccional"
+  description="Esta página no existe. Pasa seguido con los textos crudos — se desvanecen."
+  noindex
+>
+  <Header />
+  <main
+    class="relative mx-auto flex min-h-[70svh] w-full max-w-3xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6"
+  >
+    <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+      [ 404 · texto no encontrado ]
+    </p>
+    <h1 class="font-serif text-6xl font-black italic leading-none text-bone md:text-[9rem]">
+      Nada.
+    </h1>
+    <p class="mt-8 max-w-md font-serif text-lg italic text-bone-soft md:text-xl">
+      Algunos textos se retiran. Otros nunca existieron. Este link, sin embargo,
+      llegaste a escribirlo — o alguien te lo mandó mal.
+    </p>
+    <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 border border-neon bg-neon px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.28em] text-ink transition-colors hover:bg-transparent hover:text-neon"
+      >
+        <span aria-hidden="true">←</span>
+        Volver al inicio
+      </a>
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 border border-line px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.28em] text-bone transition-colors hover:border-mute"
+      >
+        Ir al archivo
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,138 @@
+---
+import CategoryBadge from "./CategoryBadge.astro";
+
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  kicker?: string;
+  category: string;
+  pubDate: Date;
+  readingMinutes: number;
+  variant?: "default" | "feature" | "compact";
+  index?: number;
+}
+
+const {
+  slug,
+  title,
+  description,
+  kicker,
+  category,
+  pubDate,
+  readingMinutes,
+  variant = "default",
+  index = 0,
+} = Astro.props;
+
+const dateFormatted = pubDate.toLocaleDateString("es-AR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const indexLabel = String(index + 1).padStart(2, "0");
+---
+
+{
+  variant === "feature" && (
+    <article class="group relative grid gap-8 border-b border-line pb-16 md:grid-cols-12 md:gap-10 md:pb-20">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3">
+          <span class="font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+            [ {indexLabel} ] Destacado
+          </span>
+        </div>
+        <div class="mt-5">
+          <CategoryBadge category={category} accent />
+        </div>
+        <p class="mt-5 font-mono text-[11px] uppercase tracking-[0.2em] text-mute">
+          {dateFormatted} · {readingMinutes} min de lectura
+        </p>
+      </div>
+
+      <a href={`/blog/${slug}`} class="md:col-span-7">
+        {kicker && (
+          <p class="mb-3 font-serif text-sm italic text-mute">
+            — {kicker}
+          </p>
+        )}
+        <h2 class="font-serif text-3xl font-bold leading-[1.05] text-bone transition-colors group-hover:text-neon sm:text-4xl md:text-5xl">
+          {title}
+        </h2>
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-bone-soft md:text-lg">
+          {description}
+        </p>
+        <span class="mt-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-bone transition-colors group-hover:text-neon">
+          Leer completo
+          <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </span>
+      </a>
+    </article>
+  )
+}
+
+{
+  variant === "default" && (
+    <a
+      href={`/blog/${slug}`}
+      class="group relative flex flex-col gap-5 border border-line bg-surface/60 p-6 transition-colors hover:border-neon/40 hover:bg-surface md:p-8"
+    >
+      <div class="flex items-center justify-between gap-3">
+        <CategoryBadge category={category} />
+        <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+          {indexLabel}
+        </span>
+      </div>
+
+      <h3 class="font-serif text-xl font-bold leading-tight text-bone transition-colors group-hover:text-neon sm:text-2xl">
+        {title}
+      </h3>
+
+      <p class="flex-1 text-sm leading-relaxed text-mute">
+        {description}
+      </p>
+
+      <div class="mt-2 flex items-center justify-between gap-3 border-t border-line pt-4">
+        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-dim">
+          {readingMinutes} min
+        </span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bone transition-colors group-hover:text-neon">
+          Leer →
+        </span>
+      </div>
+    </a>
+  )
+}
+
+{
+  variant === "compact" && (
+    <a
+      href={`/blog/${slug}`}
+      class="group grid grid-cols-[auto_1fr_auto] items-start gap-4 border-b border-line py-5 transition-colors hover:bg-surface/40 md:gap-8 md:py-6"
+    >
+      <span class="mt-0.5 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+        {indexLabel}
+      </span>
+      <div>
+        <div class="mb-2 flex items-center gap-3">
+          <CategoryBadge category={category} />
+          <span class="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-mute-dim sm:inline">
+            {dateFormatted}
+          </span>
+        </div>
+        <h4 class="font-serif text-lg font-bold leading-tight text-bone transition-colors group-hover:text-neon md:text-xl">
+          {title}
+        </h4>
+      </div>
+      <span
+        aria-hidden="true"
+        class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mute transition-colors group-hover:text-neon"
+      >
+        →
+      </span>
+    </a>
+  )
+}

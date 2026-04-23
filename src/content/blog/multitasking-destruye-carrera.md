@@ -1,0 +1,56 @@
+---
+title: "Por qué el multitasking que te piden destruye tu carrera (y la de tu cliente)"
+description: "Ser 'multi' no es un elogio. Es una confesión del que te contrata. Y el primero al que le cuesta la confusión sos vos."
+pubDate: 2026-04-15
+category: "Industria"
+kicker: "La trampa más naturalizada del rubro."
+readingMinutes: 9
+featured: true
+---
+
+Hablo con una chica, diseñadora gráfica, tres años de experiencia. Me cuenta su laburo actual:
+
+> "Hago el diseño de las piezas, edito los reels, subo los posts, contesto DMs, armo el cronograma del mes, paso los números de la pauta a la jefa los viernes, y ahora me pidieron si podía empezar a escribir los copys también."
+
+Le pregunto cuánto gana. Me dice una cifra. Le pregunto cuántos clientes maneja. Seis.
+
+Esto no es una historia rara. Es **la historia promedio** del sector ahora mismo. Y hay que llamarlo por su nombre: explotación disfrazada de flexibilidad. La industria lo rebrandeó como *"perfil integral"* o *"profesional T-shape"* y lo celebra en LinkedIn. No es eso. Es que contratar cuatro personas cuesta más que contratarte a vos.
+
+## El problema no es moral — es estructural
+
+El punto no es que tu jefa sea mala persona (capaz lo es, pero no importa). El punto es que el modelo tiene **dos efectos combinados**, uno sobre vos y uno sobre el cliente final. Los dos son malos.
+
+**Sobre vos.** Cuando hacés seis cosas, no profundizás en ninguna. Tu curva de aprendizaje se achata. En dos años tenés tres años de experiencia — no cinco. Y cuando busques cambiar de laburo, tu CV va a decir *"diseñadora, community, copy, ads"* y el próximo empleador va a leer: "esta no es fuerte en nada".
+
+**Sobre el cliente.** La calidad del output baja. No porque seas vaga — porque es imposible. Un reel bien editado toma dos horas. Un copy bien escrito toma una hora. Un post bien diseñado toma dos. Multiplicalo por seis clientes. Hacé la cuenta. No da. El cliente no se entera porque la métrica que mira es *"publicaste esta semana"*, no *"convirtió este post"*.
+
+Los dos perdemos. Vos tu carrera, el cliente su inversión.
+
+## Por qué lo aceptás
+
+Porque te dijeron que "hay que sumar" al principio. Porque la jefa te elogia cuando "metés pecho". Porque tenés miedo de decir que no. Porque el trabajo remoto hizo que la línea entre laburar y no laburar se borre. Porque no sabés cuánto vale tu hora. Porque pensás que si te especializás, te quedás sin trabajo.
+
+Lo último es al revés. **El que se especializa tiene más trabajo, no menos.** Busca en LinkedIn cuánto gana un *copywriter que solo hace copy B2B para SaaS*. Compará con cuánto ganás vos haciendo las seis cosas. La diferencia es la especialización.
+
+## La trampa de la agencia
+
+Las agencias tienen un interés directo en mantenerte "multi". Porque el margen de la agencia es la diferencia entre lo que factura al cliente y lo que te paga a vos. Si te especializás, tenés más poder para cobrar más. Si sos un multi, tu valor de mercado es ambiguo y la agencia capta esa ambigüedad.
+
+Esto no significa que todas las agencias son el enemigo. Significa que tu agencia tiene una lógica — y esa lógica no coincide 100% con la tuya. Vos estás ahí para aprender y cobrar. Ella está ahí para escalar su margen. Son vectores distintos. Ninguno es malo. Pero no los confundas.
+
+## Cómo salir sin renunciar mañana
+
+No te digo que renuncies. Eso es un consejo de alguien sin hipoteca. Te digo cuatro cosas que podés empezar esta semana:
+
+1. **Elegí una especialidad.** Una. La que más te guste o la que más te paguen. Decidí y ponele fecha: "en seis meses quiero ser reconocida como la mejor X en mi oficina." No "mejor en general" — mejor en **una cosa**.
+2. **Protegé el tiempo.** Dos horas por semana, bloqueadas, sin excusa, para profundizar en esa especialidad. Curso, libro, proyecto personal, lo que sea. Si tu jefa pregunta, decís que es desarrollo profesional. Es tuyo.
+3. **Dejá de aceptar todo.** La próxima vez que te pidan "si podés también hacer X", preguntá: *"¿qué saco de mi lista para meter esto?"* No es insubordinación. Es management básico. Si tu jefa no tiene respuesta, el problema es de ella.
+4. **Empezá a medir.** Cuánto tardás en cada tarea. Cuántos clientes manejás. Cuánto facturás por cliente para la agencia. Cuánto cobrás vos. Ese número en papel es el que te va a dar fuerza cuando negocies aumento — o cuando te vayas.
+
+## El cliente también pierde (y no lo sabe)
+
+Si sos el cliente que lee esto: el problema no es que "tu social media no da la talla". El problema es que le pediste a una persona el trabajo de cuatro. Lo que recibís es lo esperable. Si querés calidad, contratá especialistas — uno por disciplina — o pagá lo suficiente para que quien sea pueda dedicarle tiempo real. No hay terceras opciones.
+
+El perfil integral no existe. Existe el perfil explotado. Y a la larga, todos pierden: vos, la marca, el resultado.
+
+Si algo de esto te resuena demasiado, capaz ya lo sabías. La pregunta es qué vas a hacer con saberlo.

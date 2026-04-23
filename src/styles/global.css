@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/900.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/playfair-display/700-italic.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@theme {
+  /* Paleta — dark surrealism + acentos neón inspirado en el board
+     "insurreccional-podcast": moody, anti-mainstream, editorial. */
+  --color-ink: #0a0a0a;
+  --color-surface: #111111;
+  --color-bone: #f0ece4;
+  --color-bone-soft: #d8d2c5;
+  --color-mute: #888888;
+  --color-mute-dim: #555555;
+  --color-neon: #c8ff00;
+  --color-neon-dim: #9bc800;
+  --color-line: #222222;
+  --color-line-soft: #181818;
+
+  --font-serif: "Playfair Display", "Times New Roman", Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    overflow-x: clip;
+    min-height: 100svh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, svg, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  ::selection {
+    background: var(--color-neon);
+    color: var(--color-ink);
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* Scrollbar discreta */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-ink); }
+  ::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-mute-dim); }
+}
+
+/* Textura de grano sutil — opcional, se activa con clase .has-grain */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>");
+}
+
+/* Entrada editorial sutil para bloques hero */
+.fade-up {
+  animation: fade-up 0.9s var(--ease-editorial) both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Tipografía de post (prose editorial) */
+.prose-editorial {
+  color: var(--color-bone-soft);
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+.prose-editorial > * + * { margin-top: 1.4em; }
+.prose-editorial h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  color: var(--color-bone);
+  margin-top: 2.8em;
+  margin-bottom: 0.4em;
+  letter-spacing: -0.02em;
+}
+.prose-editorial h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+  color: var(--color-bone);
+  margin-top: 2.2em;
+  margin-bottom: 0.3em;
+}
+.prose-editorial p { max-width: 68ch; }
+.prose-editorial strong { color: var(--color-bone); font-weight: 700; }
+.prose-editorial em { font-style: italic; color: var(--color-bone); }
+.prose-editorial a {
+  color: var(--color-bone);
+  background-image: linear-gradient(var(--color-neon), var(--color-neon));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 95%;
+  transition: background-size 180ms var(--ease-editorial);
+}
+.prose-editorial a:hover {
+  background-size: 100% 40%;
+  background-position: 0 100%;
+}
+.prose-editorial blockquote {
+  border-left: 2px solid var(--color-neon);
+  padding: 0.25em 0 0.25em 1.5em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.35em;
+  color: var(--color-bone);
+  max-width: 58ch;
+}
+.prose-editorial code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-surface);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  color: var(--color-neon);
+}
+.prose-editorial pre {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  padding: 1.2em;
+  overflow-x: auto;
+  font-size: 0.9em;
+}
+.prose-editorial pre code {
+  background: transparent;
+  color: var(--color-bone-soft);
+  padding: 0;
+}
+.prose-editorial ul, .prose-editorial ol {
+  max-width: 62ch;
+  padding-left: 1.4em;
+}
+.prose-editorial ul { list-style: none; }
+.prose-editorial ul > li {
+  position: relative;
+  margin-bottom: 0.5em;
+}
+.prose-editorial ul > li::before {
+  content: "—";
+  position: absolute;
+  left: -1.4em;
+  color: var(--color-neon);
+  font-weight: 700;
+}
+.prose-editorial ol { list-style: decimal; }
+.prose-editorial ol > li::marker {
+  color: var(--color-neon);
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+.prose-editorial hr {
+  margin: 3em auto;
+  max-width: 6rem;
+  border-top: 1px solid var(--color-line);
+}

@@ -1,0 +1,83 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (path: string) =>
+  path === "/" ? pathname === "/" : pathname.startsWith(path);
+
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/blog", label: "Archivo" },
+  { href: "/manifiesto", label: "Manifiesto" },
+];
+---
+
+<header
+  class="relative z-50 border-b border-line bg-ink/80 backdrop-blur-md"
+>
+  <div class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <a href="/" class="group flex items-center gap-3" aria-label="Insurreccional · inicio">
+      <span
+        class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-neon/60 bg-neon/10 font-mono text-[10px] font-semibold uppercase tracking-widest text-neon transition-colors group-hover:bg-neon group-hover:text-ink"
+      >
+        I
+      </span>
+      <span class="flex flex-col leading-none">
+        <span class="font-serif text-lg font-bold italic text-bone">Insurreccional</span>
+        <span class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.3em] text-mute">
+          Dominique Alexia
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class:list={[
+              "relative font-mono text-[11px] uppercase tracking-[0.28em] transition-colors",
+              isActive(l.href) ? "text-bone" : "text-mute hover:text-bone",
+            ]}
+          >
+            {l.label}
+            {isActive(l.href) && (
+              <span
+                aria-hidden="true"
+                class="absolute -bottom-1 left-0 right-0 h-[1px] bg-neon"
+              />
+            )}
+          </a>
+        ))
+      }
+    </nav>
+
+    {/* Mobile trigger — details/summary, zero JS */}
+    <details class="relative md:hidden">
+      <summary
+        class="inline-flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-surface text-bone transition-colors hover:border-mute [&::-webkit-details-marker]:hidden"
+        aria-label="Abrir menú"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <line x1="4" y1="8" x2="20" y2="8" />
+          <line x1="4" y1="16" x2="20" y2="16" />
+        </svg>
+      </summary>
+      <div
+        class="absolute right-0 top-full z-50 mt-2 w-[min(calc(100vw-1.5rem),14rem)] rounded-sm border border-line bg-surface p-1.5 shadow-[0_20px_60px_rgba(0,0,0,0.7)]"
+      >
+        {
+          links.map((l) => (
+            <a
+              href={l.href}
+              class:list={[
+                "block rounded-sm px-3 py-2.5 font-mono text-[11px] uppercase tracking-[0.28em] transition-colors",
+                isActive(l.href) ? "text-neon" : "text-bone hover:bg-line/60",
+              ]}
+            >
+              {l.label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
+  </div>
+</header>

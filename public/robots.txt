@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://insurreccional.pages.dev/sitemap-index.xml
