@@ -14,7 +14,6 @@ import ShimmerButton from "../components/fx/ShimmerButton";
 import MagneticButton from "../components/fx/MagneticButton";
 import SpotlightCard from "../components/fx/SpotlightCard";
 import CardTilt from "../components/fx/CardTilt";
-import BorderBeam from "../components/fx/BorderBeam";
 import NumberTicker from "../components/fx/NumberTicker";
 import DotPattern from "../components/fx/DotPattern";
 import RetroGrid from "../components/fx/RetroGrid";
@@ -253,7 +252,6 @@ const cmdPosts = allPosts.map((p) => ({
           <BlurFade client:visible delay={0.1} className="mb-6">
             <CardTilt client:visible maxTilt={3}>
               <SpotlightCard client:visible className="group relative overflow-hidden border border-line bg-surface/70 p-8 transition-colors hover:border-neon/30 md:p-12">
-                <BorderBeam client:visible />
                 <div class="grid gap-8 md:grid-cols-12 md:gap-10">
                   <div class="md:col-span-5">
                     <div class="flex items-center gap-3">

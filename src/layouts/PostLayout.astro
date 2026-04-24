@@ -19,7 +19,6 @@ import AuthorBio from "../components/editorial/post/AuthorBio";
 import RelatedPosts from "../components/editorial/post/RelatedPosts";
 
 // Wave 5 — Three.js editorial chain
-import LogoTransform from "../components/fx/three/LogoTransform";
 import NextPostBridge from "../components/fx/three/NextPostBridge";
 
 import { getCollection } from "astro:content";
@@ -99,9 +98,6 @@ const tldrItems = tldr ?? [
   <BackToTop client:load />
 
   <Header />
-
-  <!-- 3D hero: brand mark disassembles and reassembles into the post title -->
-  <LogoTransform client:visible text={title} />
 
   <main class="relative w-full px-4 pb-32 pt-16 sm:px-6 md:pt-24">
     <div class="mx-auto max-w-7xl">

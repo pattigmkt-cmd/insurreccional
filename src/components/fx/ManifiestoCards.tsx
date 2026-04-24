@@ -1,7 +1,6 @@
 "use client";
 
 import DirectionAwareHover from "./DirectionAwareHover";
-import BorderBeam from "./BorderBeam";
 
 export default function ManifiestoCards() {
   const yesOverlay = (
@@ -56,7 +55,6 @@ export default function ManifiestoCards() {
           justifyContent: "space-between",
         } as React.CSSProperties}
       >
-        <BorderBeam duration={5} />
         <p
           style={{
             fontFamily: "var(--font-mono)",

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import BorderBeam from "../fx/BorderBeam";
 
 export default function AboutPanel() {
   return (
@@ -51,7 +50,6 @@ export default function AboutPanel() {
               border: "1px solid var(--color-line)",
             }}
           >
-            <BorderBeam size={150} duration={5} />
             {/* Editorial silhouette SVG */}
             <svg
               viewBox="0 0 200 260"
