@@ -7,7 +7,7 @@ import PostCard from "../components/PostCard.astro";
 
 // FX Components
 import AuroraMesh from "../components/fx/AuroraMesh";
-import TextGenerate from "../components/fx/TextGenerate";
+import SplitText from "../components/fx/SplitText";
 import BlurFade from "../components/fx/BlurFade";
 import Marquee from "../components/fx/Marquee";
 import ShimmerButton from "../components/fx/ShimmerButton";
@@ -18,6 +18,12 @@ import BorderBeam from "../components/fx/BorderBeam";
 import NumberTicker from "../components/fx/NumberTicker";
 import DotPattern from "../components/fx/DotPattern";
 import RetroGrid from "../components/fx/RetroGrid";
+import LampEffect from "../components/fx/LampEffect";
+import AnimatedGradientText from "../components/fx/AnimatedGradientText";
+import InfiniteQuotes from "../components/fx/InfiniteQuotes";
+import HoverRevealCard from "../components/fx/HoverRevealCard";
+import Timeline from "../components/fx/Timeline";
+import EvervaultCard from "../components/fx/EvervaultCard";
 
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const featured = allPosts
@@ -40,6 +46,22 @@ const marqueeItems = [
   "Profundidad antes que alcance",
   "Construido despacio",
 ];
+
+const quotes = [
+  { quote: "El logo viene al final. Cuando viene al final, es trivial.", author: "Tu logo no es tu marca" },
+  { quote: "El perfil integral no existe. Existe el perfil explotado.", author: "Multitasking" },
+  { quote: "Una audiencia se gasta. Una comunidad se capitaliza.", author: "Comunidad antes que audiencia" },
+  { quote: "Construir comunidad es lento. Un año, dos años, tres.", author: "Comunidad" },
+  { quote: "La coherencia es más importante que la creatividad.", author: "Logo no es marca" },
+];
+
+const timelineItems = [
+  { num: "01", title: "Blog", description: "El núcleo. Textos largos, sin resumen ejecutivo. Para leer despacio en una pausa real, no entre un mensaje de WhatsApp y otro.", status: "active" as const },
+  { num: "02", title: "YouTube", description: "Ensayos en video. Formato largo. Sin cortes cada ocho segundos. Sin edición de TikTok aplicada a contenido que necesita respirar.", status: "pending" as const },
+  { num: "03", title: "Podcast", description: "Conversaciones con gente real del sector. No gurúes, no 'expertos' con 300k followers y cero clientes. Profesionales que saben porque hicieron.", status: "pending" as const },
+];
+
+const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resultados en 30 días"];
 ---
 
 <Layout title={title} description={description}>
@@ -47,7 +69,7 @@ const marqueeItems = [
 
   <main>
     <!-- ═══════════════════════════════════════════════════════
-         HERO
+         HERO — LampEffect wrapping h1
     ═══════════════════════════════════════════════════════ -->
     <section class="relative isolate overflow-hidden border-b border-line px-4 pb-28 pt-20 sm:px-6 md:pb-36 md:pt-28 lg:px-8">
       <!-- Aurora Mesh background -->
@@ -65,22 +87,29 @@ const marqueeItems = [
           </p>
         </BlurFade>
 
-        <h1 class="font-serif text-[19vw] font-black leading-[0.85] tracking-[-0.03em] text-bone sm:text-[14vw] md:text-[10.5vw] lg:text-[8.2rem]">
-          <TextGenerate
-            client:visible
-            text="Insurreccional."
-            as="span"
-            delay={0.1}
-            className="block"
-          />
-        </h1>
+        <!-- LampEffect on the h1 -->
+        <LampEffect className="py-4" intensity={1.2}>
+          <h1 class="font-serif text-[19vw] font-black leading-[0.85] tracking-[-0.03em] text-bone sm:text-[14vw] md:text-[10.5vw] lg:text-[8.2rem]">
+            <SplitText
+              client:visible
+              text="Insurreccional."
+              as="span"
+              delay={0.1}
+              staggerDelay={0.03}
+              className="block"
+            />
+          </h1>
+        </LampEffect>
 
         <div class="mt-10 grid gap-10 md:grid-cols-12 md:gap-12">
           <BlurFade client:visible delay={0.25} direction="up" className="md:col-span-7">
             <p class="font-serif text-xl italic leading-snug text-bone md:text-3xl">
-              No te enseño herramientas. No te mando templates. Te doy el criterio
-              que tardé una década construir — y que la industria te vende en
-              cursos de una hora con promesa de viralidad.
+              <AnimatedGradientText client:visible className="font-serif text-xl italic leading-snug md:text-3xl" speed={6}>
+                No te enseño herramientas. No te mando templates. Te doy el criterio
+                que tardé una década construir
+              </AnimatedGradientText>
+              {" "}<span class="text-bone-soft">— y que la industria te vende en
+              cursos de una hora con promesa de viralidad.</span>
             </p>
           </BlurFade>
 
@@ -136,6 +165,24 @@ const marqueeItems = [
     </div>
 
     <!-- ═══════════════════════════════════════════════════════
+         VOCES — InfiniteQuotes
+    ═══════════════════════════════════════════════════════ -->
+    <section class="relative border-b border-line overflow-hidden py-16 md:py-24">
+      <BlurFade client:visible delay={0} className="mb-10 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl flex items-center justify-between gap-6">
+          <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+            [ Voces del archivo ]
+          </p>
+          <span class="h-[1px] flex-1 bg-line/60 max-w-xs" />
+        </div>
+      </BlurFade>
+      <div class="space-y-4">
+        <InfiniteQuotes client:visible items={quotes} speed={45} direction="normal" />
+        <InfiniteQuotes client:visible items={[...quotes].reverse()} speed={35} direction="reverse" />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
          FEATURED POSTS — Bento asimétrico
     ═══════════════════════════════════════════════════════ -->
     <section class="relative border-b border-line px-4 py-24 sm:px-6 md:py-32 lg:px-8">
@@ -159,7 +206,7 @@ const marqueeItems = [
         </BlurFade>
 
         {featured.length >= 1 && (
-          <!-- Bento: post grande arriba -->
+          <!-- Bento: post grande arriba — SpotlightCard + BorderBeam -->
           <BlurFade client:visible delay={0.1} className="mb-6">
             <CardTilt client:visible maxTilt={3}>
               <SpotlightCard client:visible className="group relative overflow-hidden border border-line bg-surface/70 p-8 transition-colors hover:border-neon/30 md:p-12">
@@ -204,38 +251,20 @@ const marqueeItems = [
         )}
 
         {featured.length >= 3 && (
-          <!-- Bento: 2 posts chicos abajo -->
+          <!-- Bento: 2 posts chicos — HoverRevealCard -->
           <div class="grid gap-6 md:grid-cols-2">
             {[featured[1], featured[2]].map((post, i) => (
               <BlurFade client:visible delay={0.2 + i * 0.1}>
-                <CardTilt client:visible maxTilt={4}>
-                  <SpotlightCard client:visible className="group relative h-full overflow-hidden border border-line bg-surface/60 p-6 transition-colors hover:border-neon/30 md:p-8">
-                    <div class="flex items-center justify-between gap-3 mb-4">
-                      <span class="inline-block border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-mute">
-                        {post.data.category}
-                      </span>
-                      <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-                        0{i + 2}
-                      </span>
-                    </div>
-                    <a href={`/blog/${post.id}`}>
-                      <h3 class="font-serif text-xl font-bold leading-tight text-bone transition-colors group-hover:text-neon sm:text-2xl mb-4">
-                        {post.data.title}
-                      </h3>
-                      <p class="text-sm leading-relaxed text-mute mb-6">
-                        {post.data.description}
-                      </p>
-                      <div class="flex items-center justify-between border-t border-line pt-4">
-                        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-dim">
-                          {post.data.readingMinutes} min
-                        </span>
-                        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bone transition-colors group-hover:text-neon">
-                          Leer →
-                        </span>
-                      </div>
-                    </a>
-                  </SpotlightCard>
-                </CardTilt>
+                <HoverRevealCard
+                  client:visible
+                  href={`/blog/${post.id}`}
+                  title={post.data.title}
+                  subtitle={post.data.kicker}
+                  description={post.data.description}
+                  category={post.data.category}
+                  meta={`${post.data.readingMinutes} min`}
+                  className="h-full"
+                />
               </BlurFade>
             ))}
           </div>
@@ -273,9 +302,9 @@ const marqueeItems = [
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         DE QUÉ TRATA ESTO
+         DE QUÉ TRATA ESTO — Timeline
     ═══════════════════════════════════════════════════════ -->
-    <section class="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
+    <section class="relative border-b border-line px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div class="mx-auto grid max-w-6xl gap-14 md:grid-cols-12 md:gap-20">
         <BlurFade client:visible delay={0} className="md:col-span-5">
           <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
@@ -294,66 +323,43 @@ const marqueeItems = [
           </p>
         </BlurFade>
 
-        <div class="space-y-6 md:col-span-7">
-          <!-- Blog — con BorderBeam (activo) -->
-          <BlurFade client:visible delay={0.1}>
-            <CardTilt client:visible maxTilt={2}>
-              <div class="group relative flex gap-6 border border-neon/40 bg-surface/50 p-6 overflow-hidden">
-                <BorderBeam client:visible duration={4} />
-                <span class="font-mono text-sm text-neon">01</span>
-                <div>
-                  <h3 class="font-serif text-2xl font-bold text-bone">Blog</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-bone-soft">
-                    El núcleo. Textos largos, sin resumen ejecutivo, sin thumbnails
-                    optimizados. Para leer despacio en una pausa real, no entre un
-                    mensaje de WhatsApp y otro.
-                  </p>
-                  <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
-                    Disponible ahora
-                  </p>
-                </div>
-              </div>
-            </CardTilt>
-          </BlurFade>
-
-          <BlurFade client:visible delay={0.2}>
-            <div class="group flex gap-6 border-l border-line pl-6 transition-colors">
-              <span class="font-mono text-sm text-mute">02</span>
-              <div>
-                <h3 class="font-serif text-2xl font-bold text-bone/80">YouTube</h3>
-                <p class="mt-2 text-sm leading-relaxed text-mute">
-                  Ensayos en video. Formato largo. Sin cortes cada ocho segundos.
-                  Sin edición de TikTok aplicada a contenido que necesita respirar.
-                </p>
-                <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-                  En preparación
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-
-          <BlurFade client:visible delay={0.3}>
-            <div class="group flex gap-6 border-l border-line pl-6 transition-colors">
-              <span class="font-mono text-sm text-mute">03</span>
-              <div>
-                <h3 class="font-serif text-2xl font-bold text-bone/80">Podcast</h3>
-                <p class="mt-2 text-sm leading-relaxed text-mute">
-                  Conversaciones con gente real del sector. No gurúes, no
-                  "expertos" con 300k followers y cero clientes. Profesionales
-                  que saben porque hicieron.
-                </p>
-                <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-                  En preparación
-                </p>
-              </div>
-            </div>
-          </BlurFade>
+        <div class="md:col-span-7">
+          <Timeline client:visible items={timelineItems} />
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         CIERRE QUOTE
+         LO QUE NO VENDEMOS — EvervaultCard grid
+    ═══════════════════════════════════════════════════════ -->
+    <section class="relative border-b border-line px-4 py-24 sm:px-6 md:py-32 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+        <BlurFade client:visible delay={0} className="mb-16">
+          <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
+            [ Lo que NO vendemos ]
+          </p>
+          <h2 class="font-serif text-4xl font-bold leading-[1.05] text-bone sm:text-5xl">
+            Nunca vas a ver esto<br />
+            <span class="italic text-mute">en Insurreccional.</span>
+          </h2>
+        </BlurFade>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          {noSellItems.map((item) => (
+            <BlurFade client:visible delay={0.1}>
+              <EvervaultCard client:visible className="min-h-[120px] flex items-center justify-center">
+                <p class="font-serif text-2xl font-bold text-bone md:text-3xl text-center">
+                  <span class="line-through text-mute/60">{item}</span>
+                </p>
+              </EvervaultCard>
+            </BlurFade>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CIERRE QUOTE — LampEffect + EvervaultCard
     ═══════════════════════════════════════════════════════ -->
     <section class="relative border-t border-line bg-surface/50 px-4 py-24 sm:px-6 md:py-32 lg:px-8 overflow-hidden">
       <DotPattern className="z-0" opacity={0.05} />
@@ -361,15 +367,22 @@ const marqueeItems = [
         <p class="mb-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neon">
           · · ·
         </p>
-        <div class="font-serif text-3xl leading-[1.2] text-bone md:text-5xl">
-          <TextGenerate
-            client:visible
-            text='"Construir marca no es aprender una herramienta — es aprender a elegir qué no hacés."'
-            as="p"
-            delay={0}
-            className="font-serif italic"
-          />
-        </div>
+
+        <LampEffect intensity={0.9} className="py-10">
+          <EvervaultCard client:visible large className="border-0 bg-transparent text-center">
+            <div class="font-serif text-3xl leading-[1.2] text-bone md:text-5xl">
+              <SplitText
+                client:visible
+                text='"Construir marca no es aprender una herramienta — es aprender a elegir qué no hacés."'
+                as="p"
+                delay={0}
+                staggerDelay={0.018}
+                className="font-serif italic"
+              />
+            </div>
+          </EvervaultCard>
+        </LampEffect>
+
         <BlurFade client:visible delay={0.4}>
           <p class="mt-10 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
             Dominique Alexia

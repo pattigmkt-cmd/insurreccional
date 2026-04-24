@@ -8,6 +8,7 @@ import HyperText from "../components/fx/HyperText";
 import BlurFade from "../components/fx/BlurFade";
 import ShimmerButton from "../components/fx/ShimmerButton";
 import RetroGrid from "../components/fx/RetroGrid";
+import LampEffect from "../components/fx/LampEffect";
 ---
 
 <Layout
@@ -26,11 +27,13 @@ import RetroGrid from "../components/fx/RetroGrid";
       </p>
     </BlurFade>
 
-    <BlurFade client:visible delay={0.1} direction="up">
-      <h1 class="font-serif text-6xl font-black italic leading-none text-bone md:text-[9rem]">
-        <HyperText client:visible text="Nada." trigger="mount" duration={1200} />
-      </h1>
-    </BlurFade>
+    <LampEffect intensity={0.7} className="py-6 px-8">
+      <BlurFade client:visible delay={0.1} direction="up">
+        <h1 class="font-serif text-6xl font-black italic leading-none text-bone md:text-[9rem]">
+          <HyperText client:visible text="Nada." trigger="mount" duration={1200} />
+        </h1>
+      </BlurFade>
+    </LampEffect>
 
     <BlurFade client:visible delay={0.3}>
       <p class="mt-8 max-w-md font-serif text-lg italic text-bone-soft md:text-xl">

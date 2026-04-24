@@ -3,15 +3,14 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import PostCard from "../../components/PostCard.astro";
-import CategoryBadge from "../../components/CategoryBadge.astro";
+import BlogArchiveClient from "../../components/BlogArchiveClient";
 
 import Meteors from "../../components/fx/Meteors";
 import DotPattern from "../../components/fx/DotPattern";
 import BlurFade from "../../components/fx/BlurFade";
-import CardTilt from "../../components/fx/CardTilt";
-import SpotlightCard from "../../components/fx/SpotlightCard";
 import NumberTicker from "../../components/fx/NumberTicker";
+import LampEffect from "../../components/fx/LampEffect";
+import TracingBeam from "../../components/fx/TracingBeam";
 
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const posts = allPosts.sort(
@@ -25,6 +24,17 @@ const categories = Array.from(
 const title = "Archivo · Insurreccional";
 const description =
   "Todos los textos publicados en Insurreccional. Criterio sobre branding, industria, estrategia y oficio.";
+
+// Serialize for client component
+const serializedPosts = posts.map((p) => ({
+  id: p.id,
+  title: p.data.title,
+  description: p.data.description,
+  category: p.data.category,
+  kicker: p.data.kicker,
+  readingMinutes: p.data.readingMinutes,
+  pubDate: p.data.pubDate.toISOString(),
+}));
 ---
 
 <Layout title={title} description={description}>
@@ -43,105 +53,40 @@ const description =
           </p>
         </BlurFade>
 
-        <div class="grid gap-8 md:grid-cols-12 md:gap-10">
-          <BlurFade client:visible delay={0.1} className="md:col-span-8">
-            <h1 class="font-serif text-5xl font-bold leading-[0.95] text-bone sm:text-6xl md:text-7xl lg:text-[6.5rem]">
-              El archivo<span class="text-neon">.</span>
-            </h1>
-          </BlurFade>
+        <!-- LampEffect on title -->
+        <LampEffect intensity={0.75} className="py-4">
+          <div class="grid gap-8 md:grid-cols-12 md:gap-10">
+            <BlurFade client:visible delay={0.1} className="md:col-span-8">
+              <h1 class="font-serif text-5xl font-bold leading-[0.95] text-bone sm:text-6xl md:text-7xl lg:text-[6.5rem]">
+                El archivo<span class="text-neon">.</span>
+              </h1>
+            </BlurFade>
 
-          <BlurFade client:visible delay={0.25} className="flex flex-col justify-end md:col-span-4">
-            <p class="text-base leading-relaxed text-mute md:text-lg">
-              <NumberTicker client:visible value={posts.length} suffix={posts.length === 1 ? " texto publicado" : " textos publicados"} />
-              {" "}·{" "}
-              <NumberTicker client:visible value={categories.length} suffix={categories.length === 1 ? " categoría" : " categorías"} />
-            </p>
-            <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-              Orden cronológico inverso
-            </p>
-          </BlurFade>
-        </div>
-
-        <!-- Filtro de categorías -->
-        <BlurFade client:visible delay={0.35} className="mt-16 flex flex-wrap items-center gap-2 border-t border-line pt-8">
-          <span class="mr-3 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
-            Categorías:
-          </span>
-          <a href="#todos" class="transition-colors">
-            <CategoryBadge category="Todos" accent />
-          </a>
-          {
-            categories.map((c) => (
-              <a href={`#${c.toLowerCase()}`} class="transition-colors">
-                <CategoryBadge category={c} />
-              </a>
-            ))
-          }
-        </BlurFade>
+            <BlurFade client:visible delay={0.25} className="flex flex-col justify-end md:col-span-4">
+              <p class="text-base leading-relaxed text-mute md:text-lg">
+                <NumberTicker client:visible value={posts.length} suffix={posts.length === 1 ? " texto publicado" : " textos publicados"} />
+                {" "}·{" "}
+                <NumberTicker client:visible value={categories.length} suffix={categories.length === 1 ? " categoría" : " categorías"} />
+              </p>
+              <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+                Orden cronológico inverso
+              </p>
+            </BlurFade>
+          </div>
+        </LampEffect>
       </div>
     </section>
 
-    <!-- LISTADO DE POSTS -->
-    <section id="todos" class="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <!-- LISTADO DE POSTS — TracingBeam + TabsSlide + HoverRevealCard via BlogArchiveClient -->
+    <section class="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto max-w-6xl">
-        {
-          categories.map((category, catIdx) => {
-            const inCat = posts.filter((p) => p.data.category === category);
-            return (
-              <div id={category.toLowerCase()} class="mb-20 scroll-mt-24 md:mb-28">
-                <BlurFade client:visible delay={catIdx * 0.05}>
-                  <header class="mb-8 flex items-baseline justify-between gap-6 border-b border-line pb-4">
-                    <h2 class="font-serif text-3xl font-bold italic text-bone md:text-4xl">
-                      {category}
-                    </h2>
-                    <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-mute">
-                      {String(inCat.length).padStart(2, "0")} texto{inCat.length !== 1 ? "s" : ""}
-                    </span>
-                  </header>
-                </BlurFade>
-
-                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {inCat.map((post, i) => (
-                    <BlurFade client:visible delay={0.05 + i * 0.08}>
-                      <CardTilt client:visible maxTilt={3}>
-                        <SpotlightCard client:visible className="h-full">
-                          <a
-                            href={`/blog/${post.id}`}
-                            class="group relative flex h-full flex-col gap-5 border border-line bg-surface/60 p-6 transition-colors hover:border-neon/40 hover:bg-surface"
-                          >
-                            <div class="flex items-center justify-between gap-3">
-                              <CategoryBadge category={post.data.category} />
-                              <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-                                {String(i + 1).padStart(2, "0")}
-                              </span>
-                            </div>
-
-                            <h3 class="font-serif text-xl font-bold leading-tight text-bone transition-colors group-hover:text-neon sm:text-2xl">
-                              {post.data.title}
-                            </h3>
-
-                            <p class="flex-1 text-sm leading-relaxed text-mute">
-                              {post.data.description}
-                            </p>
-
-                            <div class="mt-2 flex items-center justify-between gap-3 border-t border-line pt-4">
-                              <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-dim">
-                                {post.data.readingMinutes} min
-                              </span>
-                              <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bone transition-colors group-hover:text-neon">
-                                Leer →
-                              </span>
-                            </div>
-                          </a>
-                        </SpotlightCard>
-                      </CardTilt>
-                    </BlurFade>
-                  ))}
-                </div>
-              </div>
-            );
-          })
-        }
+        <TracingBeam client:visible>
+          <BlogArchiveClient
+            client:visible
+            posts={serializedPosts}
+            categories={categories}
+          />
+        </TracingBeam>
       </div>
     </section>
   </main>

@@ -4,13 +4,15 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 import AuroraMesh from "../components/fx/AuroraMesh";
-import TextGenerate from "../components/fx/TextGenerate";
 import BlurFade from "../components/fx/BlurFade";
 import HyperText from "../components/fx/HyperText";
-import CardTilt from "../components/fx/CardTilt";
 import BorderBeam from "../components/fx/BorderBeam";
 import ShimmerButton from "../components/fx/ShimmerButton";
 import DotPattern from "../components/fx/DotPattern";
+import LampEffect from "../components/fx/LampEffect";
+import StickyScroll from "../components/fx/StickyScroll";
+import Timeline from "../components/fx/Timeline";
+import EvervaultCard from "../components/fx/EvervaultCard";
 
 const title = "Manifiesto · Insurreccional";
 const description =
@@ -48,13 +50,19 @@ const tesis = [
       "No vendemos templates. No vendemos plantillas de Instagram. No vendemos cursos de IA aplicada al marketing. No vendemos la ilusión de que tu marca se resuelve antes del almuerzo. Si eso buscás, este no es tu lugar.",
   },
 ];
+
+const journeyItems = [
+  { num: "I", title: "Leíste el manifiesto", description: "Sabés a qué venís. Estás en el lugar correcto.", status: "done" as const },
+  { num: "II", title: "Leíste 3 textos", description: "El criterio empieza a instalarse. Las conversaciones de marketing te chirrían de otra forma.", status: "pending" as const },
+  { num: "III", title: "Formás parte", description: "No como suscriptor. Como alguien que piensa diferente el oficio.", status: "pending" as const },
+];
 ---
 
 <Layout title={title} description={description}>
   <Header />
 
   <main class="relative">
-    <!-- HERO DEL MANIFIESTO -->
+    <!-- HERO DEL MANIFIESTO — LampEffect -->
     <section class="relative overflow-hidden border-b border-line px-4 py-24 sm:px-6 md:py-36 lg:px-8">
       <AuroraMesh client:idle dense className="z-[-1]" />
       <DotPattern className="z-[-1]" opacity={0.05} />
@@ -66,15 +74,17 @@ const tesis = [
           </p>
         </BlurFade>
 
-        <h1 class="font-serif text-5xl font-black leading-[0.95] tracking-tight text-bone sm:text-6xl md:text-[5.5rem] lg:text-[7rem]">
-          <BlurFade client:visible delay={0.1} direction="up">
-            No se trata<br />
-            de{" "}
-            <span class="italic text-neon">
-              <HyperText client:visible text="mí." trigger="hover" />
-            </span>
-          </BlurFade>
-        </h1>
+        <LampEffect intensity={0.85} className="py-4">
+          <h1 class="font-serif text-5xl font-black leading-[0.95] tracking-tight text-bone sm:text-6xl md:text-[5.5rem] lg:text-[7rem]">
+            <BlurFade client:visible delay={0.1} direction="up">
+              No se trata<br />
+              de{" "}
+              <span class="italic text-neon">
+                <HyperText client:visible text="mí." trigger="hover" />
+              </span>
+            </BlurFade>
+          </h1>
+        </LampEffect>
 
         <BlurFade client:visible delay={0.3} direction="up">
           <p class="mt-12 max-w-2xl font-serif text-xl italic leading-snug text-bone-soft md:text-3xl">
@@ -130,8 +140,8 @@ const tesis = [
       </div>
     </section>
 
-    <!-- 5 TESIS -->
-    <section class="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <!-- 5 TESIS — StickyScroll -->
+    <section class="relative border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto max-w-6xl">
         <BlurFade client:visible delay={0}>
           <div class="mb-16 flex items-baseline justify-between gap-6 border-b border-line pb-6">
@@ -144,46 +154,15 @@ const tesis = [
           </div>
         </BlurFade>
 
-        <ol class="space-y-8 md:space-y-10">
-          {
-            tesis.map((t, idx) => (
-              <li>
-                <BlurFade client:visible delay={idx * 0.1}>
-                  <CardTilt client:visible maxTilt={2}>
-                    <div class="group grid gap-8 border border-line bg-surface/40 p-6 hover:border-neon/20 transition-colors md:grid-cols-12 md:gap-12 md:p-8">
-                      <div class="md:col-span-3">
-                        <span
-                          class="font-mono text-3xl font-bold text-neon md:text-5xl"
-                          style={{
-                            background: "conic-gradient(from 0deg at 50% 50%, #c8ff00, #9bc800, #c8ff00)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            backgroundClip: "text",
-                          }}
-                        >
-                          {t.num}
-                        </span>
-                      </div>
-                      <div class="md:col-span-9">
-                        <h3 class="font-serif text-2xl font-bold leading-tight text-bone md:text-4xl">
-                          {t.head}
-                        </h3>
-                        <p class="mt-5 max-w-2xl text-base leading-relaxed text-bone-soft md:text-lg">
-                          {t.body}
-                        </p>
-                      </div>
-                    </div>
-                  </CardTilt>
-                </BlurFade>
-              </li>
-            ))
-          }
-        </ol>
+        <StickyScroll
+          client:visible
+          items={tesis.map((t) => ({ title: t.head, description: t.body }))}
+        />
       </div>
     </section>
 
     <!-- PARA QUIÉN ES / NO ES -->
-    <section class="relative border-t border-line bg-surface/60 px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <section class="relative border-b border-line bg-surface/60 px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-16">
         <!-- Sí es para vos — con BorderBeam -->
         <BlurFade client:visible delay={0}>
@@ -213,7 +192,7 @@ const tesis = [
           </div>
         </BlurFade>
 
-        <!-- No es para vos — sin beam -->
+        <!-- No es para vos -->
         <BlurFade client:visible delay={0.15}>
           <div class="border border-line p-8">
             <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
@@ -242,21 +221,32 @@ const tesis = [
       </div>
     </section>
 
-    <!-- CIERRE -->
+    <!-- JOURNEY TIMELINE — separador entre para quién es / no es y cierre -->
+    <section class="relative border-b border-line px-4 py-20 sm:px-6 md:py-24 lg:px-8">
+      <div class="mx-auto max-w-4xl">
+        <BlurFade client:visible delay={0} className="mb-12">
+          <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
+            [ El recorrido típico ]
+          </p>
+        </BlurFade>
+        <Timeline client:visible items={journeyItems} />
+      </div>
+    </section>
+
+    <!-- CIERRE — EvervaultCard gigante -->
     <section class="relative overflow-hidden px-4 py-28 sm:px-6 md:py-40 lg:px-8">
       <DotPattern className="z-0" opacity={0.05} />
       <div class="relative z-10 mx-auto max-w-3xl text-center">
-        <div class="font-serif text-3xl leading-[1.15] text-bone md:text-5xl">
-          <TextGenerate
-            client:visible
-            text='"La industria vende atajos. Nosotras publicamos caminos."'
-            as="p"
-            delay={0}
-            className="font-serif italic"
-          />
-        </div>
+        <EvervaultCard client:visible large className="mb-12">
+          <div class="font-serif text-3xl leading-[1.15] text-bone md:text-5xl py-4">
+            <p class="font-serif italic">
+              "La industria vende atajos. Nosotras publicamos caminos."
+            </p>
+          </div>
+        </EvervaultCard>
+
         <BlurFade client:visible delay={0.5}>
-          <div class="mt-12 inline-flex items-center gap-4">
+          <div class="inline-flex items-center gap-4">
             <span class="h-[1px] w-10 bg-neon" />
             <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
               Dominique Alexia · Buenos Aires · 2026
