@@ -12,6 +12,8 @@ const blog = defineCollection({
     readingMinutes: z.number().default(7),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+    next: z.string().optional(),
+    nextHook: z.string().optional(),
   }),
 });
 

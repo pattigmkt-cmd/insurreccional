@@ -16,6 +16,12 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+// Resolve next post in the chain (if frontmatter `next` is set).
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const nextPost = post.data.next
+  ? allPosts.find((p) => p.id === post.data.next)
+  : undefined;
 ---
 
 <PostLayout
@@ -25,6 +31,16 @@ const { Content } = await render(post);
   kicker={post.data.kicker}
   pubDate={post.data.pubDate}
   readingMinutes={post.data.readingMinutes}
+  slug={post.id}
+  nextHook={post.data.nextHook}
+  nextPost={nextPost
+    ? {
+        slug: nextPost.id,
+        title: nextPost.data.title,
+        category: nextPost.data.category,
+        readingMinutes: nextPost.data.readingMinutes,
+      }
+    : undefined}
 >
   <Content />
 </PostLayout>

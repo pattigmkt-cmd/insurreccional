@@ -18,7 +18,18 @@ import ShareMenu from "../components/editorial/post/ShareMenu";
 import AuthorBio from "../components/editorial/post/AuthorBio";
 import RelatedPosts from "../components/editorial/post/RelatedPosts";
 
+// Wave 5 — Three.js editorial chain
+import TitleScene from "../components/fx/three/TitleScene";
+import NextPostBridge from "../components/fx/three/NextPostBridge";
+
 import { getCollection } from "astro:content";
+
+interface NextPostMeta {
+  slug: string;
+  title: string;
+  category: string;
+  readingMinutes: number;
+}
 
 interface Props {
   title: string;
@@ -29,9 +40,22 @@ interface Props {
   readingMinutes: number;
   slug?: string;
   tldr?: string[];
+  nextHook?: string;
+  nextPost?: NextPostMeta;
 }
 
-const { title, description, category, kicker, pubDate, readingMinutes, slug, tldr } = Astro.props;
+const {
+  title,
+  description,
+  category,
+  kicker,
+  pubDate,
+  readingMinutes,
+  slug,
+  tldr,
+  nextHook,
+  nextPost,
+} = Astro.props;
 
 // Get related posts (all posts except current)
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
@@ -75,6 +99,9 @@ const tldrItems = tldr ?? [
   <BackToTop client:load />
 
   <Header />
+
+  <!-- 3D editorial title hero — desktop with motion only -->
+  <TitleScene client:visible text={title} />
 
   <main class="relative w-full px-4 pb-32 pt-16 sm:px-6 md:pt-24">
     <div class="mx-auto max-w-7xl">
@@ -190,9 +217,21 @@ const tldrItems = tldr ?? [
               </footer>
             </BlurFade>
 
-            <!-- Related Posts -->
-            {relatedPosts.length > 0 && (
-              <RelatedPosts client:visible posts={relatedPosts} />
+            <!-- Chained next post (3D bridge) OR fallback to related posts grid -->
+            {nextPost ? (
+              <NextPostBridge
+                client:visible
+                currentTitle={title}
+                nextTitle={nextPost.title}
+                nextHook={nextHook}
+                nextHref={`/blog/${nextPost.slug}`}
+                nextCategory={nextPost.category}
+                nextReadingMinutes={nextPost.readingMinutes}
+              />
+            ) : (
+              relatedPosts.length > 0 && (
+                <RelatedPosts client:visible posts={relatedPosts} />
+              )
             )}
           </TracingBeam>
         </div>

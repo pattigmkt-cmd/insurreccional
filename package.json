@@ -20,18 +20,24 @@
     "@fontsource/dm-sans": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.5",
     "@fontsource/playfair-display": "^5.2.5",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.0",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.8",
     "framer-motion": "^12.38.0",
+    "gsap": "^3.15.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "three": "^0.184.0",
+    "troika-three-text": "^0.52.4"
   },
   "overrides": {
     "vite": "^7"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3"
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.184.0"
   }
 }
