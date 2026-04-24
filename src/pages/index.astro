@@ -5,67 +5,86 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import PostCard from "../components/PostCard.astro";
 
+// FX Components
+import AuroraMesh from "../components/fx/AuroraMesh";
+import TextGenerate from "../components/fx/TextGenerate";
+import BlurFade from "../components/fx/BlurFade";
+import Marquee from "../components/fx/Marquee";
+import ShimmerButton from "../components/fx/ShimmerButton";
+import MagneticButton from "../components/fx/MagneticButton";
+import SpotlightCard from "../components/fx/SpotlightCard";
+import CardTilt from "../components/fx/CardTilt";
+import BorderBeam from "../components/fx/BorderBeam";
+import NumberTicker from "../components/fx/NumberTicker";
+import DotPattern from "../components/fx/DotPattern";
+import RetroGrid from "../components/fx/RetroGrid";
+
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const featured = allPosts
   .filter((p) => p.data.featured)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 3);
 
+const totalPosts = allPosts.length;
+
 const title = "Insurreccional · Criterio sobre branding por Dominique Alexia";
 const description =
   "Plataforma editorial sobre branding para profesionales quemados del sector. Criterio real — no logos, no seguidores, no cursos de IA. Por Dominique Alexia.";
+
+const marqueeItems = [
+  "No vendemos cursos",
+  "No vendemos templates",
+  "No vendemos fórmulas",
+  "Comunidad antes que audiencia",
+  "Criterio antes que crecimiento",
+  "Profundidad antes que alcance",
+  "Construido despacio",
+];
 ---
 
 <Layout title={title} description={description}>
   <Header />
 
   <main>
-    <!-- HERO -->
-    <section
-      class="relative isolate overflow-hidden border-b border-line px-4 pb-24 pt-20 sm:px-6 md:pb-32 md:pt-28 lg:px-8"
-    >
-      <!-- Retícula tenue de fondo -->
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-0 opacity-[0.05]"
-        style="background-image: linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px); background-size: 96px 96px;"
-      >
-      </div>
-
-      <!-- Halo neón off-center -->
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute -left-20 top-1/4 h-[420px] w-[420px] rounded-full opacity-[0.14] blur-[120px]"
-        style="background: radial-gradient(circle, #c8ff00 0%, transparent 65%);"
-      >
-      </div>
+    <!-- ═══════════════════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════════════════ -->
+    <section class="relative isolate overflow-hidden border-b border-line px-4 pb-28 pt-20 sm:px-6 md:pb-36 md:pt-28 lg:px-8">
+      <!-- Aurora Mesh background -->
+      <AuroraMesh client:idle className="z-[-1]" />
+      <!-- Retro grid at bottom -->
+      <RetroGrid className="z-[-1] opacity-60" />
+      <!-- Dot pattern -->
+      <DotPattern className="z-[-1]" opacity={0.06} />
 
       <div class="relative mx-auto max-w-6xl">
-        <p class="mb-8 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.35em] text-mute fade-up">
-          <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-neon" />
-          Edición 001 · Abril 2026 · Plataforma editorial
-        </p>
+        <BlurFade client:visible delay={0} direction="down">
+          <p class="mb-8 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.35em] text-mute">
+            <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-neon" />
+            Edición 001 · Abril 2026 · Plataforma editorial
+          </p>
+        </BlurFade>
 
-        <h1
-          class="fade-up font-serif text-[19vw] font-black leading-[0.85] tracking-[-0.03em] text-bone sm:text-[14vw] md:text-[10.5vw] lg:text-[8.2rem]"
-        >
-          Insu<span class="italic text-neon">rrecc</span>ional<span class="text-neon">.</span>
+        <h1 class="font-serif text-[19vw] font-black leading-[0.85] tracking-[-0.03em] text-bone sm:text-[14vw] md:text-[10.5vw] lg:text-[8.2rem]">
+          <TextGenerate
+            client:visible
+            text="Insurreccional."
+            as="span"
+            delay={0.1}
+            className="block"
+          />
         </h1>
 
         <div class="mt-10 grid gap-10 md:grid-cols-12 md:gap-12">
-          <p
-            class="fade-up font-serif text-xl italic leading-snug text-bone md:col-span-7 md:text-3xl"
-            style="animation-delay: 0.15s;"
-          >
-            No te enseño herramientas. No te mando templates. Te doy el criterio
-            que tomé una década construir — y que la industria te vende en
-            cursos de una hora con promesa de viralidad.
-          </p>
+          <BlurFade client:visible delay={0.25} direction="up" className="md:col-span-7">
+            <p class="font-serif text-xl italic leading-snug text-bone md:text-3xl">
+              No te enseño herramientas. No te mando templates. Te doy el criterio
+              que tardé una década construir — y que la industria te vende en
+              cursos de una hora con promesa de viralidad.
+            </p>
+          </BlurFade>
 
-          <div
-            class="fade-up flex flex-col justify-end gap-6 md:col-span-5"
-            style="animation-delay: 0.3s;"
-          >
+          <BlurFade client:visible delay={0.4} direction="up" className="flex flex-col justify-end gap-6 md:col-span-5">
             <div class="border-l border-line pl-5">
               <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
                 Para quién
@@ -85,54 +104,147 @@ const description =
                 crecimiento. Profundidad antes que alcance.
               </p>
             </div>
-          </div>
+          </BlurFade>
         </div>
 
-        <!-- CTA secundario -->
-        <div
-          class="fade-up mt-16 flex flex-col items-start gap-6 sm:flex-row sm:items-center"
-          style="animation-delay: 0.5s;"
-        >
-          <a
-            href="/blog"
-            class="group inline-flex items-center gap-3 border border-neon bg-neon px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-ink transition-colors hover:bg-transparent hover:text-neon"
-          >
+        <!-- CTA -->
+        <BlurFade client:visible delay={0.55} direction="up" className="mt-16 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+          <ShimmerButton client:visible href="/blog">
             Entrar al archivo
-            <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-          <a
-            href="/manifiesto"
-            class="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-mute transition-colors hover:text-bone"
-          >
+            <span aria-hidden="true">→</span>
+          </ShimmerButton>
+          <MagneticButton client:visible href="/manifiesto">
             Leer el manifiesto
-            <span aria-hidden="true" class="opacity-60 transition-all group-hover:opacity-100">↗</span>
-          </a>
-        </div>
+            <span aria-hidden="true" class="opacity-60">↗</span>
+          </MagneticButton>
+        </BlurFade>
       </div>
     </section>
 
-    <!-- ÚLTIMAS PUBLICACIONES — 3 featured -->
+    <!-- ═══════════════════════════════════════════════════════
+         MARQUEE DIVIDER
+    ═══════════════════════════════════════════════════════ -->
+    <div class="border-b border-line bg-surface/40 py-5 overflow-hidden">
+      <Marquee client:visible speed={35} pauseOnHover className="gap-0">
+        {marqueeItems.map((item) => (
+          <span class="font-serif text-lg italic text-bone/60 whitespace-nowrap">
+            {item}
+            <span class="mx-8 text-neon/40 not-italic">·</span>
+          </span>
+        ))}
+      </Marquee>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FEATURED POSTS — Bento asimétrico
+    ═══════════════════════════════════════════════════════ -->
     <section class="relative border-b border-line px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div class="mx-auto max-w-6xl">
-        <div class="mb-16 grid gap-8 md:grid-cols-12 md:items-end md:gap-10">
-          <div class="md:col-span-8">
-            <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
-              [ Últimas publicaciones ]
+        <BlurFade client:visible delay={0} className="mb-16">
+          <div class="grid gap-8 md:grid-cols-12 md:items-end md:gap-10">
+            <div class="md:col-span-8">
+              <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+                [ Últimas publicaciones ]
+              </p>
+              <h2 class="font-serif text-4xl font-bold leading-[1.02] text-bone sm:text-5xl md:text-6xl">
+                Los textos que te incomodan,<br />
+                <span class="italic text-mute">cuando los tengo listos.</span>
+              </h2>
+            </div>
+            <p class="text-sm leading-relaxed text-mute md:col-span-4">
+              Se publica cuando hay algo que decir. No cuando el calendario pide.
+              Si preferís el ritmo de redes, este lugar no es para vos.
             </p>
-            <h2 class="font-serif text-4xl font-bold leading-[1.02] text-bone sm:text-5xl md:text-6xl">
-              Los textos que te incomodan,<br />
-              <span class="italic text-mute">cuando los tengo listos.</span>
-            </h2>
           </div>
-          <p class="text-sm leading-relaxed text-mute md:col-span-4">
-            Se publica cuando hay algo que decir. No cuando el calendario pide.
-            Si preferís el ritmo de redes, este lugar no es para vos.
-          </p>
-        </div>
+        </BlurFade>
 
-        <div class="space-y-16 md:space-y-20">
-          {
-            featured.map((post, i) => (
+        {featured.length >= 1 && (
+          <!-- Bento: post grande arriba -->
+          <BlurFade client:visible delay={0.1} className="mb-6">
+            <CardTilt client:visible maxTilt={3}>
+              <SpotlightCard client:visible className="group relative overflow-hidden border border-line bg-surface/70 p-8 transition-colors hover:border-neon/30 md:p-12">
+                <BorderBeam client:visible />
+                <div class="grid gap-8 md:grid-cols-12 md:gap-10">
+                  <div class="md:col-span-5">
+                    <div class="flex items-center gap-3">
+                      <span class="font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+                        [ 01 ] Destacado
+                      </span>
+                    </div>
+                    <div class="mt-5">
+                      <span class="inline-block border border-neon/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
+                        {featured[0].data.category}
+                      </span>
+                    </div>
+                    <p class="mt-5 font-mono text-[11px] uppercase tracking-[0.2em] text-mute">
+                      {featured[0].data.pubDate.toLocaleDateString("es-AR", { year: "numeric", month: "long", day: "numeric" })} · {featured[0].data.readingMinutes} min
+                    </p>
+                  </div>
+                  <a href={`/blog/${featured[0].id}`} class="md:col-span-7">
+                    {featured[0].data.kicker && (
+                      <p class="mb-3 font-serif text-sm italic text-mute">
+                        — {featured[0].data.kicker}
+                      </p>
+                    )}
+                    <h2 class="font-serif text-3xl font-bold leading-[1.05] text-bone transition-colors group-hover:text-neon sm:text-4xl md:text-5xl">
+                      {featured[0].data.title}
+                    </h2>
+                    <p class="mt-5 max-w-xl text-base leading-relaxed text-bone-soft md:text-lg">
+                      {featured[0].data.description}
+                    </p>
+                    <span class="mt-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-bone transition-colors group-hover:text-neon">
+                      Leer completo
+                      <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                    </span>
+                  </a>
+                </div>
+              </SpotlightCard>
+            </CardTilt>
+          </BlurFade>
+        )}
+
+        {featured.length >= 3 && (
+          <!-- Bento: 2 posts chicos abajo -->
+          <div class="grid gap-6 md:grid-cols-2">
+            {[featured[1], featured[2]].map((post, i) => (
+              <BlurFade client:visible delay={0.2 + i * 0.1}>
+                <CardTilt client:visible maxTilt={4}>
+                  <SpotlightCard client:visible className="group relative h-full overflow-hidden border border-line bg-surface/60 p-6 transition-colors hover:border-neon/30 md:p-8">
+                    <div class="flex items-center justify-between gap-3 mb-4">
+                      <span class="inline-block border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-mute">
+                        {post.data.category}
+                      </span>
+                      <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+                        0{i + 2}
+                      </span>
+                    </div>
+                    <a href={`/blog/${post.id}`}>
+                      <h3 class="font-serif text-xl font-bold leading-tight text-bone transition-colors group-hover:text-neon sm:text-2xl mb-4">
+                        {post.data.title}
+                      </h3>
+                      <p class="text-sm leading-relaxed text-mute mb-6">
+                        {post.data.description}
+                      </p>
+                      <div class="flex items-center justify-between border-t border-line pt-4">
+                        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-dim">
+                          {post.data.readingMinutes} min
+                        </span>
+                        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bone transition-colors group-hover:text-neon">
+                          Leer →
+                        </span>
+                      </div>
+                    </a>
+                  </SpotlightCard>
+                </CardTilt>
+              </BlurFade>
+            ))}
+          </div>
+        )}
+
+        {/* Fallback si hay menos de 3 posts featured */}
+        {featured.length > 0 && featured.length < 3 && (
+          <div class="space-y-16 md:space-y-20 mt-6">
+            {featured.slice(1).map((post, i) => (
               <PostCard
                 slug={post.id}
                 title={post.data.title}
@@ -142,13 +254,13 @@ const description =
                 pubDate={post.data.pubDate}
                 readingMinutes={post.data.readingMinutes}
                 variant="feature"
-                index={i}
+                index={i + 1}
               />
-            ))
-          }
-        </div>
+            ))}
+          </div>
+        )}
 
-        <div class="mt-20 flex justify-center">
+        <BlurFade client:visible delay={0.3} className="mt-20 flex justify-center">
           <a
             href="/blog"
             class="group inline-flex items-center gap-3 border border-line bg-surface px-6 py-3 font-mono text-[11px] uppercase tracking-[0.28em] text-bone transition-colors hover:border-neon/60 hover:text-neon"
@@ -156,14 +268,16 @@ const description =
             Ver archivo completo
             <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
           </a>
-        </div>
+        </BlurFade>
       </div>
     </section>
 
-    <!-- DE QUÉ TRATA ESTO -->
+    <!-- ═══════════════════════════════════════════════════════
+         DE QUÉ TRATA ESTO
+    ═══════════════════════════════════════════════════════ -->
     <section class="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div class="mx-auto grid max-w-6xl gap-14 md:grid-cols-12 md:gap-20">
-        <div class="md:col-span-5">
+        <BlurFade client:visible delay={0} className="md:col-span-5">
           <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
             [ De qué trata esto ]
           </p>
@@ -175,70 +289,92 @@ const description =
             Arranca en texto — porque escribir obliga a pensar. Crece en video
             y podcast. Pero la base siempre va a ser esto.
           </p>
-        </div>
+          <p class="mt-8 font-mono text-[11px] uppercase tracking-[0.25em] text-mute-dim">
+            <NumberTicker client:visible value={totalPosts} suffix=" textos publicados" />
+          </p>
+        </BlurFade>
 
-        <div class="space-y-10 md:col-span-7">
-          <div class="group flex gap-6 border-l border-neon pl-6 transition-colors">
-            <span class="font-mono text-sm text-neon">01</span>
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-bone">Blog</h3>
-              <p class="mt-2 text-sm leading-relaxed text-bone-soft">
-                El núcleo. Textos largos, sin resumen ejecutivo, sin thumbnails
-                optimizados. Para leer despacio en una pausa real, no entre un
-                mensaje de WhatsApp y otro.
-              </p>
-              <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
-                Disponible ahora
-              </p>
-            </div>
-          </div>
+        <div class="space-y-6 md:col-span-7">
+          <!-- Blog — con BorderBeam (activo) -->
+          <BlurFade client:visible delay={0.1}>
+            <CardTilt client:visible maxTilt={2}>
+              <div class="group relative flex gap-6 border border-neon/40 bg-surface/50 p-6 overflow-hidden">
+                <BorderBeam client:visible duration={4} />
+                <span class="font-mono text-sm text-neon">01</span>
+                <div>
+                  <h3 class="font-serif text-2xl font-bold text-bone">Blog</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-bone-soft">
+                    El núcleo. Textos largos, sin resumen ejecutivo, sin thumbnails
+                    optimizados. Para leer despacio en una pausa real, no entre un
+                    mensaje de WhatsApp y otro.
+                  </p>
+                  <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
+                    Disponible ahora
+                  </p>
+                </div>
+              </div>
+            </CardTilt>
+          </BlurFade>
 
-          <div class="group flex gap-6 border-l border-line pl-6 transition-colors">
-            <span class="font-mono text-sm text-mute">02</span>
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-bone/80">YouTube</h3>
-              <p class="mt-2 text-sm leading-relaxed text-mute">
-                Ensayos en video. Formato largo. Sin cortes cada ocho segundos.
-                Sin edición de TikTok aplicada a contenido que necesita
-                respirar.
-              </p>
-              <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-                En preparación
-              </p>
+          <BlurFade client:visible delay={0.2}>
+            <div class="group flex gap-6 border-l border-line pl-6 transition-colors">
+              <span class="font-mono text-sm text-mute">02</span>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-bone/80">YouTube</h3>
+                <p class="mt-2 text-sm leading-relaxed text-mute">
+                  Ensayos en video. Formato largo. Sin cortes cada ocho segundos.
+                  Sin edición de TikTok aplicada a contenido que necesita respirar.
+                </p>
+                <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+                  En preparación
+                </p>
+              </div>
             </div>
-          </div>
+          </BlurFade>
 
-          <div class="group flex gap-6 border-l border-line pl-6 transition-colors">
-            <span class="font-mono text-sm text-mute">03</span>
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-bone/80">Podcast</h3>
-              <p class="mt-2 text-sm leading-relaxed text-mute">
-                Conversaciones con gente real del sector. No gurúes, no
-                "expertos" con 300k followers y cero clientes. Profesionales
-                que saben porque hicieron.
-              </p>
-              <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-                En preparación
-              </p>
+          <BlurFade client:visible delay={0.3}>
+            <div class="group flex gap-6 border-l border-line pl-6 transition-colors">
+              <span class="font-mono text-sm text-mute">03</span>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-bone/80">Podcast</h3>
+                <p class="mt-2 text-sm leading-relaxed text-mute">
+                  Conversaciones con gente real del sector. No gurúes, no
+                  "expertos" con 300k followers y cero clientes. Profesionales
+                  que saben porque hicieron.
+                </p>
+                <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+                  En preparación
+                </p>
+              </div>
             </div>
-          </div>
+          </BlurFade>
         </div>
       </div>
     </section>
 
-    <!-- CIERRE MANIFESTO -->
-    <section class="relative border-t border-line bg-surface/50 px-4 py-24 sm:px-6 md:py-32 lg:px-8">
-      <div class="mx-auto max-w-4xl text-center">
+    <!-- ═══════════════════════════════════════════════════════
+         CIERRE QUOTE
+    ═══════════════════════════════════════════════════════ -->
+    <section class="relative border-t border-line bg-surface/50 px-4 py-24 sm:px-6 md:py-32 lg:px-8 overflow-hidden">
+      <DotPattern className="z-0" opacity={0.05} />
+      <div class="relative z-10 mx-auto max-w-4xl text-center">
         <p class="mb-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neon">
           · · ·
         </p>
-        <p class="font-serif text-3xl leading-[1.2] text-bone md:text-5xl">
-          <span class="italic">"Construir marca no es aprender una herramienta —</span><br />
-          es aprender a elegir qué <span class="text-neon not-italic">no</span> hacés."
-        </p>
-        <p class="mt-10 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
-          Dominique Alexia
-        </p>
+        <div class="font-serif text-3xl leading-[1.2] text-bone md:text-5xl">
+          <TextGenerate
+            client:visible
+            text='"Construir marca no es aprender una herramienta — es aprender a elegir qué no hacés."'
+            as="p"
+            delay={0}
+            className="font-serif italic"
+          />
+        </div>
+        <BlurFade client:visible delay={0.4}>
+          <p class="mt-10 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
+            Dominique Alexia
+          </p>
+        </BlurFade>
       </div>
     </section>
   </main>

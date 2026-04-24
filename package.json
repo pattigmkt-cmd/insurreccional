@@ -14,15 +14,23 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.4",
     "@astrojs/sitemap": "^3.7.2",
     "@fontsource/dm-sans": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.5",
     "@fontsource/playfair-display": "^5.2.5",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.8",
+    "framer-motion": "^12.38.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "tailwindcss": "^4.2.2"
   },
   "overrides": {
     "vite": "^7"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
   }
 }

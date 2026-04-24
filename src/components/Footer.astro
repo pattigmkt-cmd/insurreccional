@@ -1,8 +1,32 @@
 ---
+import Marquee from "./fx/Marquee";
+
 const year = new Date().getFullYear();
+
+const marqueeWords = [
+  "Criterio antes que crecimiento",
+  "Comunidad antes que audiencia",
+  "Profundidad antes que alcance",
+  "Construido despacio",
+  "Sin fórmulas",
+  "Sin cursos",
+  "Sin atajos",
+];
 ---
 
-<footer class="relative border-t border-line bg-ink px-4 pb-10 pt-20 sm:px-6 lg:px-8">
+<footer class="relative border-t border-line bg-ink px-4 pb-10 pt-0 sm:px-6 lg:px-8">
+  <!-- Marquee inverso en el top del footer -->
+  <div class="border-b border-line/50 py-4 overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-16">
+    <Marquee client:visible speed={28} reverse pauseOnHover className="opacity-30">
+      {marqueeWords.map((w) => (
+        <span class="font-serif text-base italic text-bone whitespace-nowrap">
+          {w}
+          <span class="mx-6 not-italic text-neon/50">·</span>
+        </span>
+      ))}
+    </Marquee>
+  </div>
+
   <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-12 md:gap-10">
     <div class="md:col-span-6">
       <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">

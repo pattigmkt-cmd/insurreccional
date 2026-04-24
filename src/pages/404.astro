@@ -2,6 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+import AuroraMesh from "../components/fx/AuroraMesh";
+import HyperText from "../components/fx/HyperText";
+import BlurFade from "../components/fx/BlurFade";
+import ShimmerButton from "../components/fx/ShimmerButton";
+import RetroGrid from "../components/fx/RetroGrid";
 ---
 
 <Layout
@@ -10,34 +16,41 @@ import Footer from "../components/Footer.astro";
   noindex
 >
   <Header />
-  <main
-    class="relative mx-auto flex min-h-[70svh] w-full max-w-3xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6"
-  >
-    <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
-      [ 404 · texto no encontrado ]
-    </p>
-    <h1 class="font-serif text-6xl font-black italic leading-none text-bone md:text-[9rem]">
-      Nada.
-    </h1>
-    <p class="mt-8 max-w-md font-serif text-lg italic text-bone-soft md:text-xl">
-      Algunos textos se retiran. Otros nunca existieron. Este link, sin embargo,
-      llegaste a escribirlo — o alguien te lo mandó mal.
-    </p>
-    <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-      <a
-        href="/"
-        class="inline-flex items-center gap-2 border border-neon bg-neon px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.28em] text-ink transition-colors hover:bg-transparent hover:text-neon"
-      >
+  <main class="relative isolate flex min-h-[80svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-24 text-center sm:px-6">
+    <AuroraMesh client:idle className="z-[-1]" />
+    <RetroGrid className="z-[-1]" opacity={0.08} />
+
+    <BlurFade client:visible delay={0} direction="down">
+      <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+        [ 404 · texto no encontrado ]
+      </p>
+    </BlurFade>
+
+    <BlurFade client:visible delay={0.1} direction="up">
+      <h1 class="font-serif text-6xl font-black italic leading-none text-bone md:text-[9rem]">
+        <HyperText client:visible text="Nada." trigger="mount" duration={1200} />
+      </h1>
+    </BlurFade>
+
+    <BlurFade client:visible delay={0.3}>
+      <p class="mt-8 max-w-md font-serif text-lg italic text-bone-soft md:text-xl">
+        Algunos textos se retiran. Otros nunca existieron. Este link, sin embargo,
+        llegaste a escribirlo — o alguien te lo mandó mal.
+      </p>
+    </BlurFade>
+
+    <BlurFade client:visible delay={0.45} className="mt-10 flex flex-col gap-3 sm:flex-row">
+      <ShimmerButton client:visible href="/">
         <span aria-hidden="true">←</span>
         Volver al inicio
-      </a>
+      </ShimmerButton>
       <a
         href="/blog"
         class="inline-flex items-center gap-2 border border-line px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.28em] text-bone transition-colors hover:border-mute"
       >
         Ir al archivo
       </a>
-    </div>
+    </BlurFade>
   </main>
   <Footer />
 </Layout>

@@ -4,6 +4,10 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CategoryBadge from "../components/CategoryBadge.astro";
 
+import ScrollProgress from "../components/fx/ScrollProgress";
+import BlurFade from "../components/fx/BlurFade";
+import MagneticButton from "../components/fx/MagneticButton";
+
 interface Props {
   title: string;
   description: string;
@@ -24,82 +28,96 @@ const dateISO = pubDate.toISOString();
 ---
 
 <Layout title={`${title} · Insurreccional`} description={description}>
+  <!-- Scroll progress bar — fija arriba -->
+  <ScrollProgress client:load />
+
   <Header />
 
   <main class="relative mx-auto w-full max-w-4xl px-4 pb-32 pt-16 sm:px-6 md:pt-24 lg:px-8">
     <!-- Breadcrumb minimal -->
-    <nav class="mb-12 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-mute" aria-label="Breadcrumb">
-      <a href="/" class="transition-colors hover:text-bone">Inicio</a>
-      <span aria-hidden="true" class="text-mute-dim">/</span>
-      <a href="/blog" class="transition-colors hover:text-bone">Archivo</a>
-      <span aria-hidden="true" class="text-mute-dim">/</span>
-      <span class="text-bone">{category}</span>
-    </nav>
+    <BlurFade client:visible delay={0} direction="down">
+      <nav class="mb-12 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-mute" aria-label="Breadcrumb">
+        <a href="/" class="transition-colors hover:text-bone">Inicio</a>
+        <span aria-hidden="true" class="text-mute-dim">/</span>
+        <a href="/blog" class="transition-colors hover:text-bone">Archivo</a>
+        <span aria-hidden="true" class="text-mute-dim">/</span>
+        <span class="text-bone">{category}</span>
+      </nav>
+    </BlurFade>
 
     <!-- Hero del post -->
     <header class="mb-14 md:mb-20">
-      <div class="mb-8 flex flex-wrap items-center gap-4">
-        <CategoryBadge category={category} accent size="md" />
-        <time
-          datetime={dateISO}
-          class="font-mono text-[11px] uppercase tracking-[0.25em] text-mute"
-        >
-          {dateFormatted}
-        </time>
-        <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-mute-dim">
-          · {readingMinutes} min
-        </span>
-      </div>
+      <BlurFade client:visible delay={0.1}>
+        <div class="mb-8 flex flex-wrap items-center gap-4">
+          <CategoryBadge category={category} accent size="md" />
+          <time
+            datetime={dateISO}
+            class="font-mono text-[11px] uppercase tracking-[0.25em] text-mute"
+          >
+            {dateFormatted}
+          </time>
+          <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-mute-dim">
+            · {readingMinutes} min
+          </span>
+        </div>
+      </BlurFade>
 
-      {kicker && (
-        <p class="mb-5 font-serif text-lg italic text-mute md:text-xl">
-          — {kicker}
+      <BlurFade client:visible delay={0.2} direction="up">
+        {kicker && (
+          <p class="mb-5 font-serif text-lg italic text-mute md:text-xl">
+            — {kicker}
+          </p>
+        )}
+
+        <h1 class="font-serif text-4xl font-bold leading-[1.03] tracking-tight text-bone sm:text-5xl md:text-6xl lg:text-[4.5rem]">
+          {title}
+        </h1>
+      </BlurFade>
+
+      <BlurFade client:visible delay={0.35}>
+        <p class="mt-8 max-w-2xl text-lg leading-relaxed text-bone-soft md:text-xl">
+          {description}
         </p>
-      )}
-
-      <h1 class="font-serif text-4xl font-bold leading-[1.03] tracking-tight text-bone sm:text-5xl md:text-6xl lg:text-[4.5rem]">
-        {title}
-      </h1>
-
-      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-bone-soft md:text-xl">
-        {description}
-      </p>
+      </BlurFade>
     </header>
 
     <!-- Ornamento editorial -->
-    <div class="mb-14 flex items-center gap-4 md:mb-20">
-      <span class="h-[1px] flex-1 bg-line" />
-      <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
-        ·  ·  ·
-      </span>
-      <span class="h-[1px] flex-1 bg-line" />
-    </div>
+    <BlurFade client:visible delay={0.45}>
+      <div class="mb-14 flex items-center gap-4 md:mb-20">
+        <span class="h-[1px] flex-1 bg-line" />
+        <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
+          ·  ·  ·
+        </span>
+        <span class="h-[1px] flex-1 bg-line" />
+      </div>
+    </BlurFade>
 
-    <article class="prose-editorial mx-auto">
-      <slot />
-    </article>
+    <BlurFade client:visible delay={0.5} direction="up">
+      <article class="prose-editorial mx-auto">
+        <slot />
+      </article>
+    </BlurFade>
 
     <!-- Cierre -->
-    <footer class="mx-auto mt-24 max-w-2xl border-t border-line pt-10">
-      <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
-        Fin del texto
-      </p>
-      <p class="mt-4 font-serif text-xl italic text-bone md:text-2xl">
-        Si algo te resonó, compartilo con quien necesitaba leerlo.
-      </p>
-      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <a
-          href="/blog"
-          class="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-bone transition-colors hover:text-neon"
-        >
-          <span aria-hidden="true">←</span>
-          Volver al archivo
-        </a>
-        <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-          Insurreccional · {dateFormatted}
-        </span>
-      </div>
-    </footer>
+    <BlurFade client:visible delay={0}>
+      <footer class="mx-auto mt-24 max-w-2xl border-t border-line pt-10">
+        <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
+          Fin del texto
+        </p>
+        <p class="mt-4 font-serif text-xl italic text-bone md:text-2xl">
+          Si algo te resonó, compartilo con quien necesitaba leerlo.
+        </p>
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <MagneticButton client:visible href="/blog" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-bone transition-colors hover:text-neon">
+            <span aria-hidden="true">←</span>
+            Volver al archivo
+          </MagneticButton>
+          <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+            Insurreccional · {dateFormatted}
+          </span>
+        </div>
+      </footer>
+    </BlurFade>
   </main>
 
   <Footer />

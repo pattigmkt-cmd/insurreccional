@@ -3,6 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
+import AuroraMesh from "../components/fx/AuroraMesh";
+import TextGenerate from "../components/fx/TextGenerate";
+import BlurFade from "../components/fx/BlurFade";
+import HyperText from "../components/fx/HyperText";
+import CardTilt from "../components/fx/CardTilt";
+import BorderBeam from "../components/fx/BorderBeam";
+import ShimmerButton from "../components/fx/ShimmerButton";
+import DotPattern from "../components/fx/DotPattern";
+
 const title = "Manifiesto · Insurreccional";
 const description =
   "Por qué existe Insurreccional — y por qué no es un blog más de marketing digital.";
@@ -47,52 +56,59 @@ const tesis = [
   <main class="relative">
     <!-- HERO DEL MANIFIESTO -->
     <section class="relative overflow-hidden border-b border-line px-4 py-24 sm:px-6 md:py-36 lg:px-8">
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style="background-image: radial-gradient(circle at 20% 30%, #c8ff00 0%, transparent 40%);"
-      >
-      </div>
+      <AuroraMesh client:idle dense className="z-[-1]" />
+      <DotPattern className="z-[-1]" opacity={0.05} />
 
       <div class="relative mx-auto max-w-5xl">
-        <p class="mb-8 font-mono text-[11px] uppercase tracking-[0.35em] text-neon">
-          [ Manifiesto · v. 001 ]
-        </p>
+        <BlurFade client:visible delay={0} direction="down">
+          <p class="mb-8 font-mono text-[11px] uppercase tracking-[0.35em] text-neon">
+            [ Manifiesto · v. 001 ]
+          </p>
+        </BlurFade>
 
         <h1 class="font-serif text-5xl font-black leading-[0.95] tracking-tight text-bone sm:text-6xl md:text-[5.5rem] lg:text-[7rem]">
-          No se trata<br />
-          de <span class="italic text-neon">mí.</span>
+          <BlurFade client:visible delay={0.1} direction="up">
+            No se trata<br />
+            de{" "}
+            <span class="italic text-neon">
+              <HyperText client:visible text="mí." trigger="hover" />
+            </span>
+          </BlurFade>
         </h1>
 
-        <p class="mt-12 max-w-2xl font-serif text-xl italic leading-snug text-bone-soft md:text-3xl">
-          Se trata del criterio que la industria no te enseña, del oficio que
-          LinkedIn banalizó, y de los profesionales del sector que están
-          agotados y no encuentran un lugar donde pensar en voz alta sin que
-          alguien les venda un curso.
-        </p>
-
-        <div class="mt-14 flex items-center gap-5">
-          <span class="h-[1px] w-16 bg-neon" />
-          <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
-            Este es ese lugar.
+        <BlurFade client:visible delay={0.3} direction="up">
+          <p class="mt-12 max-w-2xl font-serif text-xl italic leading-snug text-bone-soft md:text-3xl">
+            Se trata del criterio que la industria no te enseña, del oficio que
+            LinkedIn banalizó, y de los profesionales del sector que están
+            agotados y no encuentran un lugar donde pensar en voz alta sin que
+            alguien les venda un curso.
           </p>
-        </div>
+        </BlurFade>
+
+        <BlurFade client:visible delay={0.45}>
+          <div class="mt-14 flex items-center gap-5">
+            <span class="h-[1px] w-16 bg-neon" />
+            <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
+              Este es ese lugar.
+            </p>
+          </div>
+        </BlurFade>
       </div>
     </section>
 
     <!-- POR QUÉ EXISTE -->
     <section class="relative border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:gap-16">
-        <div class="md:col-span-4">
+        <BlurFade client:visible delay={0} className="md:col-span-4">
           <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
             [ Por qué existe ]
           </p>
           <h2 class="font-serif text-3xl font-bold leading-tight text-bone md:text-4xl">
             La pregunta que nadie se quiere hacer.
           </h2>
-        </div>
+        </BlurFade>
 
-        <div class="space-y-6 md:col-span-8">
+        <BlurFade client:visible delay={0.15} className="space-y-6 md:col-span-8">
           <p class="font-serif text-lg leading-relaxed text-bone md:text-xl">
             El marketing digital en español está inundado de dos cosas:
             gurúes que venden cursos sobre herramientas que no saben usar, y
@@ -110,39 +126,55 @@ const tesis = [
             con textos largos, preguntas incómodas, y conversaciones con gente
             que trabaja en lo mismo que vos.
           </p>
-        </div>
+        </BlurFade>
       </div>
     </section>
 
     <!-- 5 TESIS -->
     <section class="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto max-w-6xl">
-        <div class="mb-16 flex items-baseline justify-between gap-6 border-b border-line pb-6">
-          <h2 class="font-serif text-3xl font-bold text-bone md:text-5xl">
-            Cinco tesis de arranque.
-          </h2>
-          <span class="font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
-            [ 05 / 05 ]
-          </span>
-        </div>
+        <BlurFade client:visible delay={0}>
+          <div class="mb-16 flex items-baseline justify-between gap-6 border-b border-line pb-6">
+            <h2 class="font-serif text-3xl font-bold text-bone md:text-5xl">
+              Cinco tesis de arranque.
+            </h2>
+            <span class="font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
+              [ 05 / 05 ]
+            </span>
+          </div>
+        </BlurFade>
 
-        <ol class="space-y-14 md:space-y-20">
+        <ol class="space-y-8 md:space-y-10">
           {
-            tesis.map((t) => (
-              <li class="grid gap-8 md:grid-cols-12 md:gap-12">
-                <div class="md:col-span-3">
-                  <span class="font-mono text-3xl font-bold text-neon md:text-5xl">
-                    {t.num}
-                  </span>
-                </div>
-                <div class="md:col-span-9">
-                  <h3 class="font-serif text-2xl font-bold leading-tight text-bone md:text-4xl">
-                    {t.head}
-                  </h3>
-                  <p class="mt-5 max-w-2xl text-base leading-relaxed text-bone-soft md:text-lg">
-                    {t.body}
-                  </p>
-                </div>
+            tesis.map((t, idx) => (
+              <li>
+                <BlurFade client:visible delay={idx * 0.1}>
+                  <CardTilt client:visible maxTilt={2}>
+                    <div class="group grid gap-8 border border-line bg-surface/40 p-6 hover:border-neon/20 transition-colors md:grid-cols-12 md:gap-12 md:p-8">
+                      <div class="md:col-span-3">
+                        <span
+                          class="font-mono text-3xl font-bold text-neon md:text-5xl"
+                          style={{
+                            background: "conic-gradient(from 0deg at 50% 50%, #c8ff00, #9bc800, #c8ff00)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text",
+                          }}
+                        >
+                          {t.num}
+                        </span>
+                      </div>
+                      <div class="md:col-span-9">
+                        <h3 class="font-serif text-2xl font-bold leading-tight text-bone md:text-4xl">
+                          {t.head}
+                        </h3>
+                        <p class="mt-5 max-w-2xl text-base leading-relaxed text-bone-soft md:text-lg">
+                          {t.body}
+                        </p>
+                      </div>
+                    </div>
+                  </CardTilt>
+                </BlurFade>
               </li>
             ))
           }
@@ -153,79 +185,91 @@ const tesis = [
     <!-- PARA QUIÉN ES / NO ES -->
     <section class="relative border-t border-line bg-surface/60 px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-16">
-        <div>
-          <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
-            [ Sí es para vos si… ]
-          </p>
-          <ul class="space-y-5 text-base leading-relaxed text-bone">
-            <li class="flex gap-4">
-              <span class="font-mono text-neon">→</span>
-              <span>Venís del sector y algo te dejó de cerrar.</span>
-            </li>
-            <li class="flex gap-4">
-              <span class="font-mono text-neon">→</span>
-              <span>Preferís un texto de 3.000 palabras antes que un reel.</span>
-            </li>
-            <li class="flex gap-4">
-              <span class="font-mono text-neon">→</span>
-              <span>Querés construir algo propio — marca, carrera, criterio — y sabés que lleva años.</span>
-            </li>
-            <li class="flex gap-4">
-              <span class="font-mono text-neon">→</span>
-              <span>Te importa más entender por qué algo funcionó, que copiar a alguien que lo hizo.</span>
-            </li>
-          </ul>
-        </div>
+        <!-- Sí es para vos — con BorderBeam -->
+        <BlurFade client:visible delay={0}>
+          <div class="relative overflow-hidden border border-neon/30 p-8">
+            <BorderBeam client:visible duration={5} />
+            <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+              [ Sí es para vos si… ]
+            </p>
+            <ul class="space-y-5 text-base leading-relaxed text-bone">
+              <li class="flex gap-4">
+                <span class="font-mono text-neon">→</span>
+                <span>Venís del sector y algo te dejó de cerrar.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="font-mono text-neon">→</span>
+                <span>Preferís un texto de 3.000 palabras antes que un reel.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="font-mono text-neon">→</span>
+                <span>Querés construir algo propio — marca, carrera, criterio — y sabés que lleva años.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="font-mono text-neon">→</span>
+                <span>Te importa más entender por qué algo funcionó, que copiar a alguien que lo hizo.</span>
+              </li>
+            </ul>
+          </div>
+        </BlurFade>
 
-        <div>
-          <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
-            [ No es para vos si… ]
-          </p>
-          <ul class="space-y-5 text-base leading-relaxed text-mute">
-            <li class="flex gap-4">
-              <span class="font-mono">×</span>
-              <span>Buscás fórmulas o plantillas que pegar.</span>
-            </li>
-            <li class="flex gap-4">
-              <span class="font-mono">×</span>
-              <span>Preferís resúmenes de dos minutos hechos con IA.</span>
-            </li>
-            <li class="flex gap-4">
-              <span class="font-mono">×</span>
-              <span>Pensás que la marca es lo que queda después de aplicar un filtro.</span>
-            </li>
-            <li class="flex gap-4">
-              <span class="font-mono">×</span>
-              <span>Esperás que alguien te apure la carrera con un curso.</span>
-            </li>
-          </ul>
-        </div>
+        <!-- No es para vos — sin beam -->
+        <BlurFade client:visible delay={0.15}>
+          <div class="border border-line p-8">
+            <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
+              [ No es para vos si… ]
+            </p>
+            <ul class="space-y-5 text-base leading-relaxed text-mute">
+              <li class="flex gap-4">
+                <span class="font-mono">×</span>
+                <span>Buscás fórmulas o plantillas que pegar.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="font-mono">×</span>
+                <span>Preferís resúmenes de dos minutos hechos con IA.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="font-mono">×</span>
+                <span>Pensás que la marca es lo que queda después de aplicar un filtro.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="font-mono">×</span>
+                <span>Esperás que alguien te apure la carrera con un curso.</span>
+              </li>
+            </ul>
+          </div>
+        </BlurFade>
       </div>
     </section>
 
     <!-- CIERRE -->
-    <section class="relative px-4 py-28 sm:px-6 md:py-40 lg:px-8">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="font-serif text-3xl leading-[1.15] text-bone md:text-5xl">
-          <span class="italic">"La industria vende atajos.<br />
-          Nosotras publicamos caminos."</span>
-        </p>
-        <div class="mt-12 inline-flex items-center gap-4">
-          <span class="h-[1px] w-10 bg-neon" />
-          <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
-            Dominique Alexia · Buenos Aires · 2026
-          </p>
-          <span class="h-[1px] w-10 bg-neon" />
+    <section class="relative overflow-hidden px-4 py-28 sm:px-6 md:py-40 lg:px-8">
+      <DotPattern className="z-0" opacity={0.05} />
+      <div class="relative z-10 mx-auto max-w-3xl text-center">
+        <div class="font-serif text-3xl leading-[1.15] text-bone md:text-5xl">
+          <TextGenerate
+            client:visible
+            text='"La industria vende atajos. Nosotras publicamos caminos."'
+            as="p"
+            delay={0}
+            className="font-serif italic"
+          />
         </div>
-        <div class="mt-14">
-          <a
-            href="/blog"
-            class="group inline-flex items-center gap-3 border border-neon bg-neon px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-ink transition-colors hover:bg-transparent hover:text-neon"
-          >
+        <BlurFade client:visible delay={0.5}>
+          <div class="mt-12 inline-flex items-center gap-4">
+            <span class="h-[1px] w-10 bg-neon" />
+            <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+              Dominique Alexia · Buenos Aires · 2026
+            </p>
+            <span class="h-[1px] w-10 bg-neon" />
+          </div>
+        </BlurFade>
+        <BlurFade client:visible delay={0.65} className="mt-14">
+          <ShimmerButton client:visible href="/blog">
             Leer los textos
-            <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-        </div>
+            <span aria-hidden="true">→</span>
+          </ShimmerButton>
+        </BlurFade>
       </div>
     </section>
   </main>

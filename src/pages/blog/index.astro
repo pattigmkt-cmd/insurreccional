@@ -6,6 +6,13 @@ import Footer from "../../components/Footer.astro";
 import PostCard from "../../components/PostCard.astro";
 import CategoryBadge from "../../components/CategoryBadge.astro";
 
+import Meteors from "../../components/fx/Meteors";
+import DotPattern from "../../components/fx/DotPattern";
+import BlurFade from "../../components/fx/BlurFade";
+import CardTilt from "../../components/fx/CardTilt";
+import SpotlightCard from "../../components/fx/SpotlightCard";
+import NumberTicker from "../../components/fx/NumberTicker";
+
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const posts = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
@@ -26,34 +33,37 @@ const description =
   <main class="relative">
     <!-- HEADER DEL ARCHIVO -->
     <section class="relative overflow-hidden border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute -right-32 top-0 h-[380px] w-[380px] rounded-full opacity-[0.1] blur-[100px]"
-        style="background: radial-gradient(circle, #c8ff00 0%, transparent 65%);"
-      >
-      </div>
+      <DotPattern className="z-0" opacity={0.07} />
+      <Meteors client:visible count={8} className="z-0" />
 
-      <div class="relative mx-auto max-w-6xl">
-        <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
-          [ Archivo editorial ]
-        </p>
+      <div class="relative z-10 mx-auto max-w-6xl">
+        <BlurFade client:visible delay={0} direction="down">
+          <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+            [ Archivo editorial ]
+          </p>
+        </BlurFade>
+
         <div class="grid gap-8 md:grid-cols-12 md:gap-10">
-          <h1 class="font-serif text-5xl font-bold leading-[0.95] text-bone sm:text-6xl md:col-span-8 md:text-7xl lg:text-[6.5rem]">
-            El archivo<span class="text-neon">.</span>
-          </h1>
-          <div class="flex flex-col justify-end md:col-span-4">
+          <BlurFade client:visible delay={0.1} className="md:col-span-8">
+            <h1 class="font-serif text-5xl font-bold leading-[0.95] text-bone sm:text-6xl md:text-7xl lg:text-[6.5rem]">
+              El archivo<span class="text-neon">.</span>
+            </h1>
+          </BlurFade>
+
+          <BlurFade client:visible delay={0.25} className="flex flex-col justify-end md:col-span-4">
             <p class="text-base leading-relaxed text-mute md:text-lg">
-              {posts.length} {posts.length === 1 ? "texto publicado" : "textos publicados"} ·
-              {categories.length} {categories.length === 1 ? "categoría" : "categorías"}
+              <NumberTicker client:visible value={posts.length} suffix={posts.length === 1 ? " texto publicado" : " textos publicados"} />
+              {" "}·{" "}
+              <NumberTicker client:visible value={categories.length} suffix={categories.length === 1 ? " categoría" : " categorías"} />
             </p>
             <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
               Orden cronológico inverso
             </p>
-          </div>
+          </BlurFade>
         </div>
 
-        <!-- Filtro de categorías (anchors, zero JS) -->
-        <div class="mt-16 flex flex-wrap items-center gap-2 border-t border-line pt-8">
+        <!-- Filtro de categorías -->
+        <BlurFade client:visible delay={0.35} className="mt-16 flex flex-wrap items-center gap-2 border-t border-line pt-8">
           <span class="mr-3 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
             Categorías:
           </span>
@@ -67,7 +77,7 @@ const description =
               </a>
             ))
           }
-        </div>
+        </BlurFade>
       </div>
     </section>
 
@@ -75,32 +85,57 @@ const description =
     <section id="todos" class="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto max-w-6xl">
         {
-          categories.map((category) => {
+          categories.map((category, catIdx) => {
             const inCat = posts.filter((p) => p.data.category === category);
             return (
               <div id={category.toLowerCase()} class="mb-20 scroll-mt-24 md:mb-28">
-                <header class="mb-8 flex items-baseline justify-between gap-6 border-b border-line pb-4">
-                  <h2 class="font-serif text-3xl font-bold italic text-bone md:text-4xl">
-                    {category}
-                  </h2>
-                  <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-mute">
-                    {String(inCat.length).padStart(2, "0")} texto{inCat.length !== 1 ? "s" : ""}
-                  </span>
-                </header>
+                <BlurFade client:visible delay={catIdx * 0.05}>
+                  <header class="mb-8 flex items-baseline justify-between gap-6 border-b border-line pb-4">
+                    <h2 class="font-serif text-3xl font-bold italic text-bone md:text-4xl">
+                      {category}
+                    </h2>
+                    <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-mute">
+                      {String(inCat.length).padStart(2, "0")} texto{inCat.length !== 1 ? "s" : ""}
+                    </span>
+                  </header>
+                </BlurFade>
 
-                <div class="divide-y divide-line">
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {inCat.map((post, i) => (
-                    <PostCard
-                      slug={post.id}
-                      title={post.data.title}
-                      description={post.data.description}
-                      kicker={post.data.kicker}
-                      category={post.data.category}
-                      pubDate={post.data.pubDate}
-                      readingMinutes={post.data.readingMinutes}
-                      variant="compact"
-                      index={i}
-                    />
+                    <BlurFade client:visible delay={0.05 + i * 0.08}>
+                      <CardTilt client:visible maxTilt={3}>
+                        <SpotlightCard client:visible className="h-full">
+                          <a
+                            href={`/blog/${post.id}`}
+                            class="group relative flex h-full flex-col gap-5 border border-line bg-surface/60 p-6 transition-colors hover:border-neon/40 hover:bg-surface"
+                          >
+                            <div class="flex items-center justify-between gap-3">
+                              <CategoryBadge category={post.data.category} />
+                              <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
+                                {String(i + 1).padStart(2, "0")}
+                              </span>
+                            </div>
+
+                            <h3 class="font-serif text-xl font-bold leading-tight text-bone transition-colors group-hover:text-neon sm:text-2xl">
+                              {post.data.title}
+                            </h3>
+
+                            <p class="flex-1 text-sm leading-relaxed text-mute">
+                              {post.data.description}
+                            </p>
+
+                            <div class="mt-2 flex items-center justify-between gap-3 border-t border-line pt-4">
+                              <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-mute-dim">
+                                {post.data.readingMinutes} min
+                              </span>
+                              <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bone transition-colors group-hover:text-neon">
+                                Leer →
+                              </span>
+                            </div>
+                          </a>
+                        </SpotlightCard>
+                      </CardTilt>
+                    </BlurFade>
                   ))}
                 </div>
               </div>

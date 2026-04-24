@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import react from "@astrojs/react";
 
 // TODO: actualizar SITE cuando se defina dominio propio.
 // Por defecto asume deploy en Cloudflare Pages (insurreccional.pages.dev).
@@ -10,7 +11,7 @@ const SITE = process.env.SITE_URL ?? "https://insurreccional.pages.dev";
 export default defineConfig({
   site: SITE,
   trailingSlash: "ignore",
-  integrations: [sitemap()],
+  integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwind()],
   },
