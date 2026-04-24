@@ -23,6 +23,14 @@ interface Props {
 
 const { title, description, category, kicker, pubDate, readingMinutes } = Astro.props;
 
+// Subtle category accent — single element tint, not full palette change
+const categoryAccent: Record<string, { border: string; bg: string }> = {
+  Criterio:   { border: "rgba(200,255,0,0.18)",  bg: "rgba(200,255,0,0.025)" },
+  Industria:  { border: "rgba(255,107,107,0.14)", bg: "rgba(255,107,107,0.02)" },
+  Estrategia: { border: "rgba(125,211,252,0.14)", bg: "rgba(125,211,252,0.02)" },
+};
+const accent = categoryAccent[category] ?? categoryAccent["Criterio"];
+
 const dateFormatted = pubDate.toLocaleDateString("es-AR", {
   year: "numeric",
   month: "long",
@@ -82,7 +90,10 @@ const dateISO = pubDate.toISOString();
 
               <BlurFade client:visible delay={0.2} direction="up">
                 {kicker && (
-                  <p class="mb-5 font-serif text-lg italic text-mute md:text-xl">
+                  <p
+                    class="mb-5 border-l-2 pl-3 font-serif text-lg italic text-mute md:text-xl"
+                    style={`border-color: ${accent.border}; background: ${accent.bg}; padding-top: 0.25rem; padding-bottom: 0.25rem;`}
+                  >
                     — {kicker}
                   </p>
                 )}
