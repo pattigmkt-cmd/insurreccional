@@ -12,6 +12,12 @@ import NumberTicker from "../../components/fx/NumberTicker";
 import LampEffect from "../../components/fx/LampEffect";
 import TracingBeam from "../../components/fx/TracingBeam";
 
+// NEW — Wave 4
+import FlickeringGrid from "../../components/fx/bg/FlickeringGrid";
+import BackgroundBoxes from "../../components/fx/bg/BackgroundBoxes";
+import TextShimmer from "../../components/fx/text/TextShimmer";
+import CommandPalette from "../../components/landing/CommandPalette";
+
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const posts = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
@@ -25,7 +31,6 @@ const title = "Archivo · Insurreccional";
 const description =
   "Todos los textos publicados en Insurreccional. Criterio sobre branding, industria, estrategia y oficio.";
 
-// Serialize for client component
 const serializedPosts = posts.map((p) => ({
   id: p.id,
   title: p.data.title,
@@ -35,15 +40,27 @@ const serializedPosts = posts.map((p) => ({
   readingMinutes: p.data.readingMinutes,
   pubDate: p.data.pubDate.toISOString(),
 }));
+
+const cmdPosts = allPosts.map((p) => ({
+  id: p.id,
+  title: p.data.title,
+  category: p.data.category,
+  description: p.data.description,
+}));
 ---
 
 <Layout title={title} description={description}>
   <Header />
 
+  <!-- CommandPalette global (cmd+k) -->
+  <CommandPalette client:load posts={cmdPosts} />
+
   <main class="relative">
-    <!-- HEADER DEL ARCHIVO -->
+    <!-- HEADER DEL ARCHIVO + FlickeringGrid -->
     <section class="relative overflow-hidden border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <DotPattern className="z-0" opacity={0.07} />
+      <!-- NEW: flickering grid as bg -->
+      <FlickeringGrid client:idle className="z-0" cellSize={24} flickerChance={0.004} opacity={0.05} />
       <Meteors client:visible count={8} className="z-0" />
 
       <div class="relative z-10 mx-auto max-w-6xl">
@@ -53,7 +70,6 @@ const serializedPosts = posts.map((p) => ({
           </p>
         </BlurFade>
 
-        <!-- LampEffect on title -->
         <LampEffect intensity={0.75} className="py-4">
           <div class="grid gap-8 md:grid-cols-12 md:gap-10">
             <BlurFade client:visible delay={0.1} className="md:col-span-8">
@@ -74,10 +90,24 @@ const serializedPosts = posts.map((p) => ({
             </BlurFade>
           </div>
         </LampEffect>
+
+        {/* Category shimmer labels */}
+        <BlurFade client:visible delay={0.4}>
+          <div class="mt-6 flex flex-wrap gap-4">
+            {categories.map((cat) => (
+              <TextShimmer client:visible text={cat} as="span" duration={3} className="font-mono text-[10px] uppercase tracking-[0.25em]" />
+            ))}
+          </div>
+        </BlurFade>
       </div>
     </section>
 
-    <!-- LISTADO DE POSTS — TracingBeam + TabsSlide + HoverRevealCard via BlogArchiveClient -->
+    <!-- BackgroundBoxes divider (desktop only) -->
+    <div class="relative border-b border-line h-20 overflow-hidden hidden md:block" aria-hidden="true">
+      <BackgroundBoxes client:idle rows={4} cols={24} className="z-0" />
+    </div>
+
+    <!-- LISTADO DE POSTS — TracingBeam + BlogArchiveClient -->
     <section class="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto max-w-6xl">
         <TracingBeam client:visible>

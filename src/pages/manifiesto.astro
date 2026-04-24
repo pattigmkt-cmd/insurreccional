@@ -5,14 +5,32 @@ import Footer from "../components/Footer.astro";
 
 import AuroraMesh from "../components/fx/AuroraMesh";
 import BlurFade from "../components/fx/BlurFade";
-import HyperText from "../components/fx/HyperText";
-import BorderBeam from "../components/fx/BorderBeam";
 import ShimmerButton from "../components/fx/ShimmerButton";
 import DotPattern from "../components/fx/DotPattern";
 import LampEffect from "../components/fx/LampEffect";
 import StickyScroll from "../components/fx/StickyScroll";
 import Timeline from "../components/fx/Timeline";
 import EvervaultCard from "../components/fx/EvervaultCard";
+
+// NEW — Wave 4
+import Vortex from "../components/fx/bg/Vortex";
+import Beams from "../components/fx/bg/Beams";
+import ShootingStars from "../components/fx/bg/ShootingStars";
+import GooeyText from "../components/fx/text/GooeyText";
+import TextHoverEffect from "../components/fx/text/TextHoverEffect";
+import FlipWords from "../components/fx/text/FlipWords";
+import ManifiestoCards from "../components/fx/ManifiestoCards";
+import Confetti from "../components/fx/Confetti";
+import CommandPalette from "../components/landing/CommandPalette";
+
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const cmdPosts = allPosts.map((p) => ({
+  id: p.id,
+  title: p.data.title,
+  category: p.data.category,
+  description: p.data.description,
+}));
 
 const title = "Manifiesto · Insurreccional";
 const description =
@@ -56,14 +74,21 @@ const journeyItems = [
   { num: "II", title: "Leíste 3 textos", description: "El criterio empieza a instalarse. Las conversaciones de marketing te chirrían de otra forma.", status: "pending" as const },
   { num: "III", title: "Formás parte", description: "No como suscriptor. Como alguien que piensa diferente el oficio.", status: "pending" as const },
 ];
+
+const flipKickerWords = ["CAMINOS", "CRITERIO", "OFICIO", "VOCES"];
 ---
 
 <Layout title={title} description={description}>
   <Header />
 
+  <!-- CommandPalette global (cmd+k) -->
+  <CommandPalette client:load posts={cmdPosts} />
+
   <main class="relative">
-    <!-- HERO DEL MANIFIESTO — LampEffect -->
+    <!-- HERO DEL MANIFIESTO — LampEffect + Vortex + Beams -->
     <section class="relative overflow-hidden border-b border-line px-4 py-24 sm:px-6 md:py-36 lg:px-8">
+      <!-- NEW: Vortex denso -->
+      <Vortex client:idle className="z-[-1]" dense particleCount={100} />
       <AuroraMesh client:idle dense className="z-[-1]" />
       <DotPattern className="z-[-1]" opacity={0.05} />
 
@@ -80,7 +105,7 @@ const journeyItems = [
               No se trata<br />
               de{" "}
               <span class="italic text-neon">
-                <HyperText client:visible text="mí." trigger="hover" />
+                <GooeyText client:visible text="mí." className="inline" />
               </span>
             </BlurFade>
           </h1>
@@ -106,9 +131,10 @@ const journeyItems = [
       </div>
     </section>
 
-    <!-- POR QUÉ EXISTE -->
-    <section class="relative border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:gap-16">
+    <!-- POR QUÉ EXISTE + Beams -->
+    <section class="relative border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8 overflow-hidden">
+      <Beams client:idle className="z-0" count={3} />
+      <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:gap-16 relative z-10">
         <BlurFade client:visible delay={0} className="md:col-span-4">
           <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
             [ Por qué existe ]
@@ -140,13 +166,13 @@ const journeyItems = [
       </div>
     </section>
 
-    <!-- 5 TESIS — StickyScroll -->
+    <!-- 5 TESIS — StickyScroll + TextHoverEffect en h2 -->
     <section class="relative border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div class="mx-auto max-w-6xl">
         <BlurFade client:visible delay={0}>
           <div class="mb-16 flex items-baseline justify-between gap-6 border-b border-line pb-6">
             <h2 class="font-serif text-3xl font-bold text-bone md:text-5xl">
-              Cinco tesis de arranque.
+              <TextHoverEffect client:visible text="Cinco tesis de arranque." className="font-serif text-3xl font-bold md:text-5xl" />
             </h2>
             <span class="font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
               [ 05 / 05 ]
@@ -161,67 +187,16 @@ const journeyItems = [
       </div>
     </section>
 
-    <!-- PARA QUIÉN ES / NO ES -->
+    <!-- PARA QUIÉN ES / NO ES — ManifiestoCards (DirectionAwareHover wrapped) -->
     <section class="relative border-b border-line bg-surface/60 px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-16">
-        <!-- Sí es para vos — con BorderBeam -->
+      <div class="mx-auto max-w-6xl">
         <BlurFade client:visible delay={0}>
-          <div class="relative overflow-hidden border border-neon/30 p-8">
-            <BorderBeam client:visible duration={5} />
-            <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
-              [ Sí es para vos si… ]
-            </p>
-            <ul class="space-y-5 text-base leading-relaxed text-bone">
-              <li class="flex gap-4">
-                <span class="font-mono text-neon">→</span>
-                <span>Venís del sector y algo te dejó de cerrar.</span>
-              </li>
-              <li class="flex gap-4">
-                <span class="font-mono text-neon">→</span>
-                <span>Preferís un texto de 3.000 palabras antes que un reel.</span>
-              </li>
-              <li class="flex gap-4">
-                <span class="font-mono text-neon">→</span>
-                <span>Querés construir algo propio — marca, carrera, criterio — y sabés que lleva años.</span>
-              </li>
-              <li class="flex gap-4">
-                <span class="font-mono text-neon">→</span>
-                <span>Te importa más entender por qué algo funcionó, que copiar a alguien que lo hizo.</span>
-              </li>
-            </ul>
-          </div>
-        </BlurFade>
-
-        <!-- No es para vos -->
-        <BlurFade client:visible delay={0.15}>
-          <div class="border border-line p-8">
-            <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-mute">
-              [ No es para vos si… ]
-            </p>
-            <ul class="space-y-5 text-base leading-relaxed text-mute">
-              <li class="flex gap-4">
-                <span class="font-mono">×</span>
-                <span>Buscás fórmulas o plantillas que pegar.</span>
-              </li>
-              <li class="flex gap-4">
-                <span class="font-mono">×</span>
-                <span>Preferís resúmenes de dos minutos hechos con IA.</span>
-              </li>
-              <li class="flex gap-4">
-                <span class="font-mono">×</span>
-                <span>Pensás que la marca es lo que queda después de aplicar un filtro.</span>
-              </li>
-              <li class="flex gap-4">
-                <span class="font-mono">×</span>
-                <span>Esperás que alguien te apure la carrera con un curso.</span>
-              </li>
-            </ul>
-          </div>
+          <ManifiestoCards client:visible />
         </BlurFade>
       </div>
     </section>
 
-    <!-- JOURNEY TIMELINE — separador entre para quién es / no es y cierre -->
+    <!-- JOURNEY TIMELINE -->
     <section class="relative border-b border-line px-4 py-20 sm:px-6 md:py-24 lg:px-8">
       <div class="mx-auto max-w-4xl">
         <BlurFade client:visible delay={0} className="mb-12">
@@ -233,14 +208,21 @@ const journeyItems = [
       </div>
     </section>
 
-    <!-- CIERRE — EvervaultCard gigante -->
+    <!-- CIERRE — EvervaultCard + FlipWords + ShootingStars + Confetti -->
     <section class="relative overflow-hidden px-4 py-28 sm:px-6 md:py-40 lg:px-8">
+      <ShootingStars client:visible className="z-0" count={6} />
       <DotPattern className="z-0" opacity={0.05} />
       <div class="relative z-10 mx-auto max-w-3xl text-center">
         <EvervaultCard client:visible large className="mb-12">
           <div class="font-serif text-3xl leading-[1.15] text-bone md:text-5xl py-4">
             <p class="font-serif italic">
-              "La industria vende atajos. Nosotras publicamos caminos."
+              "La industria vende atajos. Nosotras publicamos{" "}
+              <FlipWords
+                client:visible
+                words={flipKickerWords}
+                interval={2500}
+                className="text-neon not-italic"
+              />."
             </p>
           </div>
         </EvervaultCard>
@@ -254,11 +236,14 @@ const journeyItems = [
             <span class="h-[1px] w-10 bg-neon" />
           </div>
         </BlurFade>
+
         <BlurFade client:visible delay={0.65} className="mt-14">
-          <ShimmerButton client:visible href="/blog">
-            Leer los textos
-            <span aria-hidden="true">→</span>
-          </ShimmerButton>
+          <Confetti client:visible count={50}>
+            <ShimmerButton client:visible href="/blog">
+              Leer los textos
+              <span aria-hidden="true">→</span>
+            </ShimmerButton>
+          </Confetti>
         </BlurFade>
       </div>
     </section>

@@ -1,5 +1,6 @@
 ---
 import FloatingDock from "./fx/FloatingDock";
+import TextShimmer from "./fx/text/TextShimmer";
 
 const pathname = Astro.url.pathname;
 const isActive = (path: string) =>
@@ -20,11 +21,10 @@ const dockItems = links.map((l) => ({
 
 <header class="relative z-50 border-b border-line bg-ink/80 backdrop-blur-md">
   <div class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-    <!-- Logo with animated border beam -->
+    <!-- Logo with animated border beam + TextShimmer -->
     <a href="/" class="group flex items-center gap-3" aria-label="Insurreccional · inicio">
       <span class="relative inline-flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-neon/60 bg-neon/10 font-mono text-[10px] font-semibold uppercase tracking-widest text-neon transition-colors group-hover:bg-neon group-hover:text-ink">
         I
-        <!-- Animated border beam on the logo circle -->
         <span
           aria-hidden="true"
           class="pointer-events-none absolute inset-0 rounded-full"
@@ -32,7 +32,13 @@ const dockItems = links.map((l) => ({
         />
       </span>
       <span class="flex flex-col leading-none">
-        <span class="font-serif text-lg font-bold italic text-bone">Insurreccional</span>
+        <TextShimmer
+          client:load
+          text="Insurreccional"
+          as="span"
+          duration={3.5}
+          className="font-serif text-lg font-bold italic"
+        />
         <span class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.3em] text-mute">
           Dominique Alexia
         </span>
@@ -62,7 +68,7 @@ const dockItems = links.map((l) => ({
       }
     </nav>
 
-    <!-- Mobile: minimal icon for small screens — FloatingDock renders the actual mobile nav -->
+    <!-- Mobile: minimal icon for small screens -->
     <span class="md:hidden font-mono text-[10px] uppercase tracking-widest text-mute-dim">
       Menu ↓
     </span>

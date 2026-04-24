@@ -25,6 +25,20 @@ import HoverRevealCard from "../components/fx/HoverRevealCard";
 import Timeline from "../components/fx/Timeline";
 import EvervaultCard from "../components/fx/EvervaultCard";
 
+// NEW — Wave 4
+import Beams from "../components/fx/bg/Beams";
+import Sparkles from "../components/fx/bg/Sparkles";
+import ShootingStars from "../components/fx/bg/ShootingStars";
+import Typewriter from "../components/fx/text/Typewriter";
+import TextShimmer from "../components/fx/text/TextShimmer";
+import AnimatedBeam from "../components/fx/AnimatedBeam";
+import FocusCards from "../components/fx/FocusCards";
+import StatsBlock from "../components/landing/StatsBlock";
+import AboutPanel from "../components/landing/AboutPanel";
+import ReaderTestimonials from "../components/landing/ReaderTestimonials";
+import NewsletterSignup from "../components/landing/NewsletterSignup";
+import CommandPalette from "../components/landing/CommandPalette";
+
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const featured = allPosts
   .filter((p) => p.data.featured)
@@ -62,10 +76,26 @@ const timelineItems = [
 ];
 
 const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resultados en 30 días"];
+
+const kickerVariants = [
+  "Edición 001 · Abril 2026 · Plataforma editorial",
+  "Criterio antes que crecimiento · Plataforma editorial",
+  "Sin cursos. Sin fórmulas. · Plataforma editorial",
+];
+
+const cmdPosts = allPosts.map((p) => ({
+  id: p.id,
+  title: p.data.title,
+  category: p.data.category,
+  description: p.data.description,
+}));
 ---
 
 <Layout title={title} description={description}>
   <Header />
+
+  <!-- CommandPalette global (cmd+k) -->
+  <CommandPalette client:load posts={cmdPosts} />
 
   <main>
     <!-- ═══════════════════════════════════════════════════════
@@ -74,6 +104,10 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
     <section class="relative isolate overflow-hidden border-b border-line px-4 pb-28 pt-20 sm:px-6 md:pb-36 md:pt-28 lg:px-8">
       <!-- Aurora Mesh background -->
       <AuroraMesh client:idle className="z-[-1]" />
+      <!-- NEW: Beams crossing -->
+      <Beams client:idle className="z-[-1]" count={4} />
+      <!-- NEW: Sparkles layer -->
+      <Sparkles client:idle className="z-[-1]" density={50} />
       <!-- Retro grid at bottom -->
       <RetroGrid className="z-[-1] opacity-60" />
       <!-- Dot pattern -->
@@ -83,7 +117,13 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
         <BlurFade client:visible delay={0} direction="down">
           <p class="mb-8 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.35em] text-mute">
             <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-neon" />
-            Edición 001 · Abril 2026 · Plataforma editorial
+            <Typewriter
+              client:visible
+              texts={kickerVariants}
+              speed={50}
+              deleteSpeed={30}
+              pauseMs={2500}
+            />
           </p>
         </BlurFade>
 
@@ -105,8 +145,7 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
           <BlurFade client:visible delay={0.25} direction="up" className="md:col-span-7">
             <p class="font-serif text-xl italic leading-snug text-bone md:text-3xl">
               <AnimatedGradientText client:visible className="font-serif text-xl italic leading-snug md:text-3xl" speed={6}>
-                No te enseño herramientas. No te mando templates. Te doy el criterio
-                que tardé una década construir
+                <TextShimmer client:visible text="No te enseño herramientas. No te mando templates. Te doy el criterio que tardé una década construir" as="span" duration={3} />
               </AnimatedGradientText>
               {" "}<span class="text-bone-soft">— y que la industria te vende en
               cursos de una hora con promesa de viralidad.</span>
@@ -165,6 +204,11 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
     </div>
 
     <!-- ═══════════════════════════════════════════════════════
+         STATS BLOCK — NEW
+    ═══════════════════════════════════════════════════════ -->
+    <StatsBlock client:visible />
+
+    <!-- ═══════════════════════════════════════════════════════
          VOCES — InfiniteQuotes
     ═══════════════════════════════════════════════════════ -->
     <section class="relative border-b border-line overflow-hidden py-16 md:py-24">
@@ -183,7 +227,7 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         FEATURED POSTS — Bento asimétrico
+         FEATURED POSTS — Bento asimétrico + FocusCards
     ═══════════════════════════════════════════════════════ -->
     <section class="relative border-b border-line px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div class="mx-auto max-w-6xl">
@@ -206,7 +250,6 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
         </BlurFade>
 
         {featured.length >= 1 && (
-          <!-- Bento: post grande arriba — SpotlightCard + BorderBeam -->
           <BlurFade client:visible delay={0.1} className="mb-6">
             <CardTilt client:visible maxTilt={3}>
               <SpotlightCard client:visible className="group relative overflow-hidden border border-line bg-surface/70 p-8 transition-colors hover:border-neon/30 md:p-12">
@@ -251,8 +294,8 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
         )}
 
         {featured.length >= 3 && (
-          <!-- Bento: 2 posts chicos — HoverRevealCard -->
-          <div class="grid gap-6 md:grid-cols-2">
+          <!-- Bento: 2 posts chicos — FocusCards wrapper + HoverRevealCard -->
+          <FocusCards client:visible className="grid gap-6 md:grid-cols-2">
             {[featured[1], featured[2]].map((post, i) => (
               <BlurFade client:visible delay={0.2 + i * 0.1}>
                 <HoverRevealCard
@@ -267,10 +310,9 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
                 />
               </BlurFade>
             ))}
-          </div>
+          </FocusCards>
         )}
 
-        {/* Fallback si hay menos de 3 posts featured */}
         {featured.length > 0 && featured.length < 3 && (
           <div class="space-y-16 md:space-y-20 mt-6">
             {featured.slice(1).map((post, i) => (
@@ -359,9 +401,20 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         CIERRE QUOTE — LampEffect + EvervaultCard
+         ABOUT PANEL — NEW
+    ═══════════════════════════════════════════════════════ -->
+    <AboutPanel client:visible />
+
+    <!-- ═══════════════════════════════════════════════════════
+         READER TESTIMONIALS — NEW
+    ═══════════════════════════════════════════════════════ -->
+    <ReaderTestimonials client:visible />
+
+    <!-- ═══════════════════════════════════════════════════════
+         CIERRE QUOTE — LampEffect + EvervaultCard + ShootingStars
     ═══════════════════════════════════════════════════════ -->
     <section class="relative border-t border-line bg-surface/50 px-4 py-24 sm:px-6 md:py-32 lg:px-8 overflow-hidden">
+      <ShootingStars client:visible className="z-0" count={5} />
       <DotPattern className="z-0" opacity={0.05} />
       <div class="relative z-10 mx-auto max-w-4xl text-center">
         <p class="mb-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neon">
@@ -390,6 +443,11 @@ const noSellItems = ["Templates", "Cursos de IA", "Fórmulas mágicas", "Resulta
         </BlurFade>
       </div>
     </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         NEWSLETTER — NEW
+    ═══════════════════════════════════════════════════════ -->
+    <NewsletterSignup client:visible />
   </main>
 
   <Footer />

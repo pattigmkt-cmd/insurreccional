@@ -9,6 +9,12 @@ import BlurFade from "../components/fx/BlurFade";
 import ShimmerButton from "../components/fx/ShimmerButton";
 import RetroGrid from "../components/fx/RetroGrid";
 import LampEffect from "../components/fx/LampEffect";
+
+// NEW — Wave 4
+import Vortex from "../components/fx/bg/Vortex";
+import ShootingStars from "../components/fx/bg/ShootingStars";
+import GooeyText from "../components/fx/text/GooeyText";
+import CompareEasterEgg from "../components/fx/CompareEasterEgg";
 ---
 
 <Layout
@@ -18,7 +24,10 @@ import LampEffect from "../components/fx/LampEffect";
 >
   <Header />
   <main class="relative isolate flex min-h-[80svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-24 text-center sm:px-6">
+    <!-- NEW: Vortex denso -->
+    <Vortex client:idle className="z-[-1]" dense particleCount={80} />
     <AuroraMesh client:idle className="z-[-1]" />
+    <ShootingStars client:visible className="z-0" count={5} />
     <RetroGrid className="z-[-1]" opacity={0.08} />
 
     <BlurFade client:visible delay={0} direction="down">
@@ -30,7 +39,7 @@ import LampEffect from "../components/fx/LampEffect";
     <LampEffect intensity={0.7} className="py-6 px-8">
       <BlurFade client:visible delay={0.1} direction="up">
         <h1 class="font-serif text-6xl font-black italic leading-none text-bone md:text-[9rem]">
-          <HyperText client:visible text="Nada." trigger="mount" duration={1200} />
+          <GooeyText client:visible text="Nada." className="inline" />
         </h1>
       </BlurFade>
     </LampEffect>
@@ -53,6 +62,17 @@ import LampEffect from "../components/fx/LampEffect";
       >
         Ir al archivo
       </a>
+    </BlurFade>
+
+    <!-- Easter egg: Compare slider -->
+    <BlurFade client:visible delay={0.7} className="mt-24 w-full max-w-lg">
+      <p class="mb-3 font-mono text-[10px] uppercase tracking-[0.3em] text-mute-dim">
+        · · · easter egg · · ·
+      </p>
+      <CompareEasterEgg client:visible />
+      <p class="mt-3 font-mono text-[9px] text-mute-dim uppercase tracking-[0.2em] text-center">
+        deslizá para "ver la diferencia"
+      </p>
     </BlurFade>
   </main>
   <Footer />
