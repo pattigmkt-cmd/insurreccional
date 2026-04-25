@@ -14,7 +14,7 @@ const links = [
 
 const dockItems = links.map((l) => ({
   ...l,
-  icon: l.href === "/" ? "◆" : l.href === "/blog" ? "▣" : "◉",
+  icon: l.href === "/" ? "home" : l.href === "/blog" ? "archive" : "manifesto",
   active: isActive(l.href),
 }));
 ---

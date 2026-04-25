@@ -1,6 +1,13 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { Home, BookOpen, Megaphone, type LucideIcon } from "lucide-react";
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  home: Home,
+  archive: BookOpen,
+  manifesto: Megaphone,
+};
 import { useRef } from "react";
 import { useCoarsePointer } from "../../lib/useCoarsePointer";
 
@@ -39,7 +46,7 @@ function DockItemDesktop({ item }: { item: DockItem }) {
       }}
       whileHover={{ y: -2 }}
     >
-      <span style={{ fontSize: "14px", lineHeight: 1 }}>{item.icon}</span>
+      {(() => { const I = ICON_MAP[item.icon]; return I ? <I size={16} strokeWidth={1.5} /> : null; })()}
       <span
         style={{
           fontFamily: "var(--font-mono)",
@@ -112,7 +119,7 @@ export default function FloatingDock({ items }: Props) {
             minWidth: "52px",
           }}
         >
-          <span style={{ fontSize: "16px" }}>{item.icon}</span>
+          {(() => { const I = ICON_MAP[item.icon]; return I ? <I size={18} strokeWidth={1.5} /> : null; })()}
           <span
             style={{
               fontFamily: "var(--font-mono)",
