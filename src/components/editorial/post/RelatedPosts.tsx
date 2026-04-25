@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import HoverRevealCard from "../../fx/HoverRevealCard";
+import BlogCardReact from "../../BlogCardReact";
 
 interface PostItem {
   id: string;
@@ -10,6 +10,7 @@ interface PostItem {
   category: string;
   kicker?: string;
   readingMinutes: number;
+  pubDate?: string;
 }
 
 interface Props {
@@ -27,11 +28,11 @@ export default function RelatedPosts({ posts, className = "" }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      style={{ marginTop: "4rem" }}
+      style={{ marginTop: "5rem" }}
     >
       <div
         style={{
-          marginBottom: "2rem",
+          marginBottom: "2.5rem",
           display: "flex",
           alignItems: "center",
           gap: "1rem",
@@ -51,13 +52,7 @@ export default function RelatedPosts({ posts, className = "" }: Props) {
         <span style={{ height: 1, flex: 1, background: "var(--color-line)" }} />
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "1.5rem",
-        }}
-      >
+      <div className="grid gap-8 md:grid-cols-2 md:gap-10">
         {posts.map((post, i) => (
           <motion.div
             key={post.id}
@@ -66,13 +61,15 @@ export default function RelatedPosts({ posts, className = "" }: Props) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <HoverRevealCard
+            <BlogCardReact
               href={`/blog/${post.id}`}
               title={post.title}
-              subtitle={post.kicker}
               description={post.description}
               category={post.category}
-              meta={`${post.readingMinutes} min`}
+              kicker={post.kicker}
+              pubDate={post.pubDate ?? new Date().toISOString()}
+              readingMinutes={post.readingMinutes}
+              index={i}
             />
           </motion.div>
         ))}

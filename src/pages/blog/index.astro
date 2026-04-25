@@ -3,35 +3,29 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import PostCard from "../../components/PostCard.astro";
 import BlogArchiveClient from "../../components/BlogArchiveClient";
 
-import Meteors from "../../components/fx/Meteors";
-import DotPattern from "../../components/fx/DotPattern";
 import BlurFade from "../../components/fx/BlurFade";
-import NumberTicker from "../../components/fx/NumberTicker";
-import LampEffect from "../../components/fx/LampEffect";
-import TracingBeam from "../../components/fx/TracingBeam";
-
-// NEW — Wave 4
-import FlickeringGrid from "../../components/fx/bg/FlickeringGrid";
-import BackgroundBoxes from "../../components/fx/bg/BackgroundBoxes";
-import TextShimmer from "../../components/fx/text/TextShimmer";
 import CommandPalette from "../../components/landing/CommandPalette";
 
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
-const posts = allPosts.sort(
+const sorted = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
+const featured = sorted.find((p) => p.data.featured) ?? sorted[0];
+const rest = sorted.filter((p) => p.id !== featured?.id);
+
 const categories = Array.from(
-  new Set(posts.map((p) => p.data.category))
+  new Set(sorted.map((p) => p.data.category))
 ).sort();
 
-const title = "Archivo · Insurreccional";
+const title = "Blog · Insurreccional";
 const description =
-  "Todos los textos publicados en Insurreccional. Criterio sobre branding, industria, estrategia y oficio.";
+  "Criterio editorial sobre branding, industria, estrategia y oficio. Sin filtros agencia ni promesas vacías.";
 
-const serializedPosts = posts.map((p) => ({
+const serializedPosts = rest.map((p) => ({
   id: p.id,
   title: p.data.title,
   description: p.data.description,
@@ -41,7 +35,7 @@ const serializedPosts = posts.map((p) => ({
   pubDate: p.data.pubDate.toISOString(),
 }));
 
-const cmdPosts = allPosts.map((p) => ({
+const cmdPosts = sorted.map((p) => ({
   id: p.id,
   title: p.data.title,
   category: p.data.category,
@@ -52,71 +46,91 @@ const cmdPosts = allPosts.map((p) => ({
 <Layout title={title} description={description}>
   <Header />
 
-  <!-- CommandPalette global (cmd+k) -->
   <CommandPalette client:load posts={cmdPosts} />
 
   <main class="relative">
-    <!-- HEADER DEL ARCHIVO + FlickeringGrid -->
-    <section class="relative overflow-hidden border-b border-line px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <DotPattern className="z-0" opacity={0.07} />
-      <!-- NEW: flickering grid as bg -->
-      <FlickeringGrid client:idle className="z-0" cellSize={24} flickerChance={0.004} opacity={0.05} />
-      <Meteors client:visible count={8} className="z-0" />
-
-      <div class="relative z-10 mx-auto max-w-6xl">
+    <section class="relative px-4 pt-16 sm:px-6 md:pt-24 lg:px-8">
+      <div class="mx-auto max-w-6xl">
         <BlurFade client:visible delay={0} direction="down">
-          <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
+          <p class="mb-8 font-mono text-[11px] uppercase tracking-[0.3em] text-neon">
             [ Archivo editorial ]
           </p>
         </BlurFade>
 
-        <LampEffect intensity={0.75} className="py-4">
-          <div class="grid gap-8 md:grid-cols-12 md:gap-10">
-            <BlurFade client:visible delay={0.1} className="md:col-span-8">
-              <h1 class="font-serif text-5xl font-bold leading-[0.95] text-bone sm:text-6xl md:text-7xl lg:text-[6.5rem]">
-                El archivo<span class="text-neon">.</span>
-              </h1>
-            </BlurFade>
+        <BlurFade client:visible delay={0.1}>
+          <div class="flex flex-wrap items-center gap-6 md:gap-10">
+            <h1 class="font-serif text-7xl font-bold leading-[0.92] text-bone sm:text-8xl md:text-[9rem] lg:text-[11rem]">
+              Blog<span class="text-neon">.</span>
+            </h1>
 
-            <BlurFade client:visible delay={0.25} className="flex flex-col justify-end md:col-span-4">
-              <p class="text-base leading-relaxed text-mute md:text-lg">
-                <NumberTicker client:visible value={posts.length} suffix={posts.length === 1 ? " texto publicado" : " textos publicados"} />
-                {" "}·{" "}
-                <NumberTicker client:visible value={categories.length} suffix={categories.length === 1 ? " categoría" : " categorías"} />
-              </p>
-              <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-mute-dim">
-                Orden cronológico inverso
-              </p>
-            </BlurFade>
+            <svg
+              aria-hidden="true"
+              class="hidden text-neon sm:block"
+              width="180"
+              height="90"
+              viewBox="0 0 180 90"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            >
+              <path d="M 8 55 Q 28 18, 50 50 T 95 50 T 140 45" />
+              <circle cx="160" cy="32" r="5" fill="currentColor" stroke="none" />
+              <path
+                d="M 18 72 Q 35 65, 55 70"
+                stroke-width="1.5"
+                opacity="0.5"
+              />
+            </svg>
           </div>
-        </LampEffect>
+        </BlurFade>
 
-        {/* Category shimmer labels */}
-        <BlurFade client:visible delay={0.4}>
-          <div class="mt-6 flex flex-wrap gap-4">
-            {categories.map((cat) => (
-              <TextShimmer client:visible text={cat} as="span" duration={3} className="font-mono text-[10px] uppercase tracking-[0.25em]" />
-            ))}
-          </div>
+        <BlurFade client:visible delay={0.25}>
+          <p class="mt-8 max-w-xl text-base leading-relaxed text-mute md:text-lg">
+            {sorted.length} {sorted.length === 1 ? "texto publicado" : "textos publicados"} en {categories.length} {categories.length === 1 ? "categoría" : "categorías"}. Orden cronológico inverso.
+          </p>
         </BlurFade>
       </div>
     </section>
 
-    <!-- BackgroundBoxes divider (desktop only) -->
-    <div class="relative border-b border-line h-20 overflow-hidden hidden md:block" aria-hidden="true">
-      <BackgroundBoxes client:idle rows={4} cols={24} className="z-0" />
-    </div>
+    {featured && (
+      <section class="relative px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <BlurFade client:visible delay={0.1}>
+            <PostCard
+              variant="feature"
+              slug={featured.id}
+              title={featured.data.title}
+              description={featured.data.description}
+              kicker={featured.data.kicker}
+              category={featured.data.category}
+              pubDate={featured.data.pubDate}
+              readingMinutes={featured.data.readingMinutes}
+              index={0}
+            />
+          </BlurFade>
+        </div>
+      </section>
+    )}
 
-    <!-- LISTADO DE POSTS — TracingBeam + BlogArchiveClient -->
-    <section class="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <section class="relative px-4 pb-32 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-6xl">
-        <TracingBeam client:visible>
-          <BlogArchiveClient
-            client:visible
-            posts={serializedPosts}
-            categories={categories}
-          />
-        </TracingBeam>
+        <BlurFade client:visible delay={0.1}>
+          <div class="mb-10 flex items-baseline justify-between gap-6 border-b border-line pb-5">
+            <h2 class="font-serif text-2xl font-bold text-bone md:text-3xl">
+              Todos los textos
+            </h2>
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-mute">
+              {String(rest.length).padStart(2, "0")} {rest.length === 1 ? "texto" : "textos"}
+            </span>
+          </div>
+        </BlurFade>
+
+        <BlogArchiveClient
+          client:visible
+          posts={serializedPosts}
+          categories={categories}
+        />
       </div>
     </section>
   </main>

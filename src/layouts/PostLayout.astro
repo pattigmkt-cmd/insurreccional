@@ -70,15 +70,17 @@ const relatedPosts = allPosts
     category: p.data.category,
     kicker: p.data.kicker,
     readingMinutes: p.data.readingMinutes,
+    pubDate: p.data.pubDate.toISOString(),
   }));
 
 // Subtle category accent
-const categoryAccent: Record<string, { border: string; bg: string }> = {
-  Criterio:   { border: "rgba(200,255,0,0.18)",  bg: "rgba(200,255,0,0.025)" },
-  Industria:  { border: "rgba(255,107,107,0.14)", bg: "rgba(255,107,107,0.02)" },
-  Estrategia: { border: "rgba(125,211,252,0.14)", bg: "rgba(125,211,252,0.02)" },
+const categoryAccent: Record<string, { border: string; bg: string; tint: string }> = {
+  Criterio:   { border: "rgba(200,255,0,0.18)",  bg: "rgba(200,255,0,0.025)",  tint: "200, 255, 0" },
+  Industria:  { border: "rgba(255,107,107,0.14)", bg: "rgba(255,107,107,0.02)", tint: "255, 107, 107" },
+  Estrategia: { border: "rgba(125,211,252,0.14)", bg: "rgba(125,211,252,0.02)", tint: "125, 211, 252" },
 };
 const accent = categoryAccent[category] ?? categoryAccent["Criterio"];
+const heroPatternId = `hero-pat-${currentSlug}`;
 
 const dateFormatted = pubDate.toLocaleDateString("es-AR", {
   year: "numeric",
@@ -166,6 +168,57 @@ const tldrItems = tldr ?? [
                 </div>
               </BlurFade>
             </header>
+
+            <!-- Hero gráfico generativo -->
+            <BlurFade client:visible delay={0.45}>
+              <div
+                class="relative mb-14 h-56 w-full overflow-hidden rounded-3xl border border-line md:mb-20 md:h-80 lg:h-96"
+                style={`background: radial-gradient(circle at 18% 28%, rgba(${accent.tint}, 0.18) 0%, rgba(${accent.tint}, 0.04) 45%, var(--color-surface) 80%);`}
+              >
+                <svg
+                  aria-hidden="true"
+                  class="absolute inset-0 h-full w-full"
+                  viewBox="0 0 400 240"
+                  fill="none"
+                  preserveAspectRatio="xMidYMid slice"
+                >
+                  <defs>
+                    <pattern id={heroPatternId} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                      <circle cx="2" cy="2" r="0.9" fill={`rgba(${accent.tint}, 0.5)`} />
+                    </pattern>
+                  </defs>
+                  <circle cx="290" cy="80" r="80" fill={`url(#${heroPatternId})`} opacity="0.6" />
+                  <path
+                    d="M 60 180 Q 130 130, 220 165 T 380 150"
+                    stroke={`rgba(${accent.tint}, 0.85)`}
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <circle cx="380" cy="150" r="4" fill={`rgba(${accent.tint}, 1)`} />
+                  <g
+                    stroke={`rgba(${accent.tint}, 0.45)`}
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    fill="none"
+                  >
+                    <line x1="40" y1="40" x2="100" y2="40" />
+                    <line x1="40" y1="60" x2="80" y2="60" />
+                    <line x1="40" y1="80" x2="65" y2="80" />
+                  </g>
+                </svg>
+
+                <div class="absolute left-6 top-6 font-mono text-[10px] uppercase tracking-[0.3em] text-mute md:left-10 md:top-8">
+                  / {category}
+                </div>
+                <div
+                  class="absolute bottom-6 right-6 font-serif text-5xl font-bold italic md:bottom-10 md:right-10 md:text-7xl"
+                  style={`color: rgba(${accent.tint}, 0.55);`}
+                >
+                  {readingMinutes}'
+                </div>
+              </div>
+            </BlurFade>
 
             <!-- TL;DR Panel — before content -->
             <TLDRPanel client:visible items={tldrItems} defaultOpen={false} />
