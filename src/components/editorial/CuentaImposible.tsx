@@ -101,7 +101,7 @@ export default function CuentaImposible() {
           No da la cuenta.
         </p>
         <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-mute">
-          Faltan {REQUIRED - AVAILABLE}h — eso es calidad que no existe
+          Faltan {REQUIRED - AVAILABLE}h. Eso es calidad que no existe
         </p>
       </motion.div>
     </div>

@@ -99,7 +99,7 @@ export default function ReaderTestimonials() {
                 color: "var(--color-mute)",
               }}
             >
-              — {t.author}
+              · {t.author}
             </p>
             <span
               aria-hidden="true"

@@ -57,7 +57,7 @@ export default function CurvasCrecimiento() {
   return (
     <div className="my-10 md:my-14">
       <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
-        Audiencia vs Comunidad — crecimiento en el tiempo
+        Audiencia vs Comunidad · crecimiento en el tiempo
       </p>
 
       <div className="overflow-x-auto">
@@ -181,7 +181,7 @@ export default function CurvasCrecimiento() {
       </div>
 
       <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.2em] text-mute">
-        La comunidad cruza a la audiencia en el año 3 — y no se detiene.
+        La comunidad cruza a la audiencia en el año 3 y no se detiene.
       </p>
     </div>
   );

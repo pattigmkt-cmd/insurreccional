@@ -59,7 +59,7 @@ export default function HoverRevealCard({
         </div>
 
         {subtitle && (
-          <p className="font-serif text-sm italic text-mute">— {subtitle}</p>
+          <p className="font-serif text-sm italic text-mute">· {subtitle}</p>
         )}
 
         <h3 className="font-serif text-xl font-bold leading-tight text-bone transition-colors group-hover:text-neon sm:text-2xl">

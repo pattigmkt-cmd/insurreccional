@@ -116,7 +116,7 @@ export default function AboutPanel() {
               maxWidth: "420px",
             }}
           >
-            Once años trabajando en branding desde adentro. No desde el PowerPoint de la agencia — desde la trinchera. Proyectos reales, clientes reales, errores reales.
+            Once años trabajando en branding desde adentro. No desde el PowerPoint de la agencia. Desde la trinchera. Proyectos reales, clientes reales, errores reales.
           </p>
 
           <p

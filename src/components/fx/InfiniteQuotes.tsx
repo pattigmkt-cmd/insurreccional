@@ -24,7 +24,7 @@ function QuoteCard({ item }: { item: QuoteItem }) {
         &ldquo;{item.quote}&rdquo;
       </p>
       <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
-        — {item.author}
+        · {item.author}
       </p>
     </div>
   );

@@ -92,7 +92,7 @@ export default function PromesaEspecifica({ levels }: Props) {
       </div>
 
       <p className="mt-4 font-mono text-[9px] tracking-[0.2em] text-mute">
-        Nivel {active + 1} de {levels.length} — {active === levels.length - 1 ? "esto filtra, compromete, incomoda" : "seguí a la derecha"}
+        Nivel {active + 1} de {levels.length} · {active === levels.length - 1 ? "esto filtra, compromete, incomoda" : "seguí a la derecha"}
       </p>
     </div>
   );
