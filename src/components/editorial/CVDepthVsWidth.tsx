@@ -1,7 +1,6 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 const MULTI_SKILLS = [
@@ -17,11 +16,9 @@ const SPECIALIST = { label: "Diseñadora de marca", depth: 0.95 };
 
 export default function CVDepthVsWidth() {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-60px" });
 
   return (
-    <div ref={ref} className="my-10 md:my-14">
+    <div className="my-10 md:my-14">
       <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
         El CV que leen vs el que querés tener
       </p>
@@ -50,7 +47,7 @@ export default function CVDepthVsWidth() {
                   <motion.div
                     className="h-full rounded-full bg-[#333]"
                     initial={{ width: 0 }}
-                    animate={inView ? { width: `${skill.depth * 100}%` } : { width: 0 }}
+                    animate={{ width: `${skill.depth * 100}%` }}
                     transition={{
                       duration: low ? 0 : 0.7,
                       delay: low ? 0 : 0.1 + i * 0.06,
@@ -99,7 +96,7 @@ export default function CVDepthVsWidth() {
                 className="h-full rounded-full"
                 style={{ background: "#e30613" }}
                 initial={{ width: 0 }}
-                animate={inView ? { width: `${SPECIALIST.depth * 100}%` } : { width: 0 }}
+                animate={{ width: `${SPECIALIST.depth * 100}%` }}
                 transition={{
                   duration: low ? 0 : 1.1,
                   delay: low ? 0 : 0.3,
@@ -117,7 +114,7 @@ export default function CVDepthVsWidth() {
                 className="flex-1 rounded-sm"
                 style={{ background: `rgba(227, 6, 19,${0.15 + h * 0.4})` }}
                 initial={{ height: 0 }}
-                animate={inView ? { height: `${h * 100}%` } : { height: 0 }}
+                animate={{ height: `${h * 100}%` }}
                 transition={{
                   duration: low ? 0 : 0.6,
                   delay: low ? 0 : 0.5 + i * 0.07,

@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
 import NumberTicker from "../fx/NumberTicker";
 
@@ -20,11 +19,9 @@ const AVAILABLE = 40;
 
 export default function CuentaImposible() {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-60px" });
 
   return (
-    <div ref={ref} className="my-10 rounded border border-line bg-[#0d0d0d] p-5 md:my-14 md:p-8">
+    <div className="my-10 rounded border border-line bg-[#0d0d0d] p-5 md:my-14 md:p-8">
       <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
         La matemática imposible
       </p>
@@ -36,7 +33,7 @@ export default function CuentaImposible() {
             key={i}
             className="rounded border border-[#1a1a1a] bg-[#111] p-3"
             initial={low ? false : { opacity: 0, y: 8 }}
-            animate={inView ? { opacity: 1, y: 0 } : undefined}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.07 }}
           >
             <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-mute truncate">
@@ -54,7 +51,7 @@ export default function CuentaImposible() {
       <motion.div
         className="mb-4 rounded bg-[#111] p-4"
         initial={low ? false : { opacity: 0 }}
-        animate={inView ? { opacity: 1 } : undefined}
+        animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
         <p className="font-mono text-[10px] text-mute">
@@ -66,7 +63,7 @@ export default function CuentaImposible() {
       <motion.div
         className="grid grid-cols-2 gap-3"
         initial={low ? false : { opacity: 0, y: 8 }}
-        animate={inView ? { opacity: 1, y: 0 } : undefined}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
       >
         <div className="rounded border p-4 text-center" style={{ borderColor: "rgba(255,107,107,0.4)", background: "rgba(255,107,107,0.05)" }}>
@@ -74,7 +71,7 @@ export default function CuentaImposible() {
             Requeridas
           </p>
           <p className="mt-1 font-mono text-3xl font-bold" style={{ color: "#ff6b6b" }}>
-            {inView ? <NumberTicker value={REQUIRED} suffix="h" /> : `${REQUIRED}h`}
+            <NumberTicker value={REQUIRED} suffix="h" />
           </p>
           <p className="mt-1 font-mono text-[9px] text-mute">por semana</p>
         </div>
@@ -84,7 +81,7 @@ export default function CuentaImposible() {
             Disponibles
           </p>
           <p className="mt-1 font-mono text-3xl font-bold text-bone">
-            {inView ? <NumberTicker value={AVAILABLE} suffix="h" /> : `${AVAILABLE}h`}
+            <NumberTicker value={AVAILABLE} suffix="h" />
           </p>
           <p className="mt-1 font-mono text-[9px] text-mute">semana laboral</p>
         </div>
@@ -94,7 +91,7 @@ export default function CuentaImposible() {
         className="mt-5 rounded border p-4 text-center"
         style={{ borderColor: "rgba(255,107,107,0.3)", background: "rgba(255,107,107,0.04)" }}
         initial={low ? false : { opacity: 0 }}
-        animate={inView ? { opacity: 1 } : undefined}
+        animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
         <p className="font-serif text-lg font-bold italic" style={{ color: "#ff6b6b" }}>

@@ -36,8 +36,7 @@ export default function AboutPanel() {
         {/* Photo/silhouette side */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ display: "flex", justifyContent: "center" }}
         >
@@ -75,8 +74,7 @@ export default function AboutPanel() {
         {/* Bio side */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <p

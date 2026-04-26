@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView, animate } from "framer-motion";
+import { animate } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 const STATS = [
@@ -13,13 +13,11 @@ const STATS = [
 
 function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
   const low = useLowMotion();
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-20px" });
   const [display, setDisplay] = useState(low ? value : 0);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (low || !inView || hasAnimated.current) return;
+    if (low || hasAnimated.current) return;
     hasAnimated.current = true;
     const ctrl = animate(0, value, {
       duration: 1.8,
@@ -27,9 +25,9 @@ function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string
       onUpdate: (v) => setDisplay(Math.round(v)),
     });
     return () => ctrl.stop();
-  }, [inView, low, value]);
+  }, []);
 
-  return <span ref={ref}>{display}{suffix}</span>;
+  return <span>{display}{suffix}</span>;
 }
 
 export default function StatsBlock() {

@@ -1,7 +1,6 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 interface TimelineItem {
@@ -18,8 +17,6 @@ interface Props {
 
 export default function Timeline({ items, className = "" }: Props) {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-80px" });
 
   const statusColor = (status: TimelineItem["status"]) => {
     if (status === "active") return "#e30613";
@@ -34,7 +31,7 @@ export default function Timeline({ items, className = "" }: Props) {
   };
 
   return (
-    <div ref={ref} className={`relative ${className}`}>
+    <div className={`relative ${className}`}>
       {/* Vertical rail */}
       <div
         aria-hidden="true"
@@ -48,7 +45,7 @@ export default function Timeline({ items, className = "" }: Props) {
           className="absolute left-[19px] top-4 hidden w-px origin-top md:left-[23px] md:block"
           style={{ background: "linear-gradient(to bottom, #e30613, rgba(227, 6, 19,0.3))" }}
           initial={{ scaleY: 0 }}
-          animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
+          animate={{ scaleY: 1 }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
           <div style={{ height: "calc(100vh)" }} />
@@ -63,7 +60,7 @@ export default function Timeline({ items, className = "" }: Props) {
               key={i}
               className="flex gap-6 md:gap-8"
               initial={low ? undefined : { opacity: 0, x: -16 }}
-              animate={inView && !low ? { opacity: 1, x: 0 } : undefined}
+              animate={!low ? { opacity: 1, x: 0 } : undefined}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Node */}

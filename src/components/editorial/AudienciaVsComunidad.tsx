@@ -1,7 +1,6 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 // Broadcast (star) layout - center hub → satellites
@@ -80,11 +79,9 @@ function EdgePath({
 
 export default function AudienciaVsComunidad() {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-60px" });
 
   return (
-    <div ref={ref} className="my-10 md:my-14">
+    <div className="my-10 md:my-14">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {/* Audiencia — broadcast */}
         <div className="rounded border border-[#222] bg-[#0d0d0d] p-5">
@@ -92,7 +89,7 @@ export default function AudienciaVsComunidad() {
             Audiencia
           </p>
           <svg viewBox="0 0 160 165" className="mx-auto block w-full max-w-[180px]" aria-hidden="true">
-            {inView && BROADCAST_EDGES.map(({ from, to }, i) => {
+            {BROADCAST_EDGES.map(({ from, to }, i) => {
               const f = getNode(BROADCAST_NODES, from);
               const t = getNode(BROADCAST_NODES, to);
               return (
@@ -108,7 +105,7 @@ export default function AudienciaVsComunidad() {
                 stroke={n.isCenter ? "#e30613" : "#444"}
                 strokeWidth="1.5"
                 initial={{ opacity: 0, scale: 0.3 }}
-                animate={inView ? { opacity: 1, scale: 1 } : undefined}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: low ? 0 : 0.4, delay: low ? 0 : n.isCenter ? 0 : 0.3 }}
               />
             ))}
@@ -130,7 +127,7 @@ export default function AudienciaVsComunidad() {
             Comunidad
           </p>
           <svg viewBox="0 0 165 180" className="mx-auto block w-full max-w-[180px]" aria-hidden="true">
-            {inView && MESH_EDGES.map(({ from, to }, i) => {
+            {MESH_EDGES.map(({ from, to }, i) => {
               const f = getNode(MESH_NODES, from);
               const t = getNode(MESH_NODES, to);
               return (
@@ -146,7 +143,7 @@ export default function AudienciaVsComunidad() {
                 stroke="#e30613"
                 strokeWidth="1.2"
                 initial={{ opacity: 0, scale: 0.3 }}
-                animate={inView ? { opacity: 1, scale: 1 } : undefined}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: low ? 0 : 0.4, delay: low ? 0 : 0.15 + Math.random() * 0.3 }}
               />
             ))}

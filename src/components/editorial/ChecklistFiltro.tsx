@@ -1,7 +1,7 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 const QUESTIONS = [
@@ -50,8 +50,6 @@ function CheckSVG({ checked, low }: { checked: boolean; low: boolean }) {
 
 export default function ChecklistFiltro() {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-60px" });
   const [checked, setChecked] = useState<boolean[]>(QUESTIONS.map(() => false));
 
   const allChecked = checked.every(Boolean);
@@ -65,7 +63,7 @@ export default function ChecklistFiltro() {
   };
 
   return (
-    <div ref={ref} className="my-10 md:my-14">
+    <div className="my-10 md:my-14">
       <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.3em] text-mute">
         Las preguntas que nadie te hace
       </p>
@@ -76,7 +74,7 @@ export default function ChecklistFiltro() {
             className="flex w-full items-start gap-4 rounded border border-line bg-[#0d0d0d] p-4 text-left transition-colors hover:border-neon/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neon md:p-5"
             style={checked[i] ? { borderColor: "rgba(227, 6, 19,0.25)", background: "rgba(227, 6, 19,0.03)" } : {}}
             initial={low ? false : { opacity: 0, x: -12 }}
-            animate={inView ? { opacity: 1, x: 0 } : undefined}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             onClick={() => toggle(i)}
             aria-pressed={checked[i]}

@@ -1,7 +1,7 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useMemo } from "react";
+import { motion } from "framer-motion";
+import { useMemo } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 const W = 480;
@@ -38,8 +38,6 @@ function makePath(
 
 export default function CurvasCrecimiento() {
   const low = useLowMotion();
-  const ref = useRef<SVGSVGElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-60px" });
 
   const audienciaPath = useMemo(() => makePath(audienciaY, STEPS, INNER_W, INNER_H), []);
   const comunidadPath = useMemo(() => makePath(comunidadY, STEPS, INNER_W, INNER_H), []);
@@ -62,7 +60,6 @@ export default function CurvasCrecimiento() {
 
       <div className="overflow-x-auto">
         <svg
-          ref={ref}
           viewBox={`0 0 ${W} ${H}`}
           className="block w-full"
           style={{ minWidth: 280, maxWidth: 560 }}
@@ -127,7 +124,7 @@ export default function CurvasCrecimiento() {
               strokeWidth="1.8"
               strokeDasharray={pathLen * 2}
               initial={{ strokeDashoffset: pathLen * 2 }}
-              animate={inView ? { strokeDashoffset: 0 } : undefined}
+              animate={{ strokeDashoffset: 0 }}
               transition={{ duration: low ? 0 : 1.2, ease: "easeOut" }}
             />
 
@@ -139,14 +136,14 @@ export default function CurvasCrecimiento() {
               strokeWidth="2.2"
               strokeDasharray={pathLen * 2}
               initial={{ strokeDashoffset: pathLen * 2 }}
-              animate={inView ? { strokeDashoffset: 0 } : undefined}
+              animate={{ strokeDashoffset: 0 }}
               transition={{ duration: low ? 0 : 1.4, delay: low ? 0 : 0.2, ease: "easeOut" }}
             />
 
             {/* Crossing point annotation ~year 3 */}
             <motion.g
               initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : undefined}
+              animate={{ opacity: 1 }}
               transition={{ delay: low ? 0 : 1.4 }}
             >
               <circle

@@ -1,7 +1,7 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { motion } from "framer-motion";
+import { type ReactNode } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 interface Props {
@@ -11,20 +11,17 @@ interface Props {
 
 export default function PullQuote({ children, attribution }: Props) {
   const low = useLowMotion();
-  const ref = useRef<HTMLBlockquoteElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-40px" });
 
   const animProps = low
     ? {}
     : {
         initial: { opacity: 0, x: -24 },
-        animate: inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 },
+        animate: { opacity: 1, x: 0 },
         transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
       };
 
   return (
     <motion.blockquote
-      ref={ref}
       {...(animProps as object)}
       className="my-10 border-l-[3px] border-neon pl-6 md:my-14 md:pl-8"
       style={{ borderColor: "#e30613" }}

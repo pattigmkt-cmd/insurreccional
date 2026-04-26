@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 type Tag = "h1" | "h2" | "h3" | "p" | "span";
@@ -19,16 +18,13 @@ export default function TextGenerate({
   as: Tag = "p",
   delay = 0,
   className = "",
-  once = true,
 }: Props) {
   const low = useLowMotion();
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once, margin: "-40px" });
 
   const words = text.split(" ");
 
   if (low) {
-    return <Tag ref={ref as any} className={className}>{text}</Tag>;
+    return <Tag className={className}>{text}</Tag>;
   }
 
   const container = {
@@ -54,11 +50,10 @@ export default function TextGenerate({
 
   return (
     <MotionTag
-      ref={ref}
       className={`${className} inline`}
       variants={container}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      animate="visible"
     >
       {words.map((word, i) => (
         <motion.span

@@ -1,7 +1,7 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 const FRAGMENTS = [
@@ -17,8 +17,6 @@ const FRAGMENTS = [
 
 export default function LogoShatter() {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-80px" });
   const [shattered, setShattered] = useState(false);
   const [rebuilt, setRebuilt] = useState(false);
 
@@ -46,7 +44,6 @@ export default function LogoShatter() {
 
   return (
     <div
-      ref={ref}
       className="my-10 select-none md:my-14"
       aria-label="Visualización: LOGO se fractura y reconstruye como PROMESA"
     >
@@ -64,9 +61,7 @@ export default function LogoShatter() {
         <motion.div
           className="relative"
           initial={{ opacity: 1 }}
-          animate={inView ? {
-            opacity: rebuilt ? 0 : 1,
-          } : { opacity: 0 }}
+          animate={{ opacity: rebuilt ? 0 : 1 }}
           transition={{ duration: 0.4 }}
         >
           {["L", "O", "G", "O"].map((letter, i) => (

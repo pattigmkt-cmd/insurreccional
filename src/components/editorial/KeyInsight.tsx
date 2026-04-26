@@ -1,7 +1,7 @@
 ﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { motion } from "framer-motion";
+import { type ReactNode } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 interface Props {
@@ -12,14 +12,11 @@ interface Props {
 
 export default function KeyInsight({ n, title, children }: Props) {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-40px" });
 
   return (
     <motion.div
-      ref={ref}
       initial={low ? false : { opacity: 0, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : undefined}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className="relative my-10 overflow-hidden p-[1px] md:my-14"
       style={{
