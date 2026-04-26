@@ -9,7 +9,7 @@ interface Props {
   count?: number;
 }
 
-const COLORS = ["#B00002", "#7a0001", "#f0ece4", "#888888", "#b0000288"];
+const COLORS = ["#e30613", "#b00002", "#f0ece4", "#888888", "#e3061388"];
 
 export default function Confetti({ children, className = "", count = 40 }: Props) {
   const low = useLowMotion();

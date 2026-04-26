@@ -39,7 +39,7 @@ export default function Meteors({ count = 12, className = "" }: Props) {
             width: `${m.length}px`,
             height: `${m.size}px`,
             borderRadius: "999px",
-            background: `linear-gradient(90deg, #B00002 0%, rgba(176, 0, 2,0.4) 40%, transparent 100%)`,
+            background: `linear-gradient(90deg, #e30613 0%, rgba(227, 6, 19,0.4) 40%, transparent 100%)`,
             transform: "rotate(-35deg)",
             opacity: 0,
             animation: `meteor-fall ${m.duration}s ${m.delay}s infinite linear`,

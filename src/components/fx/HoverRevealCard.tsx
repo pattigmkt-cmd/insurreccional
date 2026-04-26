@@ -21,7 +21,7 @@ export default function HoverRevealCard({
   subtitle,
   description,
   href,
-  accent = "#B00002",
+  accent = "#e30613",
   category,
   meta,
   className = "",
@@ -107,7 +107,7 @@ export default function HoverRevealCard({
               exit={{ y: "100%", opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="border-t border-neon/20 px-6 py-4 md:px-8"
-              style={{ background: "rgba(176, 0, 2,0.04)" }}
+              style={{ background: "rgba(227, 6, 19,0.04)" }}
             >
               <span
                 className="font-mono text-[10px] uppercase tracking-[0.28em]"

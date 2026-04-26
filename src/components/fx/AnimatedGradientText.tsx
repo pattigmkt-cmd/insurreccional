@@ -12,7 +12,7 @@ interface Props {
 
 export default function AnimatedGradientText({
   children,
-  colors = ["#B00002", "#7a0001", "#e30613", "#B00002"],
+  colors = ["#e30613", "#b00002", "#ff2d3a", "#e30613"],
   className = "",
   speed = 4,
 }: Props) {

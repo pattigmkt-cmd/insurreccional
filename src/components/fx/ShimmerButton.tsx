@@ -20,7 +20,7 @@ export default function ShimmerButton({ children, href, onClick, className = "" 
   const styles: React.CSSProperties = {
     position: "relative",
     padding: "12px 28px",
-    background: "#B00002",
+    background: "#e30613",
     overflow: "hidden",
     display: "inline-flex",
     alignItems: "center",

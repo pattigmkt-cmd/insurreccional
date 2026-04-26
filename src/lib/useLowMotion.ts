@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 
 /**
- * Returns true when the device prefers reduced motion OR has a coarse pointer
- * (mobile/tablet). Use it to gate heavy animations.
+ * Returns true when the user has explicitly opted into reduced motion via the
+ * OS, or when the device reports under 4GB of memory. Touch alone no longer
+ * triggers low mode (mobile devices get the full animations unless they signal
+ * one of the constraints above). Use it to gate WebGL canvases, heavy rAF
+ * loops, and pointer-following gradients with a static fallback.
  */
 export function useLowMotion() {
   const [low, setLow] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
-    const mqCoarse = window.matchMedia("(hover: none), (pointer: coarse)");
     const mqReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setLow(mqCoarse.matches || mqReduced.matches);
+    const navAny = navigator as Navigator & { deviceMemory?: number };
+    const lowMem =
+      typeof navAny.deviceMemory === "number" && navAny.deviceMemory < 4;
+    const update = () => setLow(mqReduced.matches || lowMem);
     update();
-    mqCoarse.addEventListener?.("change", update);
     mqReduced.addEventListener?.("change", update);
     return () => {
-      mqCoarse.removeEventListener?.("change", update);
       mqReduced.removeEventListener?.("change", update);
     };
   }, []);

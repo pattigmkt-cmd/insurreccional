@@ -41,7 +41,7 @@ export default function TabsSlide({ tabs, active, onChange, className = "" }: Pr
               <motion.span
                 layoutId="tabs-slide-indicator"
                 className="absolute inset-0"
-                style={{ background: "#B00002" }}
+                style={{ background: "#e30613" }}
                 transition={{ type: "spring", stiffness: 340, damping: 30 }}
               />
             )}

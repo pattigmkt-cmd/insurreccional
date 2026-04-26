@@ -27,7 +27,7 @@ export default function ChapterOpener({ n, kicker, title }: Props) {
       >
         <span
           className="font-mono text-[10px] uppercase tracking-[0.3em]"
-          style={{ color: "#B00002" }}
+          style={{ color: "#e30613" }}
         >
           {kicker}
         </span>
@@ -42,7 +42,7 @@ export default function ChapterOpener({ n, kicker, title }: Props) {
           className="shrink-0 font-mono text-[3rem] font-bold leading-none md:text-[4rem]"
           style={{
             background:
-              "conic-gradient(from 0deg, #B00002, #00ffff, #B00002)",
+              "conic-gradient(from 0deg, #e30613, #00ffff, #e30613)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",

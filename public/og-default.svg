@@ -1,8 +1,8 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <defs>
     <radialGradient id="halo" cx="15%" cy="40%" r="45%">
-      <stop offset="0%" stop-color="#B00002" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#B00002" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#e30613" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#e30613" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grid" width="96" height="96" patternUnits="userSpaceOnUse">
       <path d="M 96 0 L 0 0 0 96" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
@@ -11,10 +11,10 @@
   <rect width="1200" height="630" fill="#0a0a0a"/>
   <rect width="1200" height="630" fill="url(#grid)"/>
   <rect width="1200" height="630" fill="url(#halo)"/>
-  <text x="80" y="130" font-family="JetBrains Mono, monospace" font-size="18" letter-spacing="4" fill="#B00002" opacity="0.9">[ PLATAFORMA EDITORIAL · 2026 ]</text>
-  <text x="80" y="330" font-family="Playfair Display, Georgia, serif" font-weight="900" font-size="170" fill="#f0ece4" letter-spacing="-6">Insu<tspan font-style="italic" fill="#B00002">rrecc</tspan>ional<tspan fill="#B00002">.</tspan></text>
+  <text x="80" y="130" font-family="JetBrains Mono, monospace" font-size="18" letter-spacing="4" fill="#e30613" opacity="0.9">[ PLATAFORMA EDITORIAL · 2026 ]</text>
+  <text x="80" y="330" font-family="Playfair Display, Georgia, serif" font-weight="900" font-size="170" fill="#f0ece4" letter-spacing="-6">Insu<tspan font-style="italic" fill="#e30613">rrecc</tspan>ional<tspan fill="#e30613">.</tspan></text>
   <text x="80" y="420" font-family="Playfair Display, Georgia, serif" font-style="italic" font-size="38" fill="#d8d2c5">Criterio antes que crecimiento.</text>
   <text x="80" y="470" font-family="Playfair Display, Georgia, serif" font-style="italic" font-size="38" fill="#d8d2c5">Comunidad antes que audiencia.</text>
-  <line x1="80" y1="540" x2="180" y2="540" stroke="#B00002" stroke-width="2"/>
+  <line x1="80" y1="540" x2="180" y2="540" stroke="#e30613" stroke-width="2"/>
   <text x="80" y="580" font-family="JetBrains Mono, monospace" font-size="20" letter-spacing="3" fill="#888888">DOMINIQUE  ALEXIA</text>
 </svg>

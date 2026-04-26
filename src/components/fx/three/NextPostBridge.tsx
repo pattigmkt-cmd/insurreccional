@@ -4,7 +4,7 @@ import { Text3D, Center } from "@react-three/drei";
 import * as THREE from "three";
 import { useLowMotion } from "../../../lib/useLowMotion";
 
-const NEON = "#B00002";
+const NEON = "#e30613";
 const FONT_URL = "/fonts/helvetiker_bold.typeface.json";
 
 type ProgressRef = { value: number };

@@ -19,7 +19,7 @@ export default function AnimatedBeam({
   toRef,
   containerRef,
   className = "",
-  color = "#B00002",
+  color = "#e30613",
   duration = 3,
   delay = 0,
   curvature = 40,

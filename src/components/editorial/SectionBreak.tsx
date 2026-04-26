@@ -24,7 +24,7 @@ export default function SectionBreak() {
           <motion.span
             key={i}
             className="block h-[6px] w-[6px] rounded-full"
-            style={{ background: "#B00002" }}
+            style={{ background: "#e30613" }}
             animate={{
               scale: [1, 1.4, 1],
               opacity: [0.4, 1, 0.4],

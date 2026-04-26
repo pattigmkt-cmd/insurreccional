@@ -16,7 +16,7 @@ export default function ShootingStars({ className = "", count = 6 }: Props) {
     if (low || !containerRef.current) return;
     const container = containerRef.current;
 
-    const colors = ["#B00002", "#7a0001", "#f0ece4", "#888888"];
+    const colors = ["#e30613", "#b00002", "#f0ece4", "#888888"];
 
     const spawn = () => {
       if (!container) return;

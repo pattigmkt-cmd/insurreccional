@@ -26,7 +26,7 @@ export default function CheckComunidadReal() {
     allAnswered
       ? noCount >= 3
         ? { label: "Tenés audiencia disfrazada", color: "#ff6b6b", description: "3 o más respuestas negativas. Tus seguidores te ven a vos, no entre sí." }
-        : { label: "Comunidad real", color: "#B00002", description: "Menos de 3 negativas. Hay conexión horizontal genuina." }
+        : { label: "Comunidad real", color: "#e30613", description: "Menos de 3 negativas. Hay conexión horizontal genuina." }
       : null;
 
   const setAnswer = (i: number, val: Answer) => {
@@ -52,7 +52,7 @@ export default function CheckComunidadReal() {
               className="rounded border border-line bg-[#0d0d0d] p-4 md:p-5"
               style={
                 ans === "si"
-                  ? { borderColor: "rgba(176, 0, 2,0.25)", background: "rgba(176, 0, 2,0.03)" }
+                  ? { borderColor: "rgba(227, 6, 19,0.25)", background: "rgba(227, 6, 19,0.03)" }
                   : ans === "no"
                   ? { borderColor: "rgba(255,107,107,0.25)", background: "rgba(255,107,107,0.03)" }
                   : {}
@@ -69,9 +69,9 @@ export default function CheckComunidadReal() {
                     aria-pressed={ans === val}
                     className="relative overflow-hidden rounded px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neon"
                     style={{
-                      border: `1px solid ${ans === val ? (val === "si" ? "#B00002" : "#ff6b6b") : "#333"}`,
-                      background: ans === val ? (val === "si" ? "rgba(176, 0, 2,0.12)" : "rgba(255,107,107,0.12)") : "transparent",
-                      color: ans === val ? (val === "si" ? "#B00002" : "#ff6b6b") : "#555",
+                      border: `1px solid ${ans === val ? (val === "si" ? "#e30613" : "#ff6b6b") : "#333"}`,
+                      background: ans === val ? (val === "si" ? "rgba(227, 6, 19,0.12)" : "rgba(255,107,107,0.12)") : "transparent",
+                      color: ans === val ? (val === "si" ? "#e30613" : "#ff6b6b") : "#555",
                     }}
                   >
                     {val === "si" ? "Sí" : "No"}
@@ -87,7 +87,7 @@ export default function CheckComunidadReal() {
       <div className="mt-5 h-[2px] w-full rounded-full bg-[#1a1a1a]">
         <motion.div
           className="h-full rounded-full"
-          style={{ background: "#B00002" }}
+          style={{ background: "#e30613" }}
           animate={{ width: `${(answered / QUESTIONS.length) * 100}%` }}
           transition={{ duration: low ? 0 : 0.3 }}
         />

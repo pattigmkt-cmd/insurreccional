@@ -71,7 +71,7 @@ export default function PinContainer({ children, className = "", containerClassN
             style={{
               position: "absolute",
               inset: 0,
-              background: "radial-gradient(ellipse at center, rgba(176, 0, 2,0.04) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse at center, rgba(227, 6, 19,0.04) 0%, transparent 70%)",
               pointerEvents: "none",
               borderRadius: "inherit",
             }}

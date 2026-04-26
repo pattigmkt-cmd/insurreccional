@@ -120,7 +120,7 @@ export default function CommandPalette({ posts }: Props) {
                   width: "100%",
                   maxWidth: 580,
                   background: "var(--color-surface)",
-                  border: "1px solid rgba(176, 0, 2,0.2)",
+                  border: "1px solid rgba(227, 6, 19,0.2)",
                   overflow: "hidden",
                   boxShadow: "0 24px 80px rgba(0,0,0,0.8)",
                 }}
@@ -193,7 +193,7 @@ export default function CommandPalette({ posts }: Props) {
                             gap: "0.75rem",
                             padding: "0.7rem 1rem",
                             textDecoration: "none",
-                            background: i === active ? "rgba(176, 0, 2,0.05)" : "transparent",
+                            background: i === active ? "rgba(227, 6, 19,0.05)" : "transparent",
                             borderLeft: i === active ? "2px solid var(--color-neon)" : "2px solid transparent",
                             transition: "background 0.15s",
                           }}

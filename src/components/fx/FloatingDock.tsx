@@ -40,7 +40,7 @@ function DockItemDesktop({ item }: { item: DockItem }) {
         gap: "4px",
         padding: "6px 14px",
         borderRadius: "8px",
-        background: item.active ? "rgba(176, 0, 2,0.12)" : "transparent",
+        background: item.active ? "rgba(227, 6, 19,0.12)" : "transparent",
         transition: "background 150ms",
         textDecoration: "none",
       }}
@@ -53,7 +53,7 @@ function DockItemDesktop({ item }: { item: DockItem }) {
           fontSize: "9px",
           textTransform: "uppercase",
           letterSpacing: "0.2em",
-          color: item.active ? "#B00002" : "#888888",
+          color: item.active ? "#e30613" : "#888888",
           transition: "color 150ms",
         }}
       >
@@ -69,7 +69,7 @@ function DockItemDesktop({ item }: { item: DockItem }) {
             width: "3px",
             height: "3px",
             borderRadius: "50%",
-            background: "#B00002",
+            background: "#e30613",
           }}
         />
       )}
@@ -114,7 +114,7 @@ export default function FloatingDock({ items }: Props) {
             gap: "2px",
             padding: "6px 14px",
             borderRadius: "999px",
-            background: item.active ? "rgba(176, 0, 2,0.14)" : "transparent",
+            background: item.active ? "rgba(227, 6, 19,0.14)" : "transparent",
             textDecoration: "none",
             minWidth: "52px",
           }}
@@ -126,7 +126,7 @@ export default function FloatingDock({ items }: Props) {
               fontSize: "8px",
               textTransform: "uppercase",
               letterSpacing: "0.15em",
-              color: item.active ? "#B00002" : "#888888",
+              color: item.active ? "#e30613" : "#888888",
             }}
           >
             {item.label}

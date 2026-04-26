@@ -55,7 +55,7 @@ export default function TracingBeam({ children, className = "" }: Props) {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to bottom, transparent, #B00002 40%, #B00002 60%, transparent)",
+                "linear-gradient(to bottom, transparent, #e30613 40%, #e30613 60%, transparent)",
             }}
           />
         </motion.div>
@@ -66,7 +66,7 @@ export default function TracingBeam({ children, className = "" }: Props) {
           style={{ top: smoothDotY }}
           className="absolute -left-[3px] -translate-y-1/2"
         >
-          <div className="h-[7px] w-[7px] rounded-full border border-neon bg-ink shadow-[0_0_8px_rgba(176, 0, 2,0.6)]" />
+          <div className="h-[7px] w-[7px] rounded-full border border-neon bg-ink shadow-[0_0_8px_rgba(227, 6, 19,0.6)]" />
         </motion.div>
       </div>
 

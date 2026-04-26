@@ -15,7 +15,7 @@ export default function FlickeringGrid({
   className = "",
   cellSize = 20,
   flickerChance = 0.003,
-  color = "#B00002",
+  color = "#e30613",
   opacity = 0.06,
 }: Props) {
   const low = useLowMotion();
@@ -58,7 +58,7 @@ export default function FlickeringGrid({
       return { r, g, b };
     };
 
-    const rgb = hexToRgb(color.startsWith("#") ? color : "#B00002");
+    const rgb = hexToRgb(color.startsWith("#") ? color : "#e30613");
 
     const draw = (now: number) => {
       rafRef.current = requestAnimationFrame(draw);

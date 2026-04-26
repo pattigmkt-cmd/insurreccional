@@ -24,7 +24,7 @@ export default function KeyInsight({ n, title, children }: Props) {
       className="relative my-10 overflow-hidden p-[1px] md:my-14"
       style={{
         background:
-          "conic-gradient(from 180deg at 50% 50%, #B00002 0deg, #00ffff 90deg, #ff6b6b 180deg, #B00002 360deg)",
+          "conic-gradient(from 180deg at 50% 50%, #e30613 0deg, #00ffff 90deg, #ff6b6b 180deg, #e30613 360deg)",
         borderRadius: "4px",
       }}
     >
@@ -36,14 +36,14 @@ export default function KeyInsight({ n, title, children }: Props) {
         <span
           className="absolute right-4 top-3 font-mono text-[4rem] font-bold leading-none select-none"
           aria-hidden="true"
-          style={{ color: "#B00002", opacity: 0.12 }}
+          style={{ color: "#e30613", opacity: 0.12 }}
         >
           {String(n).padStart(2, "0")}
         </span>
 
         <p
           className="mb-1 font-mono text-[10px] uppercase tracking-[0.28em]"
-          style={{ color: "#B00002" }}
+          style={{ color: "#e30613" }}
         >
           Insight #{String(n).padStart(2, "0")}
         </p>

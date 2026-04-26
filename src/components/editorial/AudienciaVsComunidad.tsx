@@ -104,8 +104,8 @@ export default function AudienciaVsComunidad() {
               <motion.circle
                 key={n.id}
                 cx={n.cx} cy={n.cy} r={n.r || 6}
-                fill={n.isCenter ? "#B00002" : "#222"}
-                stroke={n.isCenter ? "#B00002" : "#444"}
+                fill={n.isCenter ? "#e30613" : "#222"}
+                stroke={n.isCenter ? "#e30613" : "#444"}
                 strokeWidth="1.5"
                 initial={{ opacity: 0, scale: 0.3 }}
                 animate={inView ? { opacity: 1, scale: 1 } : undefined}
@@ -121,11 +121,11 @@ export default function AudienciaVsComunidad() {
         {/* Comunidad — mesh */}
         <div
           className="rounded border p-5"
-          style={{ borderColor: "rgba(176, 0, 2,0.2)", background: "rgba(176, 0, 2,0.02)" }}
+          style={{ borderColor: "rgba(227, 6, 19,0.2)", background: "rgba(227, 6, 19,0.02)" }}
         >
           <p
             className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em]"
-            style={{ color: "#B00002" }}
+            style={{ color: "#e30613" }}
           >
             Comunidad
           </p>
@@ -135,15 +135,15 @@ export default function AudienciaVsComunidad() {
               const t = getNode(MESH_NODES, to);
               return (
                 <EdgePath key={i} x1={f.cx} y1={f.cy} x2={t.cx} y2={t.cy}
-                  color="#b0000266" delay={0.05 + i * 0.04} low={low} />
+                  color="#e3061366" delay={0.05 + i * 0.04} low={low} />
               );
             })}
             {MESH_NODES.map((n) => (
               <motion.circle
                 key={n.id}
                 cx={n.cx} cy={n.cy} r={n.id === "m7" ? 6 : 7}
-                fill={n.id === "m7" ? "rgba(176, 0, 2,0.15)" : "rgba(176, 0, 2,0.12)"}
-                stroke="#B00002"
+                fill={n.id === "m7" ? "rgba(227, 6, 19,0.15)" : "rgba(227, 6, 19,0.12)"}
+                stroke="#e30613"
                 strokeWidth="1.2"
                 initial={{ opacity: 0, scale: 0.3 }}
                 animate={inView ? { opacity: 1, scale: 1 } : undefined}
@@ -153,7 +153,7 @@ export default function AudienciaVsComunidad() {
           </svg>
           <p
             className="mt-3 text-center font-mono text-[9px] uppercase tracking-[0.2em]"
-            style={{ color: "#B00002", opacity: 0.5 }}
+            style={{ color: "#e30613", opacity: 0.5 }}
           >
             Nodos que se hablan entre sí
           </p>

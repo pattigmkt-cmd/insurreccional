@@ -9,7 +9,7 @@ interface Props {
   color?: string;
 }
 
-export default function Sparkles({ className = "", density = 60, color = "#B00002" }: Props) {
+export default function Sparkles({ className = "", density = 60, color = "#e30613" }: Props) {
   const low = useLowMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
@@ -38,7 +38,7 @@ export default function Sparkles({ className = "", density = 60, color = "#B0000
       g: parseInt(hex.slice(3, 5), 16),
       b: parseInt(hex.slice(5, 7), 16),
     });
-    const rgb = hexToRgb(color.startsWith("#") ? color : "#B00002");
+    const rgb = hexToRgb(color.startsWith("#") ? color : "#e30613");
 
     const particles = Array.from({ length: density }, () => ({
       x: Math.random(),

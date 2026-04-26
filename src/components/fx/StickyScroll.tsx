@@ -14,7 +14,7 @@ interface Props {
   accent?: string;
 }
 
-export default function StickyScroll({ items, accent = "#B00002" }: Props) {
+export default function StickyScroll({ items, accent = "#e30613" }: Props) {
   const low = useLowMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);

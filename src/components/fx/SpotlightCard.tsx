@@ -39,7 +39,7 @@ export default function SpotlightCard({ children, className = "" }: Props) {
           width: "240px",
           height: "240px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(176, 0, 2,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(227, 6, 19,0.08) 0%, transparent 70%)",
           pointerEvents: "none",
           left: spotX,
           top: spotY,

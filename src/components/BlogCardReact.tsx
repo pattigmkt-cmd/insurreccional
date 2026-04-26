@@ -14,7 +14,7 @@ interface Props {
 }
 
 const CATEGORY_TINT: Record<string, string> = {
-  Criterio: "176, 0, 2",
+  Criterio: "227, 6, 19",
   Industria: "255, 107, 107",
   Estrategia: "125, 211, 252",
 };

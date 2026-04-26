@@ -13,7 +13,7 @@ interface Props {
 export default function TextHoverEffect({
   text,
   className = "",
-  highlightColor = "#B00002",
+  highlightColor = "#e30613",
   radius = 80,
 }: Props) {
   const coarse = useCoarsePointer();

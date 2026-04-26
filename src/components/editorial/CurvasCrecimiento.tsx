@@ -135,7 +135,7 @@ export default function CurvasCrecimiento() {
             <motion.path
               d={comunidadPath}
               fill="none"
-              stroke="#B00002"
+              stroke="#e30613"
               strokeWidth="2.2"
               strokeDasharray={pathLen * 2}
               initial={{ strokeDashoffset: pathLen * 2 }}
@@ -153,13 +153,13 @@ export default function CurvasCrecimiento() {
                 cx={INNER_W * 0.88}
                 cy={INNER_H - comunidadY(0.88) * INNER_H}
                 r="3.5"
-                fill="#B00002"
+                fill="#e30613"
               />
               <text
                 x={INNER_W * 0.88 - 4}
                 y={INNER_H - comunidadY(0.88) * INNER_H - 10}
                 textAnchor="middle"
-                style={{ fontSize: 8, fill: "#B00002", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.05em" }}
+                style={{ fontSize: 8, fill: "#e30613", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.05em" }}
               >
                 compounding
               </text>
@@ -171,8 +171,8 @@ export default function CurvasCrecimiento() {
               <text x={22} y={9} style={{ fontSize: 8, fill: "#555", fontFamily: "JetBrains Mono, monospace" }}>
                 Audiencia
               </text>
-              <line x1={0} y1={21} x2={18} y2={21} stroke="#B00002" strokeWidth="2.2" />
-              <text x={22} y={25} style={{ fontSize: 8, fill: "#B00002", fontFamily: "JetBrains Mono, monospace" }}>
+              <line x1={0} y1={21} x2={18} y2={21} stroke="#e30613" strokeWidth="2.2" />
+              <text x={22} y={25} style={{ fontSize: 8, fill: "#e30613", fontFamily: "JetBrains Mono, monospace" }}>
                 Comunidad
               </text>
             </g>

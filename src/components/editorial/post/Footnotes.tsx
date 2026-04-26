@@ -29,8 +29,8 @@ export default function Footnote({ n, children }: Props) {
           width: 16,
           height: 16,
           borderRadius: "50%",
-          border: "1px solid rgba(176, 0, 2,0.4)",
-          background: "rgba(176, 0, 2,0.06)",
+          border: "1px solid rgba(227, 6, 19,0.4)",
+          background: "rgba(227, 6, 19,0.06)",
           fontFamily: "var(--font-mono)",
           fontSize: 9,
           color: "var(--color-neon)",
@@ -58,7 +58,7 @@ export default function Footnote({ n, children }: Props) {
                 left: "50%",
                 transform: "translateX(-50%)",
                 background: "var(--color-surface)",
-                border: "1px solid rgba(176, 0, 2,0.2)",
+                border: "1px solid rgba(227, 6, 19,0.2)",
                 padding: "0.6rem 0.75rem",
                 width: "max-content",
                 maxWidth: 260,
@@ -88,8 +88,8 @@ export default function Footnote({ n, children }: Props) {
                   width: 8,
                   height: 8,
                   background: "var(--color-surface)",
-                  borderRight: "1px solid rgba(176, 0, 2,0.2)",
-                  borderBottom: "1px solid rgba(176, 0, 2,0.2)",
+                  borderRight: "1px solid rgba(227, 6, 19,0.2)",
+                  borderBottom: "1px solid rgba(227, 6, 19,0.2)",
                 }}
               />
               {children}

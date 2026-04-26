@@ -10,7 +10,7 @@ interface Props {
 
 export default function WavyBackground({
   className = "",
-  color = "#B00002",
+  color = "#e30613",
   amplitude = 18,
 }: Props) {
   const low = useLowMotion();

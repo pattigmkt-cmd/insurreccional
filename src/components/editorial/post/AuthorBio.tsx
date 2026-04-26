@@ -30,7 +30,7 @@ export default function AuthorBio({ className = "" }: Props) {
           position: "absolute",
           inset: 0,
           borderRadius: "inherit",
-          border: "1px solid rgba(176, 0, 2,0.12)",
+          border: "1px solid rgba(227, 6, 19,0.12)",
           pointerEvents: "none",
         }}
       />
@@ -63,7 +63,7 @@ export default function AuthorBio({ className = "" }: Props) {
             <rect width="64" height="64" fill="var(--color-ink)" />
             <circle cx="32" cy="24" r="13" fill="var(--color-line)" />
             <ellipse cx="32" cy="58" rx="22" ry="18" fill="var(--color-line)" />
-            <circle cx="32" cy="24" r="11" fill="rgba(176, 0, 2,0.06)" />
+            <circle cx="32" cy="24" r="11" fill="rgba(227, 6, 19,0.06)" />
           </svg>
         </div>
 
