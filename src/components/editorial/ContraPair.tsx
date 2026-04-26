@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -29,7 +29,7 @@ export default function ContraPair({ myth, truth }: Props) {
         <p className="mb-2 font-mono text-[9px] uppercase tracking-[0.3em] text-[#555]">
           Lo que te vendieron
         </p>
-        <p className="font-serif text-base leading-relaxed text-[#444] line-through decoration-[#c8ff00]/40 md:text-lg">
+        <p className="font-serif text-base leading-relaxed text-[#444] line-through decoration-[#B00002]/40 md:text-lg">
           {myth}
         </p>
       </motion.div>
@@ -44,7 +44,7 @@ export default function ContraPair({ myth, truth }: Props) {
       >
         <span
           className="font-mono text-xl font-bold"
-          style={{ color: "#c8ff00" }}
+          style={{ color: "#B00002" }}
         >
           →
         </span>
@@ -56,17 +56,17 @@ export default function ContraPair({ myth, truth }: Props) {
         animate={inView ? { opacity: 1, x: 0 } : undefined}
         transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         className="rounded border p-5 md:p-6"
-        style={{ borderColor: "#c8ff00", background: "rgba(200,255,0,0.04)" }}
+        style={{ borderColor: "#B00002", background: "rgba(176, 0, 2,0.04)" }}
       >
         <p
           className="mb-2 font-mono text-[9px] uppercase tracking-[0.3em]"
-          style={{ color: "#c8ff00" }}
+          style={{ color: "#B00002" }}
         >
           La verdad
         </p>
         <p
           className="font-serif text-base leading-relaxed md:text-lg"
-          style={{ color: "#c8ff00" }}
+          style={{ color: "#B00002" }}
         >
           {truth}
         </p>

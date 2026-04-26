@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
@@ -41,7 +41,7 @@ export default function TabsSlide({ tabs, active, onChange, className = "" }: Pr
               <motion.span
                 layoutId="tabs-slide-indicator"
                 className="absolute inset-0"
-                style={{ background: "#c8ff00" }}
+                style={{ background: "#B00002" }}
                 transition={{ type: "spring", stiffness: 340, damping: 30 }}
               />
             )}

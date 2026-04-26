@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useInView } from "framer-motion";
 import { useRef, type ReactNode } from "react";
@@ -27,12 +27,12 @@ export default function PullQuote({ children, attribution }: Props) {
       ref={ref}
       {...(animProps as object)}
       className="my-10 border-l-[3px] border-neon pl-6 md:my-14 md:pl-8"
-      style={{ borderColor: "#c8ff00" }}
+      style={{ borderColor: "#B00002" }}
     >
       <span
         className="mb-2 block font-serif text-[2.5rem] leading-none text-neon select-none"
         aria-hidden="true"
-        style={{ color: "#c8ff00", lineHeight: 1 }}
+        style={{ color: "#B00002", lineHeight: 1 }}
       >
         »
       </span>

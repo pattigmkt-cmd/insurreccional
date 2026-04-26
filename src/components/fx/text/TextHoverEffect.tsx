@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { useCoarsePointer } from "../../../lib/useCoarsePointer";
@@ -13,7 +13,7 @@ interface Props {
 export default function TextHoverEffect({
   text,
   className = "",
-  highlightColor = "#c8ff00",
+  highlightColor = "#B00002",
   radius = 80,
 }: Props) {
   const coarse = useCoarsePointer();

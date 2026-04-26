@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -18,7 +18,7 @@ export default function AboutPanel() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(ellipse at 80% 50%, rgba(200,255,0,0.03) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at 80% 50%, rgba(176, 0, 2,0.03) 0%, transparent 60%)",
           pointerEvents: "none",
         }}
       />
@@ -60,14 +60,14 @@ export default function AboutPanel() {
             >
               <rect width="200" height="260" fill="var(--color-surface)" />
               {/* Body silhouette */}
-              <ellipse cx="100" cy="78" rx="38" ry="44" fill="rgba(200,255,0,0.08)" />
-              <ellipse cx="100" cy="78" rx="30" ry="36" fill="rgba(200,255,0,0.05)" />
-              <path d="M28,260 Q40,160 100,140 Q160,160 172,260 Z" fill="rgba(200,255,0,0.06)" />
+              <ellipse cx="100" cy="78" rx="38" ry="44" fill="rgba(176, 0, 2,0.08)" />
+              <ellipse cx="100" cy="78" rx="30" ry="36" fill="rgba(176, 0, 2,0.05)" />
+              <path d="M28,260 Q40,160 100,140 Q160,160 172,260 Z" fill="rgba(176, 0, 2,0.06)" />
               {/* Neon accent lines */}
-              <line x1="10" y1="240" x2="190" y2="240" stroke="rgba(200,255,0,0.15)" strokeWidth="1" />
-              <line x1="10" y1="248" x2="120" y2="248" stroke="rgba(200,255,0,0.08)" strokeWidth="1" />
+              <line x1="10" y1="240" x2="190" y2="240" stroke="rgba(176, 0, 2,0.15)" strokeWidth="1" />
+              <line x1="10" y1="248" x2="120" y2="248" stroke="rgba(176, 0, 2,0.08)" strokeWidth="1" />
               {/* Monogram */}
-              <text x="100" y="96" textAnchor="middle" fontFamily="Georgia,serif" fontSize="24" fontWeight="900" fill="rgba(200,255,0,0.3)">DA</text>
+              <text x="100" y="96" textAnchor="middle" fontFamily="Georgia,serif" fontSize="24" fontWeight="900" fill="rgba(176, 0, 2,0.3)">DA</text>
             </svg>
           </div>
         </motion.div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { useLowMotion } from "../../../lib/useLowMotion";
@@ -9,7 +9,7 @@ interface Props {
   color?: string;
 }
 
-export default function Sparkles({ className = "", density = 60, color = "#c8ff00" }: Props) {
+export default function Sparkles({ className = "", density = 60, color = "#B00002" }: Props) {
   const low = useLowMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
@@ -38,7 +38,7 @@ export default function Sparkles({ className = "", density = 60, color = "#c8ff0
       g: parseInt(hex.slice(3, 5), 16),
       b: parseInt(hex.slice(5, 7), 16),
     });
-    const rgb = hexToRgb(color.startsWith("#") ? color : "#c8ff00");
+    const rgb = hexToRgb(color.startsWith("#") ? color : "#B00002");
 
     const particles = Array.from({ length: density }, () => ({
       x: Math.random(),

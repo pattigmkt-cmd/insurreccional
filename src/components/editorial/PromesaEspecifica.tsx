@@ -19,8 +19,8 @@ export default function PromesaEspecifica({ levels }: Props) {
 
   const pct = (active / Math.max(levels.length - 1, 1)) * 100;
 
-  // Color interpolation: gray -> neon
-  const neonRgb = [200, 255, 0];
+  // Color interpolation: gray -> sangre
+  const neonRgb = [176, 0, 2];
   const grayRgb = [60, 60, 60];
   const t = active / Math.max(levels.length - 1, 1);
   const r = Math.round(grayRgb[0] + (neonRgb[0] - grayRgb[0]) * t);

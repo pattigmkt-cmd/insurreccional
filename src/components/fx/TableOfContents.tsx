@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useRef } from "react";
 
@@ -88,7 +88,7 @@ export default function TableOfContents({
                 href={`#${id}`}
                 className="group flex items-start gap-2 text-sm leading-snug transition-colors duration-200"
                 style={{
-                  color: isActive ? "#c8ff00" : "#888888",
+                  color: isActive ? "#B00002" : "#888888",
                 }}
                 onClick={(e) => {
                   e.preventDefault();
@@ -98,7 +98,7 @@ export default function TableOfContents({
                 <span
                   className="mt-[6px] h-[1px] flex-shrink-0 transition-all duration-300"
                   style={{
-                    background: isActive ? "#c8ff00" : "rgba(136,136,136,0.4)",
+                    background: isActive ? "#B00002" : "rgba(136,136,136,0.4)",
                     width: isActive ? "16px" : "8px",
                   }}
                 />

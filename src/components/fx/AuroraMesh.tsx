@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
@@ -46,15 +46,15 @@ export default function AuroraMesh({ dense = false, className = "" }: Props) {
 
       const blobs = dense
         ? [
-            { x: 0.2 + 0.12 * Math.sin(t * 0.7), y: 0.3 + 0.1 * Math.cos(t * 0.5), r: 0.45, color: "rgba(200,255,0,0.13)" },
+            { x: 0.2 + 0.12 * Math.sin(t * 0.7), y: 0.3 + 0.1 * Math.cos(t * 0.5), r: 0.45, color: "rgba(176, 0, 2,0.13)" },
             { x: 0.7 + 0.1 * Math.cos(t * 0.6), y: 0.2 + 0.1 * Math.sin(t * 0.8), r: 0.38, color: "rgba(120,40,180,0.11)" },
-            { x: 0.5 + 0.14 * Math.sin(t * 0.4), y: 0.7 + 0.09 * Math.cos(t * 0.9), r: 0.42, color: "rgba(200,255,0,0.09)" },
+            { x: 0.5 + 0.14 * Math.sin(t * 0.4), y: 0.7 + 0.09 * Math.cos(t * 0.9), r: 0.42, color: "rgba(176, 0, 2,0.09)" },
             { x: 0.15 + 0.08 * Math.cos(t * 0.5), y: 0.8 + 0.07 * Math.sin(t * 0.7), r: 0.3, color: "rgba(60,0,120,0.1)" },
           ]
         : [
-            { x: 0.18 + 0.1 * Math.sin(t * 0.7), y: 0.28 + 0.08 * Math.cos(t * 0.5), r: 0.38, color: "rgba(200,255,0,0.10)" },
+            { x: 0.18 + 0.1 * Math.sin(t * 0.7), y: 0.28 + 0.08 * Math.cos(t * 0.5), r: 0.38, color: "rgba(176, 0, 2,0.10)" },
             { x: 0.72 + 0.09 * Math.cos(t * 0.6), y: 0.22 + 0.09 * Math.sin(t * 0.8), r: 0.32, color: "rgba(100,20,160,0.09)" },
-            { x: 0.5 + 0.12 * Math.sin(t * 0.4), y: 0.68 + 0.07 * Math.cos(t * 0.9), r: 0.36, color: "rgba(200,255,0,0.07)" },
+            { x: 0.5 + 0.12 * Math.sin(t * 0.4), y: 0.68 + 0.07 * Math.cos(t * 0.9), r: 0.36, color: "rgba(176, 0, 2,0.07)" },
           ];
 
       for (const blob of blobs) {
@@ -83,7 +83,7 @@ export default function AuroraMesh({ dense = false, className = "" }: Props) {
         className={`pointer-events-none absolute inset-0 ${className}`}
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 20% 30%, rgba(200,255,0,0.07) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 75% 25%, rgba(100,20,160,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 20% 30%, rgba(176, 0, 2,0.07) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 75% 25%, rgba(100,20,160,0.06) 0%, transparent 70%)",
         }}
       />
     );

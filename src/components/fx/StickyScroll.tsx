@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
@@ -14,7 +14,7 @@ interface Props {
   accent?: string;
 }
 
-export default function StickyScroll({ items, accent = "#c8ff00" }: Props) {
+export default function StickyScroll({ items, accent = "#B00002" }: Props) {
   const low = useLowMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);

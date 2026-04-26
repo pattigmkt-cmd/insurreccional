@@ -1,4 +1,4 @@
-// Static — no JS needed
+﻿// Static — no JS needed
 
 interface Props {
   className?: string;
@@ -22,8 +22,8 @@ export default function RetroGrid({ className = "", opacity = 0.12 }: Props) {
           transform: "rotateX(72deg)",
           transformOrigin: "bottom center",
           backgroundImage: `
-            linear-gradient(to right, rgba(200,255,0,${opacity}) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(200,255,0,${opacity}) 1px, transparent 1px)
+            linear-gradient(to right, rgba(176, 0, 2,${opacity}) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(176, 0, 2,${opacity}) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
           maskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 70%, transparent 100%)",

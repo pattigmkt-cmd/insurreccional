@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { useLowMotion } from "../../../lib/useLowMotion";
@@ -40,7 +40,7 @@ export default function Vortex({ className = "", particleCount = 120, dense = fa
       speed: 0.003 + Math.random() * 0.006,
       size: 0.5 + Math.random() * 1.5,
       opacity: 0.2 + Math.random() * 0.6,
-      color: Math.random() > 0.7 ? "#c8ff00" : Math.random() > 0.5 ? "#9bc800" : "#888888",
+      color: Math.random() > 0.7 ? "#B00002" : Math.random() > 0.5 ? "#7a0001" : "#888888",
     }));
 
     let t = 0;
@@ -92,7 +92,7 @@ export default function Vortex({ className = "", particleCount = 120, dense = fa
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(ellipse at center, rgba(200,255,0,0.04) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, rgba(176, 0, 2,0.04) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />

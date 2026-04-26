@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const CATEGORY_TINT: Record<string, string> = {
-  Criterio: "200, 255, 0",
+  Criterio: "176, 0, 2",
   Industria: "255, 107, 107",
   Estrategia: "125, 211, 252",
 };

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useCoarsePointer } from "../../../lib/useCoarsePointer";
@@ -11,9 +11,9 @@ interface Props {
 }
 
 const COLORS = [
-  "rgba(200,255,0,0.15)",
+  "rgba(176, 0, 2,0.15)",
   "rgba(155,200,0,0.1)",
-  "rgba(200,255,0,0.08)",
+  "rgba(176, 0, 2,0.08)",
   "rgba(136,136,136,0.06)",
 ];
 
@@ -31,7 +31,7 @@ export default function BackgroundBoxes({ className = "", rows = 8, cols = 16 }:
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: "linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(176, 0, 2,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(176, 0, 2,0.03) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
           pointerEvents: "none",
         }}
@@ -64,8 +64,8 @@ export default function BackgroundBoxes({ className = "", rows = 8, cols = 16 }:
             onMouseEnter={() => setHovered(key)}
             onMouseLeave={() => setHovered(null)}
             style={{
-              borderRight: "1px solid rgba(200,255,0,0.04)",
-              borderBottom: "1px solid rgba(200,255,0,0.04)",
+              borderRight: "1px solid rgba(176, 0, 2,0.04)",
+              borderBottom: "1px solid rgba(176, 0, 2,0.04)",
               background: isHovered ? COLORS[i % COLORS.length] : "transparent",
               transition: "background 0.3s ease",
               pointerEvents: "all",

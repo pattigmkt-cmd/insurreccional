@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
@@ -19,7 +19,7 @@ export default function AnimatedBeam({
   toRef,
   containerRef,
   className = "",
-  color = "#c8ff00",
+  color = "#B00002",
   duration = 3,
   delay = 0,
   curvature = 40,

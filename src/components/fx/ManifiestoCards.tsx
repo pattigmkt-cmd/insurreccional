@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import DirectionAwareHover from "./DirectionAwareHover";
 
@@ -47,7 +47,7 @@ export default function ManifiestoCards() {
         style={{
           position: "relative",
           overflow: "hidden",
-          border: "1px solid rgba(200,255,0,0.3)",
+          border: "1px solid rgba(176, 0, 2,0.3)",
           padding: "2rem",
           minHeight: 320,
           display: "flex",

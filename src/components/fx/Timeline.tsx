@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -22,8 +22,8 @@ export default function Timeline({ items, className = "" }: Props) {
   const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-80px" });
 
   const statusColor = (status: TimelineItem["status"]) => {
-    if (status === "active") return "#c8ff00";
-    if (status === "done") return "#c8ff00";
+    if (status === "active") return "#B00002";
+    if (status === "done") return "#B00002";
     return "#333333";
   };
 
@@ -46,7 +46,7 @@ export default function Timeline({ items, className = "" }: Props) {
         <motion.div
           aria-hidden="true"
           className="absolute left-[19px] top-4 hidden w-px origin-top md:left-[23px] md:block"
-          style={{ background: "linear-gradient(to bottom, #c8ff00, rgba(200,255,0,0.3))" }}
+          style={{ background: "linear-gradient(to bottom, #B00002, rgba(176, 0, 2,0.3))" }}
           initial={{ scaleY: 0 }}
           animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}

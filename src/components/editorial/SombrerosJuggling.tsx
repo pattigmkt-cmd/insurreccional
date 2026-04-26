@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -85,7 +85,7 @@ export default function SombrerosJuggling() {
             <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-mute">vos</p>
             <div
               className="mx-auto mt-1 h-10 w-10 rounded-full border-2"
-              style={{ borderColor: "#c8ff00", background: "rgba(200,255,0,0.1)" }}
+              style={{ borderColor: "#B00002", background: "rgba(176, 0, 2,0.1)" }}
             />
           </div>
 
@@ -103,8 +103,8 @@ export default function SombrerosJuggling() {
                 style={{
                   left: cx,
                   top: cy,
-                  borderColor: isHovered ? "#c8ff00" : isDropped ? "#333" : "#444",
-                  background: isDropped ? "#0a0a0a" : isHovered ? "rgba(200,255,0,0.15)" : "#111",
+                  borderColor: isHovered ? "#B00002" : isDropped ? "#333" : "#444",
+                  background: isDropped ? "#0a0a0a" : isHovered ? "rgba(176, 0, 2,0.15)" : "#111",
                 }}
                 animate={isDropped ? {
                   y: 80,
@@ -121,7 +121,7 @@ export default function SombrerosJuggling() {
                 title={role.label}
                 aria-label={`Soltar ${role.label}`}
               >
-                <span style={{ color: isHovered ? "#c8ff00" : "#888" }}>{role.icon}</span>
+                <span style={{ color: isHovered ? "#B00002" : "#888" }}>{role.icon}</span>
               </motion.button>
             );
           })}
@@ -134,7 +134,7 @@ export default function SombrerosJuggling() {
               key={r.id}
               className="font-mono text-[9px] uppercase tracking-[0.2em] transition-colors"
               style={{
-                color: droppedIds.includes(r.id) ? "#333" : hoveredId === r.id ? "#c8ff00" : "#555",
+                color: droppedIds.includes(r.id) ? "#333" : hoveredId === r.id ? "#B00002" : "#555",
                 textDecoration: droppedIds.includes(r.id) ? "line-through" : "none",
               }}
             >

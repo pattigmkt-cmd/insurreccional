@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState, useCallback } from "react";
 
@@ -108,7 +108,7 @@ export default function Compare({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 0 12px rgba(200,255,0,0.5)",
+            boxShadow: "0 0 12px rgba(176, 0, 2,0.5)",
           }}
         >
           <span style={{ color: "var(--color-ink)", fontSize: 12, fontWeight: 700 }}>⇔</span>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { useLowMotion } from "../../../lib/useLowMotion";
@@ -16,7 +16,7 @@ export default function ShootingStars({ className = "", count = 6 }: Props) {
     if (low || !containerRef.current) return;
     const container = containerRef.current;
 
-    const colors = ["#c8ff00", "#9bc800", "#f0ece4", "#888888"];
+    const colors = ["#B00002", "#7a0001", "#f0ece4", "#888888"];
 
     const spawn = () => {
       if (!container) return;

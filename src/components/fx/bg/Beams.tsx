@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useLowMotion } from "../../../lib/useLowMotion";
 
@@ -8,11 +8,11 @@ interface Props {
 }
 
 const BEAMS = [
-  { angle: -35, left: "10%", width: "1px", color: "rgba(200,255,0,0.15)", duration: "8s", delay: "0s" },
-  { angle: -35, left: "28%", width: "2px", color: "rgba(200,255,0,0.08)", duration: "12s", delay: "1.5s" },
+  { angle: -35, left: "10%", width: "1px", color: "rgba(176, 0, 2,0.15)", duration: "8s", delay: "0s" },
+  { angle: -35, left: "28%", width: "2px", color: "rgba(176, 0, 2,0.08)", duration: "12s", delay: "1.5s" },
   { angle: -35, left: "48%", width: "1px", color: "rgba(155,200,0,0.12)", duration: "10s", delay: "0.8s" },
-  { angle: -35, left: "68%", width: "2px", color: "rgba(200,255,0,0.06)", duration: "14s", delay: "2s" },
-  { angle: -35, left: "85%", width: "1px", color: "rgba(200,255,0,0.1)", duration: "9s", delay: "0.3s" },
+  { angle: -35, left: "68%", width: "2px", color: "rgba(176, 0, 2,0.06)", duration: "14s", delay: "2s" },
+  { angle: -35, left: "85%", width: "1px", color: "rgba(176, 0, 2,0.1)", duration: "9s", delay: "0.3s" },
 ];
 
 export default function Beams({ className = "", count = 5 }: Props) {

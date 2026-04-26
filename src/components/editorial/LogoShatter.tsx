@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
@@ -38,8 +38,8 @@ export default function LogoShatter() {
     return (
       <div className="my-10 flex items-center justify-center gap-6 rounded border border-line bg-[#111] p-8">
         <span className="font-serif text-3xl font-bold text-[#444] line-through">LOGO</span>
-        <span className="font-mono text-xl" style={{ color: "#c8ff00" }}>→</span>
-        <span className="font-serif text-3xl font-bold" style={{ color: "#c8ff00" }}>PROMESA</span>
+        <span className="font-mono text-xl" style={{ color: "#B00002" }}>→</span>
+        <span className="font-serif text-3xl font-bold" style={{ color: "#B00002" }}>PROMESA</span>
       </div>
     );
   }
@@ -106,7 +106,7 @@ export default function LogoShatter() {
             <motion.span
               key={`p-${i}`}
               className="inline-block font-serif text-5xl font-bold md:text-6xl"
-              style={{ color: "#c8ff00" }}
+              style={{ color: "#B00002" }}
               initial={{ opacity: 0, y: -30 }}
               animate={rebuilt ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
               transition={{

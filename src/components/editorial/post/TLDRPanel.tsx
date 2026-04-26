@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,8 +16,8 @@ export default function TLDRPanel({ items, className = "", defaultOpen = false }
     <div
       className={className}
       style={{
-        border: "1px solid rgba(200,255,0,0.2)",
-        background: "rgba(200,255,0,0.02)",
+        border: "1px solid rgba(176, 0, 2,0.2)",
+        background: "rgba(176, 0, 2,0.02)",
         marginBottom: "2.5rem",
         overflow: "hidden",
       }}

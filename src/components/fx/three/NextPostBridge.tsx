@@ -1,10 +1,10 @@
-import { Suspense, useEffect, useMemo, useRef } from "react";
+﻿import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Text3D, Center } from "@react-three/drei";
 import * as THREE from "three";
 import { useLowMotion } from "../../../lib/useLowMotion";
 
-const NEON = "#c8ff00";
+const NEON = "#B00002";
 const FONT_URL = "/fonts/helvetiker_bold.typeface.json";
 
 type ProgressRef = { value: number };

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { type ReactNode } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
@@ -12,7 +12,7 @@ interface Props {
 
 export default function AnimatedGradientText({
   children,
-  colors = ["#c8ff00", "#a0cc00", "#e8ff60", "#c8ff00"],
+  colors = ["#B00002", "#7a0001", "#e30613", "#B00002"],
   className = "",
   speed = 4,
 }: Props) {

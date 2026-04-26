@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { useCoarsePointer } from "../../lib/useCoarsePointer";
@@ -52,8 +52,8 @@ export default function Lens({
             borderRadius: "50%",
             overflow: "hidden",
             pointerEvents: "none",
-            border: "1px solid rgba(200,255,0,0.3)",
-            boxShadow: "0 0 20px rgba(200,255,0,0.15)",
+            border: "1px solid rgba(176, 0, 2,0.3)",
+            boxShadow: "0 0 20px rgba(176, 0, 2,0.15)",
             zIndex: 10,
           }}
         >

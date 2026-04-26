@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useLowMotion } from "../../../lib/useLowMotion";
 
@@ -10,7 +10,7 @@ interface Props {
 
 export default function WavyBackground({
   className = "",
-  color = "#c8ff00",
+  color = "#B00002",
   amplitude = 18,
 }: Props) {
   const low = useLowMotion();

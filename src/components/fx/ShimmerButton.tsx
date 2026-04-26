@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { type ReactNode } from "react";
@@ -20,7 +20,7 @@ export default function ShimmerButton({ children, href, onClick, className = "" 
   const styles: React.CSSProperties = {
     position: "relative",
     padding: "12px 28px",
-    background: "#c8ff00",
+    background: "#B00002",
     overflow: "hidden",
     display: "inline-flex",
     alignItems: "center",

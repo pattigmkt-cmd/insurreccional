@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -94,7 +94,7 @@ export default function ShareMenu({ title, url, className = "" }: Props) {
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.color = "var(--color-neon)";
-            (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,255,0,0.4)";
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(176, 0, 2,0.4)";
           }}
           onMouseLeave={(e) => {
             (e.currentTarget as HTMLElement).style.color = "var(--color-mute)";

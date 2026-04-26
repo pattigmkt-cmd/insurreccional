@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -69,15 +69,15 @@ export default function CVDepthVsWidth() {
         {/* Specialist / deep */}
         <div
           className="rounded border p-5"
-          style={{ borderColor: "rgba(200,255,0,0.25)", background: "rgba(200,255,0,0.03)" }}
+          style={{ borderColor: "rgba(176, 0, 2,0.25)", background: "rgba(176, 0, 2,0.03)" }}
         >
           <p
             className="mb-1 font-mono text-[10px] uppercase tracking-[0.25em]"
-            style={{ color: "#c8ff00" }}
+            style={{ color: "#B00002" }}
           >
             Especialista
           </p>
-          <p className="mb-5 font-serif text-sm italic" style={{ color: "#c8ff00", opacity: 0.7 }}>
+          <p className="mb-5 font-serif text-sm italic" style={{ color: "#B00002", opacity: 0.7 }}>
             "Exactamente lo que buscamos"
           </p>
 
@@ -86,18 +86,18 @@ export default function CVDepthVsWidth() {
             <div className="mb-2 flex justify-between">
               <span
                 className="font-mono text-[10px] uppercase tracking-[0.15em]"
-                style={{ color: "#c8ff00" }}
+                style={{ color: "#B00002" }}
               >
                 {SPECIALIST.label}
               </span>
-              <span className="font-mono text-[9px]" style={{ color: "#c8ff00" }}>
+              <span className="font-mono text-[9px]" style={{ color: "#B00002" }}>
                 {Math.round(SPECIALIST.depth * 100)}%
               </span>
             </div>
             <div className="h-[4px] w-full rounded-full bg-[#1a1a1a]">
               <motion.div
                 className="h-full rounded-full"
-                style={{ background: "#c8ff00" }}
+                style={{ background: "#B00002" }}
                 initial={{ width: 0 }}
                 animate={inView ? { width: `${SPECIALIST.depth * 100}%` } : { width: 0 }}
                 transition={{
@@ -115,7 +115,7 @@ export default function CVDepthVsWidth() {
               <motion.div
                 key={i}
                 className="flex-1 rounded-sm"
-                style={{ background: `rgba(200,255,0,${0.15 + h * 0.4})` }}
+                style={{ background: `rgba(176, 0, 2,${0.15 + h * 0.4})` }}
                 initial={{ height: 0 }}
                 animate={inView ? { height: `${h * 100}%` } : { height: 0 }}
                 transition={{
@@ -128,12 +128,12 @@ export default function CVDepthVsWidth() {
           </div>
           <p
             className="mt-2 font-mono text-[9px] uppercase tracking-[0.15em]"
-            style={{ color: "#c8ff00", opacity: 0.5 }}
+            style={{ color: "#B00002", opacity: 0.5 }}
           >
             Profundidad compounding
           </p>
 
-          <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.2em]" style={{ color: "#c8ff00", opacity: 0.6 }}>
+          <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.2em]" style={{ color: "#B00002", opacity: 0.6 }}>
             3 años exp · 5 años de avance
           </p>
         </div>

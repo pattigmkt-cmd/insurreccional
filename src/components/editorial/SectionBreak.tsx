@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
@@ -24,7 +24,7 @@ export default function SectionBreak() {
           <motion.span
             key={i}
             className="block h-[6px] w-[6px] rounded-full"
-            style={{ background: "#c8ff00" }}
+            style={{ background: "#B00002" }}
             animate={{
               scale: [1, 1.4, 1],
               opacity: [0.4, 1, 0.4],

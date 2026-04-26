@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useCallback } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
@@ -9,7 +9,7 @@ interface Props {
   count?: number;
 }
 
-const COLORS = ["#c8ff00", "#9bc800", "#f0ece4", "#888888", "#c8ff0088"];
+const COLORS = ["#B00002", "#7a0001", "#f0ece4", "#888888", "#b0000288"];
 
 export default function Confetti({ children, className = "", count = 40 }: Props) {
   const low = useLowMotion();

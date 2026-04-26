@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
 
@@ -15,7 +15,7 @@ export default function ScrollProgress() {
         left: 0,
         right: 0,
         height: "2px",
-        background: "#c8ff00",
+        background: "#B00002",
         scaleX,
         transformOrigin: "left",
         zIndex: 9999,

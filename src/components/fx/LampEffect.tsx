@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { type ReactNode } from "react";
 
@@ -37,8 +37,8 @@ export default function LampEffect({
           background: `conic-gradient(
             from 268deg at 50% -8%,
             transparent 0deg,
-            rgba(200,255,0,${opacity}) 8deg,
-            rgba(200,255,0,${opacity * 0.55}) 25deg,
+            rgba(176, 0, 2,${opacity}) 8deg,
+            rgba(176, 0, 2,${opacity * 0.55}) 25deg,
             transparent 45deg
           )`,
           filter: "blur(24px)",
@@ -60,8 +60,8 @@ export default function LampEffect({
           background: `conic-gradient(
             from 271deg at 50% -4%,
             transparent 0deg,
-            rgba(200,255,0,${opacity * 0.6}) 5deg,
-            rgba(200,255,0,${opacity * 0.25}) 18deg,
+            rgba(176, 0, 2,${opacity * 0.6}) 5deg,
+            rgba(176, 0, 2,${opacity * 0.25}) 18deg,
             transparent 30deg
           )`,
           filter: "blur(12px)",
@@ -78,8 +78,8 @@ export default function LampEffect({
           width: "60%",
           maxWidth: "400px",
           height: "1px",
-          background: `rgba(200,255,0,${opacity * 0.9})`,
-          boxShadow: `0 0 40px 20px rgba(200,255,0,${opacity * 0.4})`,
+          background: `rgba(176, 0, 2,${opacity * 0.9})`,
+          boxShadow: `0 0 40px 20px rgba(176, 0, 2,${opacity * 0.4})`,
           pointerEvents: "none",
           zIndex: 0,
         }}

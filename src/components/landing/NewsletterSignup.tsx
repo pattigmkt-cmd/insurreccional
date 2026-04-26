@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,7 +41,7 @@ export default function NewsletterSignup() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(ellipse at center bottom, rgba(200,255,0,0.04) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at center bottom, rgba(176, 0, 2,0.04) 0%, transparent 60%)",
           pointerEvents: "none",
         }}
       />
@@ -94,8 +94,8 @@ export default function NewsletterSignup() {
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 padding: "1rem",
-                border: "1px solid rgba(200,255,0,0.3)",
-                background: "rgba(200,255,0,0.04)",
+                border: "1px solid rgba(176, 0, 2,0.3)",
+                background: "rgba(176, 0, 2,0.04)",
               }}
             >
               <p
