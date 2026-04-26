@@ -58,7 +58,7 @@ export default function CVDepthVsWidth() {
               </div>
             ))}
           </div>
-          <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.2em] text-[#333]">
+          <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.2em] text-mute-dim">
             3 años exp · 3 años de aprendizaje
           </p>
         </div>
