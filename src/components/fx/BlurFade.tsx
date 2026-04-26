@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 interface Props {
@@ -21,11 +21,8 @@ export default function BlurFade({
   duration = 0.55,
   direction = "up",
   className = "",
-  once = true,
 }: Props) {
   const low = useLowMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once, margin: "-30px" });
 
   if (low) {
     return <div className={className}>{children}</div>;
@@ -50,10 +47,9 @@ export default function BlurFade({
 
   return (
     <motion.div
-      ref={ref}
       className={className}
       initial={hidden}
-      animate={inView ? visible : hidden}
+      animate={visible}
     >
       {children}
     </motion.div>

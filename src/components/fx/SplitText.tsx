@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useLowMotion } from "../../lib/useLowMotion";
 
 type Tag = "h1" | "h2" | "h3" | "h4" | "p" | "span";
@@ -21,31 +20,14 @@ export default function SplitText({
   delay = 0,
   staggerDelay = 0.025,
   className = "",
-  once = true,
 }: Props) {
   const low = useLowMotion();
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once, margin: "-40px" });
-
-  const chars = text.split("");
 
   if (low) {
-    return (
-      <Tag ref={ref as any} className={className}>
-        {text}
-      </Tag>
-    );
+    return <Tag className={className}>{text}</Tag>;
   }
 
-  const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: staggerDelay,
-        delayChildren: delay,
-      },
-    },
-  };
+  const tokens = text.split(/(\s+)/);
 
   const charVariant = {
     hidden: {
@@ -66,32 +48,56 @@ export default function SplitText({
     },
   };
 
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: staggerDelay,
+        delayChildren: delay,
+      },
+    },
+  };
+
   const MotionTag = motion[Tag] as any;
 
   return (
     <MotionTag
-      ref={ref}
-      className={`${className} inline-block`}
+      className={className}
       style={{ perspective: "600px" }}
       variants={container}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      animate="visible"
       aria-label={text}
     >
-      {chars.map((char, i) => (
-        <motion.span
-          key={i}
-          variants={charVariant}
-          className="inline-block"
-          style={{
-            whiteSpace: char === " " ? "pre" : undefined,
-            transformOrigin: "50% 0%",
-          }}
-          aria-hidden="true"
-        >
-          {char === " " ? " " : char}
-        </motion.span>
-      ))}
+      {tokens.map((token, ti) => {
+        if (/^\s+$/.test(token)) {
+          return (
+            <span key={`s-${ti}`} style={{ whiteSpace: "pre" }} aria-hidden="true">
+              {token}
+            </span>
+          );
+        }
+        return (
+          <span
+            key={`w-${ti}`}
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
+            aria-hidden="true"
+          >
+            {Array.from(token).map((char, ci) => (
+              <motion.span
+                key={`w-${ti}-${ci}`}
+                variants={charVariant}
+                style={{
+                  display: "inline-block",
+                  transformOrigin: "50% 0%",
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+        );
+      })}
     </MotionTag>
   );
 }
